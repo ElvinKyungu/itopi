@@ -5,7 +5,8 @@ export const useStore = defineStore({
   id: 'store',
   state: () => {
     return {
-      data:{},
+      data: {},
+      searchWord: ''
     }
   },
   getters: {},
