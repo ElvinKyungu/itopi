@@ -8,6 +8,7 @@ store.setData()
 <template>
   <div>
     <HeaderArea />
-    <NuxtPage/>
+    <NuxtPage />
+    <FooterArea />
   </div>
 </template>
