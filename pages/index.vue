@@ -40,7 +40,7 @@ const filteredData = computed(() => {
 </script>
 
 <template>
-<div id="index">
+<section id="index">
   <SearchBar />
   <div class="flex flex-wrap justify-around">
     <ProjectCard 
@@ -53,5 +53,5 @@ const filteredData = computed(() => {
     />
     <div v-for="index in 4" :key="index" class="w-64 mx-5"></div>
   </div>
-</div>
+</section>
 </template>

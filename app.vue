@@ -7,6 +7,7 @@ store.setData()
 
 <template>
   <div>
+    <HeaderArea />
     <NuxtPage/>
   </div>
 </template>
