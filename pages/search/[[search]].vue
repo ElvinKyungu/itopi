@@ -6,6 +6,7 @@ const store = useStore()
 const route = useRoute()
 
 const options = {
+  ignoreLocation: true,
   isCaseSensitive: false,
   findAllMatches: true,
   includeScore: true,
