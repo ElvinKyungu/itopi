@@ -46,17 +46,20 @@ onMounted(() => {
 <template>
 <section id="index">
   <SearchBar />
-  <div class="flex flex-wrap justify-around">
+  <div v-if="filteredData != null && filteredData.length !== 0" class="flex flex-wrap justify-around">
     <ProjectCard 
       v-for="project in filteredData"
       :key="project.item.id"
       :id="project.item.id"
       :title="project.item.fields.Name"
       :artiste="project.item.fields.Notes"
-      :img="project.item.fields.Attachments[0].url"
+      :img="project.item.fields.Attachments[0].thumbnails.large.url"
       :tags="project.item.fields.Mots_clefs"
     />
     <div v-for="index in 4" :key="index" class="w-64 mx-5"></div>
+  </div>
+  <div v-else class="h-80 w-full grid place-content-center">
+    <div class="text-white text-xl font-bold">Pas de résultat pour cette recherche</div>
   </div>
 </section>
 </template>
