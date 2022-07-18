@@ -27,14 +27,18 @@ const formatData = (data) => {
 }
 
 const filteredData = computed(() => {
-  if (store.searchWord === '') {
-    const result = formatData(store.data)
-    return result
-  }
-  else {
-    options.minMatchCharLength = store.searchWord.length
-    const fuse = new Fuse(store.data, options)
-    return fuse.search(store.searchWord)
+  if (store.data != null) {
+    if (store.searchWord === '') {
+      const result = formatData(store.data)
+      return result
+    }
+    else {
+      options.minMatchCharLength = store.searchWord.length
+      const fuse = new Fuse(store.data, options)
+      return fuse.search(store.searchWord)
+    }
+  } else {
+    return []
   }
 })
 

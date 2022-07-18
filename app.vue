@@ -7,9 +7,15 @@ store.setData()
 </script>
 
 <template>
-  <div>
+  <div id="app">
     <HeaderArea />
     <NuxtPage />
     <FooterArea />
   </div>
 </template>
+
+<style scoped>
+#app {
+  min-height: 100vh
+}
+</style>
