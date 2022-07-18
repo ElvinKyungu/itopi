@@ -1,5 +1,8 @@
 <script setup>
-defineProps({
+const props = defineProps({
+  id: {
+    Type: String
+  },
   title: {
     Type: String
   },
@@ -16,10 +19,16 @@ defineProps({
       }
     }
 })
+
+const router = useRouter()
+
+const projectPage = () => {
+  router.push({ path: '../project/' + props.id })
+}
 </script>
 
 <template>
-<div id="project_card" class="h-96 w-64 m-5 bg-white outline outline-[3px] outline-black rounded-xl overflow-hidden">
+<div v-on:click="projectPage" id="project_card" class="h-96 w-64 m-5 bg-white outline outline-[3px] outline-black rounded-xl overflow-hidden">
   <div class="h-64 w-full rounded-t-xl">
     <ImageLazy :img="img"/>
   </div>

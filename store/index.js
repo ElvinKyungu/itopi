@@ -5,11 +5,20 @@ export const useStore = defineStore({
   id: 'store',
   state: () => {
     return {
-      data: {},
+      data: null,
       searchWord: ''
     }
   },
-  getters: {},
+  getters: {
+    getProject: (state) => {
+      return (id) => {
+        if (state.data != null ) {
+          return state.data.find(project => project.id === id)
+        }
+        return null
+      }
+    }
+  },
   actions: {
     async setData() {
       try {

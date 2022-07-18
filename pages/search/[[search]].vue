@@ -50,6 +50,7 @@ onMounted(() => {
     <ProjectCard 
       v-for="project in filteredData"
       :key="project.item.id"
+      :id="project.item.id"
       :title="project.item.fields.Name"
       :artiste="project.item.fields.Notes"
       :img="project.item.fields.Attachments[0].url"
