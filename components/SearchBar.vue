@@ -3,10 +3,12 @@ import { useStore } from '../store/index.js'
 
 const ENTER_KEY = 13
 const store = useStore()
+const router = useRouter()
 const input = ref('')
 
 const search = () => {
   store.searchWord = input.value
+  router.push({ path: '/search/' + input.value})
 }
 
  onMounted(() => {
