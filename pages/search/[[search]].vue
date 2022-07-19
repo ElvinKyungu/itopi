@@ -16,6 +16,13 @@ const options = {
   keys:['fields.Name', 'fields.Notes', 'fields.Mots_clefs']
 }
 
+const getImg = (project) => {
+  if (project.item.fields.Attachments && project.item.fields.Attachments.length >= 1) {
+    return project.item.fields.Attachments[0].thumbnails.large.url
+  }
+  return null
+}
+
 const formatData = (data) => {
   const newData = []
   if (Array.isArray(data)) {
@@ -57,13 +64,13 @@ onMounted(() => {
       :id="project.item.id"
       :title="project.item.fields.Name"
       :artiste="project.item.fields.Notes"
-      :img="project.item.fields.Attachments[0].thumbnails.large.url"
+      :img="getImg(project)"
       :tags="project.item.fields.Mots_clefs"
     />
     <div v-for="index in 4" :key="index" class="w-64 mx-5"></div>
   </div>
-  <div v-else class="h-80 w-full grid place-content-center">
+  <!-- <div class="h-80 w-full grid place-content-center">
     <div class="text-white text-xl font-bold">Pas de résultat pour cette recherche</div>
-  </div>
+  </div> -->
 </section>
 </template>

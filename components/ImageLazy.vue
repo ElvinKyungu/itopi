@@ -15,7 +15,7 @@ if (props.img == null) {
 
 <template>
   <div class="h-full w-full bg-slate-100" v-bind:class="{ 'animate-pulse': !loaded, 'animate-fade-out-background': loaded }">
-    <img
+    <img v-if="img != null"
       :src="img"
       loading="lazy"
       class="h-full w-full object-cover"
