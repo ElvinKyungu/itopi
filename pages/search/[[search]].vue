@@ -51,6 +51,8 @@ const filteredData = computed(() => {
 
 onMounted(() => {
   store.searchWord = route.params.search
+  const searchParams = new URLSearchParams(window.location.search)
+  store.filter =  searchParams.getAll('filter')
 })
 </script>
 
@@ -69,8 +71,8 @@ onMounted(() => {
     />
     <div v-for="index in 4" :key="index" class="w-64 mx-5"></div>
   </div>
-  <!-- <div class="h-80 w-full grid place-content-center">
+  <div v-else class="h-80 w-full grid place-content-center">
     <div class="text-white text-xl font-bold">Pas de résultat pour cette recherche</div>
-  </div> -->
+  </div>
 </section>
 </template>

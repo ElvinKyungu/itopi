@@ -3,6 +3,7 @@ import { useStore } from '../store/index.js'
 
 const store = useStore()
 const showFilter = ref(false)
+const router = useRouter()
 
 const addFilter = (tag) => {
   if (store.filter.includes(tag)){
@@ -11,6 +12,7 @@ const addFilter = (tag) => {
   } else {
     store.filter.push(tag)
   }
+  router.push({ path: '/search/' + store.searchWord, query: { filter: store.filter }})
 }
 </script>
 
