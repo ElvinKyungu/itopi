@@ -6,13 +6,14 @@ const showFilter = ref(false)
 const router = useRouter()
 
 const addFilter = (tag) => {
-  if (store.filter.includes(tag)){
-    const index = store.filter.indexOf(tag)
-    store.filter.splice(index)
+  const filter = [...store.filter]
+  if (filter.includes(tag)){
+    const index = filter.indexOf(tag)
+    filter.splice(index)
   } else {
-    store.filter.push(tag)
+    filter.push(tag)
   }
-  router.push({ path: '/search/' + store.searchWord, query: { filter: store.filter }})
+  router.push({ path: '/search/' + store.searchWord, query: { filter: filter }})
 }
 </script>
 

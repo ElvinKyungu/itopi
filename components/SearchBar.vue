@@ -7,8 +7,7 @@ const router = useRouter()
 const input = ref('')
 
 const search = () => {
-  store.searchWord = input.value
-  router.push({ path: '/search/' + store.searchWord, query: { filter: store.filter }})
+  router.push({ path: '/search/' + input.value, query: { filter: store.filter }})
 }
 
  onMounted(() => {

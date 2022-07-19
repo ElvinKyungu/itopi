@@ -5,7 +5,6 @@ const store = useStore()
 const router = useRouter()
 
 const leave = () => {
-  store.project = null
   router.push({ path: '/search/' + store.searchWord, query: { filter: store.filter }})
 }
 

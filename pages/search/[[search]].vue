@@ -1,4 +1,5 @@
 <script setup>
+import { onBeforeRouteUpdate } from 'vue-router'
 import { useStore } from '../../store/index.js'
 import Fuse from 'fuse.js'
 
@@ -21,6 +22,21 @@ const getImg = (project) => {
     return project.item.fields.Attachments[0].thumbnails.large.url
   }
   return null
+}
+
+const setParams = (url) => {
+  store.searchWord = url.params.search
+  if (url.query.filter != null) {
+    store.filter =  url.query.filter
+  } else {
+    store.filter = []
+  }
+  if (url.query.hasOwnProperty('project')) {
+    store.project = url.query.project
+  } else {
+    store.project = null
+  }
+  return true
 }
 
 const formatData = (data) => {
@@ -49,13 +65,13 @@ const filteredData = computed(() => {
   }
 })
 
+
+onBeforeRouteUpdate((to, from) => {
+  setParams(to)
+})
+
 onMounted(() => {
-  store.searchWord = route.params.search
-  const searchParams = new URLSearchParams(window.location.search)
-  store.filter =  searchParams.getAll('filter')
-  if (searchParams.has('project')) {
-    store.project = searchParams.get('project')
-  }
+  setParams(route)
 })
 </script>
 
