@@ -7,6 +7,7 @@ export const useStore = defineStore({
     return {
       data: null,
       searchWord: '',
+      project: null,
       filter: [],
       tags: []
     }

@@ -26,7 +26,8 @@ const router = useRouter()
 const store = useStore()
 
 const projectPage = () => {
-  router.push({ path: '../project/' + props.id })
+  store.project =  props.id
+  router.push({ path: '/search/' + store.searchWord, query: { filter: store.filter, project: store.project }})
 }
 
 const showCard = computed(() => {

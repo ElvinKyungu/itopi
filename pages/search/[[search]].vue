@@ -53,11 +53,15 @@ onMounted(() => {
   store.searchWord = route.params.search
   const searchParams = new URLSearchParams(window.location.search)
   store.filter =  searchParams.getAll('filter')
+  if (searchParams.has('project')) {
+    store.project = searchParams.get('project')
+  }
 })
 </script>
 
 <template>
 <section id="index">
+  <ProjectView v-if="store.project"/>
   <SearchBar />
   <div v-if="filteredData != null && filteredData.length !== 0" class="flex flex-wrap justify-around">
     <ProjectCard 
