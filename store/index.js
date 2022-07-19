@@ -6,7 +6,9 @@ export const useStore = defineStore({
   state: () => {
     return {
       data: null,
-      searchWord: ''
+      searchWord: '',
+      filter: [],
+      tags: []
     }
   },
   getters: {
@@ -20,11 +22,25 @@ export const useStore = defineStore({
     }
   },
   actions: {
+    setTags(data) {
+      const tags = []
+      for (let project of data) {
+        if (project.fields.hasOwnProperty('Mots_clefs')) {
+          for (let tag of project.fields.Mots_clefs) {
+            if (tags.includes(tag) === false) {
+              tags.push(tag)
+            }
+          }
+        }
+      }
+      this.tags = tags
+    },
     async setData() {
       try {
         const data = await getData()
         if (data != null) {
           this.data = data
+          this.setTags(data)
         }
       }
       catch (error) {

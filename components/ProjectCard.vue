@@ -1,4 +1,6 @@
 <script setup>
+import { useStore } from '../store/index.js'
+
 const props = defineProps({
   id: {
     Type: String
@@ -21,14 +23,27 @@ const props = defineProps({
 })
 
 const router = useRouter()
+const store = useStore()
 
 const projectPage = () => {
   router.push({ path: '../project/' + props.id })
 }
+
+const showCard = computed(() => {
+  if (store.filter.length > 0) {
+    for (let tag of props.tags) {
+      if (store.filter.includes(tag)) {
+        return true
+      }
+    }
+    return false
+  }
+  return true
+})
 </script>
 
 <template>
-<div v-on:click="projectPage" id="project_card" class="h-96 w-64 m-5 bg-white outline outline-[3px] outline-black rounded-xl overflow-hidden">
+<div v-if="showCard" v-on:click="projectPage" id="project_card" class="h-96 w-64 m-5 bg-white outline outline-[3px] outline-black rounded-xl overflow-hidden">
   <div class="h-64 w-full rounded-t-xl">
     <ImageLazy :img="img"/>
   </div>
