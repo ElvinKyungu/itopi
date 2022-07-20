@@ -53,20 +53,33 @@ const formatData = (data) => {
   return newData
 }
 
+const sortData = (data) => {
+  if (store.sort.field != null) {
+    return data.sort((a, b) => {
+      return a.item.fields[store.sort.field].localeCompare(b.item.fields[store.sort.field], undefined, {
+        numeric: true,
+        sensitivity: 'base'
+      })
+    })
+  }
+  return data
+}
+
 const filteredData = computed(() => {
+  let filteredData = []
   if (store.data != null) {
     if (store.searchWord === '') {
       const result = formatData(store.data)
-      return result
+      filteredData = result
     }
     else {
       options.minMatchCharLength = store.searchWord.length
       const fuse = new Fuse(store.data, options)
-      return fuse.search(store.searchWord)
+      filteredData = fuse.search(store.searchWord)
     }
-  } else {
-    return []
+    filteredData = sortData(filteredData)
   }
+  return filteredData
 })
 
 
