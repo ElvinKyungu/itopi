@@ -43,15 +43,15 @@ const showCard = computed(() => {
 </script>
 
 <template>
-<div v-if="showCard" v-on:click="projectPage" id="project_card" class="h-96 w-64 m-5 bg-white outline outline-[3px] outline-black rounded-xl overflow-hidden">
+<div v-if="showCard" v-on:click="projectPage" id="project_card" class="h-96 w-64 bg-zinc-100 outline outline-2 outline-black rounded-xl overflow-hidden">
   <div class="h-64 w-full rounded-t-xl">
     <ImageLazy :img="img"/>
   </div>
-  <div class="border-t-[3px] border-black px-2">
+  <div class="border-t-2 border-black px-2">
     <CardTitle :title="title"/>
-    <CardTitle :title="artiste"/>
+    <CardTitle class="font-bold" :title="artiste"/>
     <div class="mt-2 flex flex-wrap">
-      <CardTag v-for="(tag, index) in tags" :key="index" :tag="tag" />
+      <CardTag v-for="(tag, index) in tags" :key="index" :tag="tag" mode="card"/>
     </div>
   </div>
 </div>

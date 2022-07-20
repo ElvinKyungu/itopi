@@ -2,9 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
+/* html {
   min-height: 100vh;
   background: linear-gradient(217deg, #FF5F7E, rgba(255,0,0,0) 70.71%),
     linear-gradient(127deg, #FBFD71, rgba(0,255,0,0) 70.71%),
     linear-gradient(336deg, #9C63FD, rgba(0,0,255,0) 70.71%);
-}
+} */

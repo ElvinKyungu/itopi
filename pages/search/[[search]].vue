@@ -27,7 +27,11 @@ const getImg = (project) => {
 const setParams = (url) => {
   store.searchWord = url.params.search
   if (url.query.filter != null) {
-    store.filter =  url.query.filter
+    if (Array.isArray(url.query.filter)) {
+      store.filter =  url.query.filter
+    } else {
+      store.filter = [ url.query.filter ]
+    }
   } else {
     store.filter = []
   }
@@ -76,10 +80,12 @@ onMounted(() => {
 </script>
 
 <template>
-<section id="index">
+<section id="index" class="px-10">
   <ProjectView v-if="store.project"/>
   <SearchBar />
-  <div v-if="filteredData != null && filteredData.length !== 0" class="flex flex-wrap justify-around">
+  <FilterBar />
+  <TagBar />
+  <div v-if="filteredData != null && filteredData.length !== 0" class="flex flex-wrap justify-between gap-12">
     <ProjectCard 
       v-for="project in filteredData"
       :key="project.item.id"

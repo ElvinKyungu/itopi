@@ -41,7 +41,7 @@ const project = computed(() => {
       </div>
       <div class="h-1/2 flex flex-col justify-between pt-2">
       <h5 >Description</h5>
-      <p class="h-5/6 w-full bg-zinc-100 rounded-lg outline outline-2 outline-black"></p>
+      <p class="h-5/6 w-full bg-zinc-100 rounded-lg outline outline-2 outline-black overflow-y-scroll"></p>
       </div>
     </div>
   </div>
