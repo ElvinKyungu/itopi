@@ -5,7 +5,7 @@ const store = useStore()
 </script>
 
 <template>
-<div class="h-44 w-full bg-zinc-100 rounded-lg border-l-2 border-b-2 border-black">
+<div id="filter-bar" class="h-44 w-full bg-zinc-100 rounded-lg border-l-2 border-b-2 border-black">
   <div class="flex h-1/3">
     <div class="w-1/6 rounded-tl-lg border-t-2 border-black grid place-content-center">Filtres</div>
     <div class="w-5/6 bg-white rounded-bl-lg border-l-2 border-b-2 border-black flex justify-end items-center gap-5">

@@ -56,10 +56,17 @@ const formatData = (data) => {
 const sortData = (data) => {
   if (store.sort.field != null) {
     return data.sort((a, b) => {
-      return a.item.fields[store.sort.field].localeCompare(b.item.fields[store.sort.field], undefined, {
-        numeric: true,
-        sensitivity: 'base'
-      })
+      const fields = [a.item.fields[store.sort.field], b.item.fields[store.sort.field]]
+      if (fields[0] == null) {
+        return false
+      } else if (fields[0] == null) {
+        return true
+      } else {
+        return fields[0].localeCompare(fields[1], undefined, {
+          numeric: true,
+          sensitivity: 'base'
+        })
+      }
     })
   }
   return data

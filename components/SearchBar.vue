@@ -28,7 +28,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-<div class="w-full flex justify-end my-1">
+<div id="search-bar" class="w-full flex justify-end my-1">
   <input class="h-10 w-64 px-5 text-xs rounded-md bg-zinc-200" placeholder="Rechercher" v-model="input"/>
 </div>
 </template>

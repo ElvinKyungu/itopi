@@ -19,7 +19,7 @@ const options = [
     </div>
     <div v-if="showOption" class="w-44 rounded-md absolute z-20 bg-white">
       <div v-for="(option, index) in options" :key="index">
-        <div v-on:click="store.sort = option; showOption = false" class="h-full w-full">{{ option.name }}</div>
+        <div v-on:click="store.sort = option; showOption = false" class="h-6 w-full hover:bg-zinc-100 px-2">{{ option.name }}</div>
       </div>
     </div>
   </div>

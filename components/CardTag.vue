@@ -41,10 +41,14 @@ const cardAction = () => {
     deleteFilter(props.tag)
   }
 }
+
+const inFilter = computed(() => {
+  return store.filter.includes(props.tag)
+})
 </script>
 
 <template>
-<div v-on:click="cardAction" class="w-fit bg-red-100 rounded-md border border-black py-1 px-2 m-1 text-[0.52rem] text-black font-sans">
+<div v-if="!(mode === 'add' && inFilter)" v-on:click="cardAction" class="w-fit bg-red-100 rounded-md border border-black py-1 px-2 m-1 text-[0.52rem] text-black font-sans">
   <span v-if="mode === 'delete'" class="text-[0.60rem]">x </span>{{ tag }}
 </div>
 </template>
