@@ -26,7 +26,7 @@ const showFilter = ref(false)
               <span class="material-symbols-outlined icone-fill">grid_view</span>
             </div>
             <div v-on:click="store.grid = false" class="border-l border-black grid place-content-center">
-              <span class="material-symbols-outlined icone-fill">view_list</span>
+              <span class="material-symbols-outlined icone-fill text-3xl">view_list</span>
             </div>
           </div>
         </div>

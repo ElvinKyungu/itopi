@@ -48,7 +48,7 @@ const inFilter = computed(() => {
 </script>
 
 <template>
-<div v-if="!(mode === 'add' && inFilter)" v-on:click="cardAction" class="w-fit bg-red-100 rounded-md border border-black py-1 px-2 m-1 text-[0.52rem] text-black">
+<div v-if="!(mode === 'add' && inFilter)" v-on:click="cardAction" class="w-fit bg-red-100 rounded-md border border-black py-1 px-2 m-1 text-[0.60rem] text-black">
   <span v-if="mode === 'delete'" class="text-[0.60rem]">x </span>{{ tag }}
 </div>
 </template>
