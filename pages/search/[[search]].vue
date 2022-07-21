@@ -100,7 +100,7 @@ onMounted(() => {
 </script>
 
 <template>
-<section id="index" class="px-10">
+<section id="index" class="px-10 pt-16">
   <ProjectView v-if="store.project"/>
   <SearchBar />
   <FilterBar />
