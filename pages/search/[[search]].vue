@@ -57,6 +57,7 @@ const sortData = (data) => {
   if (store.sort.field != null) {
     return data.sort((a, b) => {
       const fields = [a.item.fields[store.sort.field], b.item.fields[store.sort.field]]
+      let result = true
       if (fields[0] == null) {
         return false
       } else if (fields[0] == null) {
@@ -85,6 +86,9 @@ const filteredData = computed(() => {
       filteredData = fuse.search(store.searchWord)
     }
     filteredData = sortData(filteredData)
+  }
+  if (store.sort.reverse) {
+    filteredData.reverse()
   }
   return filteredData
 })

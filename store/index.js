@@ -8,7 +8,7 @@ export const useStore = defineStore({
       data: null,
       searchWord: '',
       project: null,
-      sort: { name: 'Pertinence', field: null },
+      sort: { name: 'Pertinence', field: null, reverse: false },
       filter: [],
       tags: []
     }
