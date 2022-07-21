@@ -15,6 +15,7 @@
     "vue": "^3.2.33"
   },
   "dependencies": {
+    "@fortawesome/vue-fontawesome": "^3.0.1",
     "@pinia/nuxt": "^0.2.1",
     "fuse.js": "^6.6.2",
     "ky": "^0.31.0",
