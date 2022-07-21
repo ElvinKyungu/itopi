@@ -20,7 +20,7 @@ const updateSortOption = (newOption) => {
 
 <template>
   <div class="w-48">
-    <div class="w-full flex justify-between">
+    <div class="w-full flex justify-between font-medium">
       <span v-on:click="store.sort.reverse = !store.sort.reverse" v-if="!store.sort.reverse" class="material-symbols-outlined">arrow_upward</span>
       <span v-on:click="store.sort.reverse = !store.sort.reverse" v-else class="material-symbols-outlined">arrow_downward</span>
       Trier Par : 

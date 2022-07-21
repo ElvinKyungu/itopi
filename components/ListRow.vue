@@ -11,6 +11,12 @@ const props = defineProps({
   artiste: {
     Type: String
   },
+  place: {
+    Type: String
+  },
+  year: {
+    Type: String
+  },
   img: {
     Type : String
   },
@@ -43,22 +49,19 @@ const showCard = computed(() => {
 </script>
 
 <template>
-<div v-if="showCard" id="project_card" class="h-96 w-64 bg-zinc-100 outline outline-2 outline-black rounded-xl overflow-hidden">
-  <div class="h-64 w-full relative rounded-t-xl">
-    <div class="h-7 w-7 bg-white border border-black rounded-full absolute top-2 right-2 z-10 grid place-content-center">
+<div v-if="showCard" v-on:click="projectPage" class="h-14 w-full grid grid-cols-11 odd:bg-zinc-100 even:bg-zinc-200 whitespace-nowrap">
+  <div class="h-14 border border-black"><ImageLazy :img="img"/></div>
+  <ListTextCase class="col-span-2" :text="title"/>
+  <ListTextCase class="col-span-2" :text="artiste"/>
+  <ListTextCase class="col-span-2" :text="place"/>
+  <ListTextCase :text="year"/>
+  <span class="col-span-2 border border-black flex items-center overflow-hidden pl-5">
+    <CardTag v-for="(tag, index) in tags" :key="index" :tag="tag" mode="card"/>
+  </span>
+  <div class="border border-black grid place-content-center">
+    <div class="h-7 w-7 bg-white border border-black rounded-full grid place-content-center">
       <span class="material-symbols-outlined font-thin text-3xl">grade</span>
       <!-- <span class="material-symbols-outlined font-thin text-xl icone-fill">grade</span> -->
-    </div>
-    <ImageLazy :img="img"/>
-  </div>
-  <div class="border-t-2 border-black px-2 relative">
-    <div v-on:click="projectPage" class="h-6 w-6 bg-black rounded-full absolute top-2 right-2 z-10 flex justify-center">
-      <span class="text-white text-sm">¡</span>
-    </div>
-    <CardTitle class="font-medium" :title="title"/>
-    <CardTitle class="font-semibold" :title="artiste"/>
-    <div class="mt-2 flex flex-wrap">
-      <CardTag v-for="(tag, index) in tags" :key="index" :tag="tag" mode="card"/>
     </div>
   </div>
 </div>
