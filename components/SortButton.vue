@@ -19,16 +19,16 @@ const updateSortOption = (newOption) => {
 </script>
 
 <template>
-  <div class="w-48">
-    <div class="w-full flex justify-between font-medium">
+  <div class="w-56">
+    <div class="w-full flex justify-between font-medium" v-bind:class="{ 'bg-zinc-100 rounded-t-lg border-l-2 border-t-2 border-r-2 border-black': showOption }">
       <span v-on:click="store.sort.reverse = !store.sort.reverse" v-if="!store.sort.reverse" class="material-symbols-outlined">arrow_upward</span>
       <span v-on:click="store.sort.reverse = !store.sort.reverse" v-else class="material-symbols-outlined">arrow_downward</span>
       Trier Par : 
-      <span v-on:click="showOption = !showOption" class="w-20">{{ store.sort.name }}</span>
+      <span v-on:click="showOption = !showOption" class="w-24">{{ store.sort.name }}</span>
     </div>
-    <div v-if="showOption" class="w-52 rounded-md absolute z-20 bg-white">
+    <div v-if="showOption" class="w-56 rounded-b-lg absolute z-20 bg-zinc-100 border-l-2 border-b-2 border-r-2 border-black">
       <div v-for="(option, index) in options" :key="index">
-        <div v-on:click="updateSortOption(option)" class="h-6 w-full hover:bg-zinc-100 pl-28">{{ option.name }}</div>
+        <div v-on:click="updateSortOption(option)" class="h-6 w-full hover:bg-zinc-200 pl-32">{{ option.name }}</div>
       </div>
     </div>
   </div>
