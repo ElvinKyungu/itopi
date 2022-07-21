@@ -22,10 +22,10 @@ const showFilter = ref(false)
         <span class="mr-2">Affichage :</span>
         <div class="h-10 w-24 grid grid-cols-2 bg-zinc-100 rounded-md border-2 border-black">
           <div class="border-r border-black grid place-content-center">
-            <span class="material-symbols-outlined">grid_view</span>
+            <span class="material-symbols-outlined icone-fill">grid_view</span>
           </div>
           <div class="border-l border-black grid place-content-center">
-            <span class="material-symbols-outlined">view_list</span>
+            <span class="material-symbols-outlined icone-fill">view_list</span>
           </div>
         </div>
       </div>
