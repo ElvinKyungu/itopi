@@ -15,7 +15,7 @@ const options = [
 <template>
   <div class="w-44">
     <div v-on:click="showOption = !showOption" class="w-full">
-      Trier Par: {{ store.sort.name }}
+      Trier Par : {{ store.sort.name }}
     </div>
     <div v-if="showOption" class="w-44 rounded-md absolute z-20 bg-white">
       <div v-for="(option, index) in options" :key="index">

@@ -6,8 +6,8 @@ const showFilter = ref(false)
 </script>
 
 <template>
-<div id="filter-bar" class="h-fit w-full" v-bind:class="{ 'bg-zinc-100 rounded-lg border-l-2 border-b-2 border-black': showFilter }">
-  <div class="flex h-12">
+<div id="filter-bar" class="h-fit w-full mt-5" v-bind:class="{ 'bg-zinc-100 rounded-lg border-l-2 border-b-2 border-black': showFilter }">
+  <div class="flex h-14">
     <div v-on:click="showFilter = !showFilter" class="w-1/6 rounded-tl-lg grid place-content-center" v-bind:class="{ 'border-t-2 border-black': showFilter }">
       <div class="w-20 flex justify-between items-center">
         <span class="material-symbols-outlined">tune</span>
@@ -19,7 +19,7 @@ const showFilter = ref(false)
       v-bind:class="{ 'border-l-2 border-b-2 border-black': showFilter }">
       <SortButton />
       <div class="flex items-center">
-        <span class="mr-2">Affichage:</span>
+        <span class="mr-2">Affichage :</span>
         <div class="h-10 w-24 grid grid-cols-2 bg-zinc-100 rounded-md border-2 border-black">
           <div class="border-r border-black grid place-content-center">
             <span class="material-symbols-outlined">grid_view</span>
