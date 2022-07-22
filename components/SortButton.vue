@@ -26,7 +26,7 @@ const updateSortOption = (newOption) => {
       Trier Par : 
       <span v-on:click="showOption = !showOption" class="w-24">{{ store.sort.name }}</span>
     </div>
-    <div v-if="showOption" class="w-56 rounded-b-lg absolute z-20 bg-zinc-100 border-l-2 border-b-2 border-r-2 border-black">
+    <div v-if="showOption" class="w-56 rounded-b-lg absolute z-30 bg-zinc-100 border-l-2 border-b-2 border-r-2 border-black">
       <div v-for="(option, index) in options" :key="index">
         <div v-on:click="updateSortOption(option)" class="h-6 w-full hover:bg-zinc-200 pl-32">{{ option.name }}</div>
       </div>

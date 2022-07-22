@@ -1,7 +1,6 @@
 <script setup>
 import pkg from '../package.json'
 
-console.log(pkg)
 const version = ref(pkg.version)
 </script>
 

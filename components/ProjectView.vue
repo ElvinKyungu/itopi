@@ -22,7 +22,7 @@ const project = computed(() => {
 </script>
 
 <template>
-<div @click.self="leave" class="h-screen w-screen fixed top-0 z-20 bg-white/50 grid place-content-center" id="project-view">
+<div @click.self="leave" class="h-screen w-screen fixed top-0 z-30 bg-white/50 grid place-content-center" id="project-view">
   <div v-if="project != null" class="h-[600px] w-[1200px] retalive z-30 bg-white outline outline-2 outline-black rounded-lg grid grid-cols-7 gap-10 px-14 py-12">
     <div class="h-full w-full col-span-3 rounded-lg outline outline-2 outline-black">
       <ImageLazy :img="getImg(project)" />

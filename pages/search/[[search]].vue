@@ -93,11 +93,20 @@ onBeforeRouteUpdate((to, from) => {
 
 onMounted(() => {
   setParams(route)
+
+  const favorite = localStorage.getItem('top1000-favorite')
+  if (favorite !== 'null') {
+    store.favorite = favorite.split(',')
+  }
+})
+
+onUnmounted(() => {
+  localStorage.setItem('top1000-favorite', store.favorite)
 })
 </script>
 
 <template>
-<section id="index" class="px-10 pt-16">
+<section id="index" class="px-10 pt-16 relative z-10">
   <ProjectView v-if="store.project"/>
   <SearchBar />
   <FilterBar />

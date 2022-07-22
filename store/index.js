@@ -12,7 +12,8 @@ export const useStore = defineStore({
       sort: { name: 'Pertinence', field: null, reverse: false },
       grid: true,
       filter: [],
-      tags: []
+      tags: [],
+      favorite: []
     }
   },
   getters: {
