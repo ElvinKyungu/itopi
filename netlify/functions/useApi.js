@@ -19,7 +19,6 @@ const callApi = async (params) => {
       result = result.concat(json.records)
       await new Promise(r => setTimeout(r, 200))
     }
-    console.log('result', result)
     return { statusCode: 200, body: JSON.stringify({ result: result }) }
   }
   catch (error) {
