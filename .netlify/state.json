@@ -1,0 +1,17 @@
+{
+	"promptVSCodeSettings": true,
+	"geolocation": {
+		"data": {
+			"city": "Paris",
+			"country": {
+				"code": "FR",
+				"name": "France"
+			},
+			"subdivision": {
+				"code": "IDF",
+				"name": "Ãle-de-France"
+			}
+		},
+		"timestamp": 1658481660935
+	}
+}

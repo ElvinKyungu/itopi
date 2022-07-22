@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
-import { getData } from '../lib/useApi'
+// import useApi from '~~/netlify/edge-functions/useApi' 
+
 
 export const useStore = defineStore({
   id: 'store',
@@ -38,10 +39,12 @@ export const useStore = defineStore({
       }
       this.tags = tags
     },
-    async setData() {
+    async setData(url) {
       try {
-        const data = await getData()
-        if (data != null) {
+        const response = await fetch('/.netlify/functions/useApi')
+        const json = await response.json()
+        const data = json.result
+        if (data[0] != null) {
           this.data = data
           this.setTags(data)
         }

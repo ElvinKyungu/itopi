@@ -9,10 +9,16 @@ Make sure to install the dependencies:
 ```bash
 npm install
 ```
+And netlify CLI
+
+```bash
+npm install netlify-cli -g
+```
+
 Configure the environment variables by following the .env.example file
 
 ## Development Server
 
 ```bash
-npm run dev
+netlify dev
 ```

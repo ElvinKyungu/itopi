@@ -1,6 +1,7 @@
 import { defineNuxtConfig } from "nuxt";
 
 export default defineNuxtConfig({
+  ssr: false,
   buildModules: ['@pinia/nuxt'],
   css: [
     "~/assets/css/tailwind.css",
