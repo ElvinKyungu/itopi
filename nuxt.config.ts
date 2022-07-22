@@ -1,4 +1,4 @@
-import { defineNuxtConfig } from "nuxt";
+import { defineNuxtConfig } from "nuxt"
 
 export default defineNuxtConfig({
   ssr: false,
