@@ -33,7 +33,11 @@ const setParams = (url) => {
   } else {
     store.project = null
   }
-  return true
+  if(url.query.hasOwnProperty('favorite') &&  url.query.favorite === 'true') {
+    store.favorite = true
+  } else {
+    store.favorite = false
+  }
 }
 
 const formatData = (data) => {
@@ -96,12 +100,12 @@ onMounted(() => {
 
   const favorite = localStorage.getItem('top1000-favorite')
   if (favorite !== 'null') {
-    store.favorite = favorite.split(',')
+    store.favoriteArray = favorite.split(',')
   }
 })
 
 onUnmounted(() => {
-  localStorage.setItem('top1000-favorite', store.favorite)
+  localStorage.setItem('top1000-favorite', store.favoriteArray)
 })
 </script>
 

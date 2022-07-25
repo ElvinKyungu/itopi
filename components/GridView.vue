@@ -27,6 +27,6 @@ const getImg = (project) => {
       :img="getImg(project)"
       :tags="project.item.fields.Mots_clefs"
     />
-    <div v-for="index in 4" :key="index" class="w-64 mx-5"></div>
+    <div v-for="index in 4" :key="index" class="w-64"></div>
   </div>
 </template>

@@ -6,7 +6,7 @@ const store = useStore()
 store.setData()
 
 window.addEventListener('beforeunload', () => {
-  localStorage.setItem('top1000-favorite', store.favorite)
+  localStorage.setItem('top1000-favorite', store.favoriteArray)
 })
 </script>
 

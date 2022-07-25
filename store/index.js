@@ -13,7 +13,8 @@ export const useStore = defineStore({
       grid: true,
       filter: [],
       tags: [],
-      favorite: []
+      favorite: false,
+      favoriteArray: []
     }
   },
   getters: {

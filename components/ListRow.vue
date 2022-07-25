@@ -36,26 +36,29 @@ const projectPage = () => {
 }
 
 const addToFavorite = () => {
-  if (store.favorite.includes(props.id) == false) {
-    store.favorite.push(props.id)
+  if (store.favoriteArray.includes(props.id) == false) {
+    store.favoriteArray.push(props.id)
   } else {
-    const index = store.favorite.indexOf(props.id)
-    store.favorite.splice(index, 1)
+    const index = store.favoriteArray.indexOf(props.id)
+    store.favoriteArray.splice(index, 1)
   }
 }
 
-const favorite = computed(() =>  store.favorite.includes(props.id))
+const favorite = computed(() =>  store.favoriteArray.includes(props.id))
 
 const showCard = computed(() => {
-  if (store.filter.length > 0) {
-    for (let tag of props.tags) {
-      if (store.filter.includes(tag)) {
-        return true
+  if (!store.favorite || (store.favorite && store.favoriteArray.includes(props.id))) {
+    if (store.filter.length > 0) {
+      for (let tag of props.tags) {
+        if (store.filter.includes(tag)) {
+          return true
+        }
       }
+      return false
     }
-    return false
+    return true
   }
-  return true
+  return false
 })
 </script>
 

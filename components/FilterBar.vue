@@ -2,7 +2,16 @@
 import { useStore } from '../store/index.js'
 
 const store = useStore()
+const router = useRouter()
 const showFilter = ref(false)
+
+const favoriteFilter = () => {
+  if (store.favorite === true) {
+    router.push({ path: '/search/' + store.searchWord, query: { filter: store.filter }})
+  } else {
+    router.push({ path: '/search/' + store.searchWord, query: { filter: store.filter, favorite: true }})
+  }
+}
 </script>
 
 <template>
@@ -33,11 +42,17 @@ const showFilter = ref(false)
       </div>
     </div>
     <div v-show="showFilter" class="h-fit w-full rounded-br border-r-2 border-black flex flex-col justify-around p-5 gap-2">
-      <div>
+      <div class="w-full flex justify-between">
         <input class="h-7 w-52 px-5 text-xs rounded-lg bg-zinc-200" placeholder="Rechercher"/>
+        <div class="flex items-center">
+          <span class="font-medium pr-2">Favoris :</span>
+          <div v-on:click="favoriteFilter" class="h-6 w-6 rounded border border-black bg-zinc-200 grid place-content-center">
+            <div v-if="store.favorite" class="h-4 w-4 rounded border border-black bg-yellow-300"></div>
+          </div>
+        </div>
       </div>
       <div class="flex flex-wrap">
-        <div>Tags:</div>
+        <div class="font-medium">Tags:</div>
         <CardTag v-for="tag in store.tags" :key="tag" :tag="tag" mode="add"/>
       </div>
     </div>
