@@ -14,7 +14,7 @@ const options = {
   shouldSort: true,
   includeMatches: true,
   threshold: 0.3,
-  keys:['fields.Name', 'fields.Notes', 'fields.Mots_clefs']
+  keys:['fields.Name', 'fields.Artiste', 'fields.Mots_clefs']
 }
 
 const setParams = (url) => {

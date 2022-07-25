@@ -35,7 +35,7 @@ const project = computed(() => {
     <div class="md:h-full w-full col-span-4">
       <div class="h-1/2 flex flex-col justify-between">
         <h2 class="text-xl md:text-6xl font-medium">{{ project.fields.Name}}</h2>
-        <h3 class="text-lg md: text-4xl font-medium">{{ project.fields.Notes }}</h3>
+        <h3 class="text-lg md: text-4xl font-medium">{{ project.fields.Artiste }}</h3>
         <div>
           <p class="text-base md:text-xl">{{ project.fields.Lieux }}</p>
           <p class="text-base md:text-xl">{{ project.fields.Année }}</p>
@@ -46,7 +46,9 @@ const project = computed(() => {
       </div>
       <div class="h-1/2 flex flex-col justify-between pt-2">
       <h5 class="font-medium">Description</h5>
-      <p class="min-h-[200px] h-fit md:h-5/6 w-full bg-zinc-100 rounded-lg outline outline-2 outline-black overflow-y-scroll"></p>
+      <p class="min-h-[200px] h-fit md:h-5/6 w-full bg-zinc-100 rounded-lg outline outline-2 outline-black overflow-y-scroll">
+        {{ project.fields.Description }}
+      </p>
       </div>
     </div>
   </div>
