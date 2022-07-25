@@ -29,7 +29,7 @@ const deleteFilter = (tag) => {
   const filter = [...store.filter]
   if (filter.includes(tag)){
     const index = filter.indexOf(tag)
-    filter.splice(index)
+    filter.splice(index, 1)
   }
   router.push({ path: '/search/' + store.searchWord, query: { filter: filter }})
 }

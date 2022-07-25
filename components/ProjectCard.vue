@@ -54,6 +54,7 @@ const showCard = computed(() => {
   }
   return false
 })
+
 </script>
 
 <template>
@@ -66,8 +67,10 @@ const showCard = computed(() => {
     <ImageLazy :img="img"/>
   </div>
   <div class="border-t-2 border-black px-2 relative">
-    <div v-on:click="projectPage" class="h-4 md:h-6 w-4 md:w-6 bg-black rounded-full absolute top-2 right-2 z-20 flex justify-center">
-      <span class="text-white text-[10px] md:text-sm">¡</span>
+    <div v-on:click="projectPage" class="h-4 md:h-6 w-4 md:w-6 absolute top-2 right-2 z-20 flex justify-center">
+      <span class="material-symbols-outlined icone-fill">
+info
+</span>
     </div>
     <CardTitle class="font-medium" :title="title"/>
     <CardTitle class="font-semibold" :title="artiste"/>

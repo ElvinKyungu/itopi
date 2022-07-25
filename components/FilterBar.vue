@@ -12,27 +12,28 @@ const favoriteFilter = () => {
     router.push({ path: '/search/' + store.searchWord, query: { filter: store.filter, favorite: true }})
   }
 }
+
 </script>
 
 <template>
-<div>
-  <div id="filter-bar" class="h-fit w-full mt-5" v-bind:class="{ 'bg-zinc-100 rounded-lg border-l-2 border-b-2 border-black': showFilter }">
-    <div class="flex h-14">
-      <div v-on:click="showFilter = !showFilter" class="w-1/6 rounded-tl-lg grid place-content-center" v-bind:class="{ 'border-t-2 border-black': showFilter }">
-        <div class="w-20 flex justify-between items-center font-medium">
+<div id="filter-bar" class="mb-3">
+  <div class="h-fit w-full mt-5" v-bind:class="{ 'bg-zinc-100 rounded-lg border-2 md:border-t-0 md:border-r-0 md:border-l-2 md:border-b-2 border-black': showFilter }">
+    <div class="flex flex-wrap md:flex-nowrap md:h-14">
+      <div class="w-full md:w-1/6 rounded-tl-lg grid place-content-center" v-bind:class="{ 'md:border-t-2 border-black': showFilter }">
+        <div v-on:click="showFilter = !showFilter" class="h-14 w-20 flex justify-between items-center font-medium">
           <span class="material-symbols-outlined">tune</span>
           <span>Filtres</span>
           </div>
       </div>
       <div
-        class="w-5/6 bg-white rounded-bl-lg flex justify-end items-center gap-5"
-        v-bind:class="{ 'border-l-2 border-b-2 border-black': showFilter }">
+        class="w-full md:w-5/6 bg-white rounded-bl-lg flex flex-wrap md:flex-nowrap justify-center md:justify-end items-center gap-5"
+        v-bind:class="{ 'hidden md:flex md:border-l-2 md:border-b-2 md:border-black': showFilter }">
         <SortButton />
         <div class="flex items-center">
           <span class="mr-2 font-medium">Affichage :</span>
           <div class="h-10 w-24 grid grid-cols-2 bg-zinc-100 rounded-md border-2 border-black">
             <div v-on:click="store.grid = true" class="border-r border-black grid place-content-center">
-              <span class="material-symbols-outlined icone-fill">grid_view</span>
+              <span class="material-symbols-outlined icone-fill text-3xl">grid_view</span>
             </div>
             <div v-on:click="store.grid = false" class="border-l border-black grid place-content-center">
               <span class="material-symbols-outlined icone-fill text-3xl">view_list</span>
@@ -41,8 +42,8 @@ const favoriteFilter = () => {
         </div>
       </div>
     </div>
-    <div v-show="showFilter" class="h-fit w-full rounded-br border-r-2 border-black flex flex-col justify-around p-5 gap-2">
-      <div class="w-full flex justify-between">
+    <div v-show="showFilter" class="h-fit w-full rounded-br md:border-r-2 border-black flex flex-col justify-around p-5 gap-2">
+      <div class="w-full flex flex-wrap md:flex-nowrap justify-between">
         <input class="h-7 w-52 px-5 text-xs rounded-lg bg-zinc-200" placeholder="Rechercher"/>
         <div class="flex items-center">
           <span class="font-medium pr-2">Favoris :</span>
