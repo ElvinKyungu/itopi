@@ -7,7 +7,7 @@ defineProps({
 </script>
 
 <template>
-<div class="text-sm mt-2 pr-7">
+<div class="text-xs md:text-sm mt-2 pr-3 mdpr-7">
   {{ title }}
 </div>
 </template>

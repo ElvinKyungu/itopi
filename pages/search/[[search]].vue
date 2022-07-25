@@ -110,7 +110,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-<section id="index" class="px-10 pt-16 relative z-10">
+<section id="index" class="px-5 md:px-10 pt-16 relative z-10">
   <ProjectView v-if="store.project"/>
   <SearchBar />
   <FilterBar />
