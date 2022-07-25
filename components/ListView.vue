@@ -14,6 +14,17 @@ const getImg = (project) => {
   }
   return null
 }
+
+const getTags = (project) => {
+  let tags = []
+  if (project.item.fields.hasOwnProperty('Installation_type')) {
+    tags = tags.concat(project.item.fields.Installation_type)
+  }
+  if (project.item.fields.hasOwnProperty('Mots_clefs')) {
+    tags = tags.concat(project.item.fields.Mots_clefs)
+  }
+  return tags
+}
 </script>
 
 <template>
@@ -37,7 +48,7 @@ const getImg = (project) => {
         :place="project.item.fields.Lieux"
         :year="project.item.fields.Année"
         :img="getImg(project)"
-        :tags="project.item.fields.Mots_clefs"
+        :tags="getTags(project)"
       />
     </div>
   </div>

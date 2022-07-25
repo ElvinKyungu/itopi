@@ -14,6 +14,17 @@ const getImg = (project) => {
   }
   return null
 }
+
+const getTags = (project) => {
+  let tags = []
+  if (project.item.fields.hasOwnProperty('Installation_type')) {
+    tags = tags.concat(project.item.fields.Installation_type)
+  }
+  if (project.item.fields.hasOwnProperty('Mots_clefs')) {
+    tags = tags.concat(project.item.fields.Mots_clefs)
+  }
+  return tags
+}
 </script>
 
 <template>
@@ -25,7 +36,7 @@ const getImg = (project) => {
       :title="project.item.fields.Name"
       :artiste="project.item.fields.Artiste"
       :img="getImg(project)"
-      :tags="project.item.fields.Mots_clefs"
+      :tags="getTags(project)"
     />
     <div v-for="index in 4" :key="index" class="w-32 md:w-64"></div>
   </div>

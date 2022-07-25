@@ -1,6 +1,14 @@
 import { defineStore } from 'pinia'
 // import useApi from '~~/netlify/edge-functions/useApi' 
 
+const getTags = (tags, newTags) => {
+  for (let tag of tags) {
+    if (newTags.includes(tag) === false) {
+      newTags.push(tag)
+    }
+  }
+  return newTags
+}
 
 export const useStore = defineStore({
   id: 'store',
@@ -26,20 +34,19 @@ export const useStore = defineStore({
         return null
       }
     }
-  },
+  }, 
   actions: {
     setTags(data) {
-      const tags = []
+      let newTags = []
       for (let project of data) {
         if (project.fields.hasOwnProperty('Mots_clefs')) {
-          for (let tag of project.fields.Mots_clefs) {
-            if (tags.includes(tag) === false) {
-              tags.push(tag)
-            }
-          }
+          newTags = getTags(project.fields.Mots_clefs, newTags)
+        }
+        if (project.fields.hasOwnProperty('Installation_type')) {
+          newTags = getTags(project.fields.Installation_type, newTags)
         }
       }
-      this.tags = tags
+      this.tags = newTags
     },
     async setData(url) {
       try {
