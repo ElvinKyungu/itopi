@@ -53,7 +53,7 @@ const favorite = computed(() =>  store.favoriteArray.includes(props.id))
   <div v-on:click="projectPage" class="border-t-2 border-black px-2 relative">
     <CardTitle class="font-medium" :title="title"/>
     <CardTitle class="font-semibold" :title="artiste"/>
-    <div class="mt-2 flex flex-wrap">
+    <div class="mt-2 flex flex-wrap gap-2">
       <CardTag v-for="(tag, index) in tags" :key="index" :tag="tag" mode="card"/>
     </div>
   </div>

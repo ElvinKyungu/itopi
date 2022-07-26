@@ -12,6 +12,9 @@ module.exports = {
   media: false, // or 'media' or 'class'
   theme: {
     extend: {
+      fontFamily: {
+        'inter': ['Inter', 'sans-serif'],
+      },
       animation: {
         'fade-in': 'fade-in 2s',
         'fade-out-background': 'fade-out-background 2s forwards',

@@ -31,7 +31,7 @@ const deleteFilter = (tag) => {
     const index = filter.indexOf(tag)
     filter.splice(index, 1)
   }
-  router.push({ path: '/search/' + store.searchWord, query: { filter: filter, favorite: false }})
+  router.push({ path: '/search/' + store.searchWord, query: { filter: filter, favorite: store.favorite }})
 }
 
 const cardAction = () => {
@@ -51,7 +51,7 @@ const inFilter = computed(() => {
 <div 
   v-if="!(mode === 'add' && inFilter)" 
   v-on:click="cardAction" 
-  class="w-fit bg-red-100 rounded-md border border-black py-1 px-2 m-1 text-[0.60rem] text-black"
+  class="w-fit bg-red-100 rounded-md border border-black py-1 px-2 text-[0.60rem] text-black font-inter"
   v-bind:class="{'cursor-pointer': mode === 'delete' || mode === 'add' }">
   <span v-if="mode === 'delete'" class="text-[0.60rem]">x </span>{{ tag }}
 </div>

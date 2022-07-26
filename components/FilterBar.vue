@@ -52,7 +52,7 @@ const favoriteFilter = () => {
           </div>
         </div>
       </div>
-      <div class="flex flex-wrap items-center">
+      <div class="flex flex-wrap items-center gap-2">
         <div class="font-medium">Tags :</div>
         <CardTag v-for="tag in store.tags" :key="tag" :tag="tag" mode="add"/>
       </div>
