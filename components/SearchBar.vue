@@ -1,7 +1,6 @@
 <script setup>
 import { useStore } from '../store/index.js'
 
-const ENTER_KEY = 13
 const store = useStore()
 const router = useRouter()
 const input = ref('')
@@ -12,7 +11,7 @@ const search = () => {
 
  onMounted(() => {
   window.addEventListener('keypress', e => {
-    if (e.keyCode === ENTER_KEY) {
+    if (e.key === 'Enter') {
       search()
     }
   })
@@ -20,7 +19,7 @@ const search = () => {
 
 onUnmounted(() => {
   window.removeEventListener('keypress', e => {
-    if ( e.keyCode === ENTER_KEY) {
+    if ( e.key === 'Enter') {
       search()
     }
   })

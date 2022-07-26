@@ -1,6 +1,7 @@
 <script setup>
 import { useStore } from '../store/index.js'
 
+const ECAPE_KEY = 27
 const store = useStore()
 const router = useRouter()
 
@@ -18,6 +19,24 @@ const leave = () => {
 const project = computed(() => {
   const project = store.getProject(store.project)
   return project
+})
+
+ onMounted(() => {
+  window.addEventListener('keydown', e => {
+    console.log('key', e.key)
+    if (e.key === "Escape" ) {
+      leave()
+    }
+  })
+})
+
+onUnmounted(() => {
+  window.removeEventListener('keydown', e => {
+    console.log('key', e.key)
+    if ( e.key === "Escape" ) {
+      leave()
+    }
+  })
 })
 </script>
 
