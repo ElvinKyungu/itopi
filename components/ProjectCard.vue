@@ -58,13 +58,13 @@ const showCard = computed(() => {
 </script>
 
 <template>
-<div  v-if="showCard" id="project_card" class="h-48 md:h-96 w-40 md:w-64 bg-zinc-100 outline outline-2 outline-black rounded-xl overflow-hidden cursor-pointer">
+<div  v-if="showCard" id="project_card" class="h-48 md:h-96 w-40 md:w-64 bg-zinc-100 outline outline-2 hover:outline-[3px] outline-black rounded-xl overflow-hidden cursor-pointer">
   <div class="h-20 md:h-60 w-full relative rounded-t-xl">
     <div v-on:click="addToFavorite" class="h-7 w-7 bg-white border border-black rounded-full absolute top-2 right-2 z-20 grid place-content-center">
       <span v-if="!favorite" class="material-symbols-outlined font-thin text-3xl">grade</span>
       <span v-else class="material-symbols-outlined font-thin text-xl icone-fill">grade</span>
     </div>
-    <ImageLazy v-on:click="projectPage" :img="img"/>
+    <ImageLazy v-on:click="projectPage" :img="img" :hover="true"/>
   </div>
   <div v-on:click="projectPage" class="border-t-2 border-black px-2 relative">
     <CardTitle class="font-medium" :title="title"/>
