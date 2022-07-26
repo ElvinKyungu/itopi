@@ -65,11 +65,11 @@ const showCard = computed(() => {
 <template>
 <div v-if="showCard" class="h-14 w-full grid grid-cols-11 odd:bg-zinc-100 even:bg-zinc-200 whitespace-nowrap">
   <div v-on:click="projectPage" class="h-14 border border-black"><ImageLazy :img="img"/></div>
-  <ListTextCase class="col-span-2" :text="title"/>
-  <ListTextCase class="col-span-2" :text="artiste"/>
-  <ListTextCase class="col-span-2" :text="place"/>
-  <ListTextCase :text="year"/>
-  <span class="col-span-2 border border-black flex items-center overflow-hidden pl-5">
+  <ListTextCase v-on:click="projectPage" class="col-span-2" :text="title"/>
+  <ListTextCase v-on:click="projectPage" class="col-span-2" :text="artiste"/>
+  <ListTextCase v-on:click="projectPage" class="col-span-2" :text="place"/>
+  <ListTextCase v-on:click="projectPage" :text="year"/>
+  <span v-on:click="projectPage" class="col-span-2 border border-black flex items-center overflow-hidden pl-5">
     <CardTag v-for="(tag, index) in tags" :key="index" :tag="tag" mode="card"/>
   </span>
   <div class="border border-black grid place-content-center">
