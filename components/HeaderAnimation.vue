@@ -29,6 +29,23 @@ onMounted(() => {
   renderer.setClearColor(0x000000, 0.0)
   renderer.setSize(sizes.width, sizes.height)
   renderer.render(scene, camera)
+
+  const clock = new THREE.Clock()
+
+  const tick = () =>
+  {
+    const elapsedTime = clock.getElapsedTime()
+
+    // Render
+    renderer.render(scene, camera)
+
+    mesh.position.y = elapsedTime * 0.5
+
+    // Call tick again on the next frame
+    window.requestAnimationFrame(tick)
+  }
+
+tick()
 })
 </script>
 
