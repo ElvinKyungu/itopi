@@ -115,7 +115,6 @@ onUnmounted(() => {
 <template>
 <section id="index" class="px-5 md:px-10 pt-16 relative z-10">
   <ProjectView v-if="store.project"/>
-  <SearchBar />
   <FilterBar />
   <GridView v-show="store.grid === true" :filteredData="filteredData" />
   <ListView v-show="store.grid === false" :filteredData="filteredData"/>

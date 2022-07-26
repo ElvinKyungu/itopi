@@ -26,8 +26,9 @@ const favoriteFilter = () => {
           </div>
       </div>
       <div
-        class="w-full md:w-5/6 bg-white rounded-bl-lg flex flex-wrap md:flex-nowrap justify-center md:justify-end items-center gap-5"
+        class="w-full md:w-5/6 bg-white rounded-bl-lg flex flex-wrap md:flex-nowrap justify-center md:justify-between pl-5 items-center gap-5"
         v-bind:class="{ 'hidden md:flex md:border-l-2 md:border-b-2 md:border-black': showFilter }">
+        <SearchBar class=""/>
         <SortButton />
         <div class="flex items-center">
           <span class="mr-2 font-medium">Affichage :</span>
