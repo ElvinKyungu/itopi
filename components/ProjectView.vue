@@ -13,7 +13,7 @@ const getImg = (project) => {
 }
 
 const leave = () => {
-  router.push({ path: '/search/' + store.searchWord, query: { filter: store.filter }})
+  router.push({ path: '/search/' + store.searchWord, query: { filter: store.filter, favorite: store.favorite }})
 }
 
 const changeProject = (shift) => {
@@ -21,7 +21,7 @@ const changeProject = (shift) => {
   const newProjectIndex = index + shift
   if (newProjectIndex >= 0 && newProjectIndex < store.filteredProject.length) {
     const newProjectId = store.filteredProject[newProjectIndex]
-    router.push({ path: '/search/' + store.searchWord, query: { filter: store.filter, project: newProjectId }})
+    router.push({ path: '/search/' + store.searchWord, query: { filter: store.filter, project: newProjectId, favorite: store.favorite, favorite: store.favorite }})
   }
 }
 

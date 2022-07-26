@@ -7,7 +7,7 @@ const showFilter = ref(false)
 
 const favoriteFilter = () => {
   if (store.favorite === true) {
-    router.push({ path: '/search/' + store.searchWord, query: { filter: store.filter }})
+    router.push({ path: '/search/' + store.searchWord, query: { filter: store.filter, favorite: false }})
   } else {
     router.push({ path: '/search/' + store.searchWord, query: { filter: store.filter, favorite: true }})
   }

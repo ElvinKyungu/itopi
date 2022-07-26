@@ -26,7 +26,7 @@ const router = useRouter()
 const store = useStore()
 
 const projectPage = () => {
-  router.push({ path: '/search/' + store.searchWord, query: { filter: store.filter, project: props.id }})
+  router.push({ path: '/search/' + store.searchWord, query: { filter: store.filter, project: props.id, favorite: store.favorite }})
 }
 
 const addToFavorite = () => {

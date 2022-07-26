@@ -22,7 +22,7 @@ const addFilter = (tag) => {
   } else {
     filter.push(tag)
   }
-  router.push({ path: '/search/' + store.searchWord, query: { filter: filter }})
+  router.push({ path: '/search/' + store.searchWord, query: { filter: filter, favorite: store.favorite }})
 }
 
 const deleteFilter = (tag) => {
@@ -31,7 +31,7 @@ const deleteFilter = (tag) => {
     const index = filter.indexOf(tag)
     filter.splice(index, 1)
   }
-  router.push({ path: '/search/' + store.searchWord, query: { filter: filter }})
+  router.push({ path: '/search/' + store.searchWord, query: { filter: filter, favorite: false }})
 }
 
 const cardAction = () => {
