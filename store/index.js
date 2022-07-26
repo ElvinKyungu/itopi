@@ -16,6 +16,7 @@ export const useStore = defineStore({
     return {
       data: null,
       searchWord: '',
+      filteredProject: null,
       project: null,
       sort: { name: 'Pertinence', field: null, reverse: false },
       grid: true,

@@ -39,26 +39,10 @@ const addToFavorite = () => {
 }
 
 const favorite = computed(() =>  store.favoriteArray.includes(props.id))
-
-const showCard = computed(() => {
-  if (!store.favorite || (store.favorite && store.favoriteArray.includes(props.id))) {
-    if (store.filter.length > 0) {
-      for (let tag of props.tags) {
-        if (store.filter.includes(tag)) {
-          return true
-        }
-      }
-      return false
-    }
-    return true
-  }
-  return false
-})
-
 </script>
 
 <template>
-<div  v-if="showCard" id="project_card" class="h-48 md:h-96 w-40 md:w-64 bg-zinc-100 outline outline-2 hover:outline-[3px] outline-black rounded-xl overflow-hidden cursor-pointer">
+<div  id="project_card" class="h-48 md:h-96 w-40 md:w-64 bg-zinc-100 outline outline-2 hover:outline-[3px] outline-black rounded-xl overflow-hidden cursor-pointer">
   <div class="h-20 md:h-60 w-full relative rounded-t-xl">
     <div v-on:click="addToFavorite" class="h-7 w-7 bg-white border border-black rounded-full absolute top-2 right-2 z-20 grid place-content-center">
       <span v-if="!favorite" class="material-symbols-outlined font-thin text-3xl">grade</span>

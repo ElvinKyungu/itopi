@@ -45,25 +45,10 @@ const addToFavorite = () => {
 }
 
 const favorite = computed(() =>  store.favoriteArray.includes(props.id))
-
-const showCard = computed(() => {
-  if (!store.favorite || (store.favorite && store.favoriteArray.includes(props.id))) {
-    if (store.filter.length > 0) {
-      for (let tag of props.tags) {
-        if (store.filter.includes(tag)) {
-          return true
-        }
-      }
-      return false
-    }
-    return true
-  }
-  return false
-})
 </script>
 
 <template>
-<div v-if="showCard" class="h-14 w-full grid grid-cols-11 odd:bg-zinc-100 even:bg-zinc-200 whitespace-nowrap">
+<div class="h-14 w-full grid grid-cols-11 odd:bg-zinc-100 even:bg-zinc-200 whitespace-nowrap">
   <div v-on:click="projectPage" class="h-14 border border-black cursor-pointer"><ImageLazy :img="img"/></div>
   <ListTextCase v-on:click="projectPage" class="col-span-2 cursor-pointer" :text="title"/>
   <ListTextCase v-on:click="projectPage" class="col-span-2 cursor-pointer" :text="artiste"/>

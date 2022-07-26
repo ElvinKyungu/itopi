@@ -52,6 +52,37 @@ const formatData = (data) => {
   return newData
 }
 
+const getTags = (project) => {
+  let tags = []
+  if (project.item.fields.hasOwnProperty('Installation_type')) {
+    tags = tags.concat(project.item.fields.Installation_type)
+  }
+  if (project.item.fields.hasOwnProperty('Mots_clefs')) {
+    tags = tags.concat(project.item.fields.Mots_clefs)
+  }
+  return tags
+}
+
+const filterData = (data) => {
+  const filteredData = []
+  for (let project of data) {
+    if (!store.favorite || (store.favorite && store.favoriteArray.includes(project.item.id))) {
+      if (store.filter.length > 0) {
+        const tags = getTags(project)
+        for (let tag of tags) {
+          if (store.filter.includes(tag)) {
+            filteredData.push(project)
+            break
+          }
+        }
+      } else {
+        filteredData.push(project)
+      }
+    }
+  }
+  return filteredData
+}
+
 const sortData = (data) => {
   if (store.sort.field != null) {
     return data.sort((a, b) => {
@@ -85,12 +116,24 @@ const filteredData = computed(() => {
       const fuse = new Fuse(store.data, options)
       filteredData = fuse.search(store.searchWord)
     }
+    filteredData = filterData(filteredData)
     filteredData = sortData(filteredData)
+    if (store.sort.reverse) {
+      filteredData.reverse()
+    }
   }
-  if (store.sort.reverse) {
-    filteredData.reverse()
-  }
+  
   return filteredData
+})
+
+watchEffect(() => {
+  let dataIds = []
+  if (filteredData.value != null) {
+    for (let project of filteredData.value) {
+      dataIds.push(project.item.id)
+    }
+  }
+  store.filteredProject = dataIds
 })
 
 
@@ -113,7 +156,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-<section id="index" class="px-5 md:px-10 pt-16 relative z-10">
+<section id="search" class="px-5 md:px-10 pt-16 relative z-10">
   <ProjectView v-if="store.project"/>
   <FilterBar />
   <GridView v-show="store.grid === true" :filteredData="filteredData" />

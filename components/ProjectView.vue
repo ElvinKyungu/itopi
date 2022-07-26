@@ -16,25 +16,40 @@ const leave = () => {
   router.push({ path: '/search/' + store.searchWord, query: { filter: store.filter }})
 }
 
+const changeProject = (shift) => {
+  const index = store.filteredProject.indexOf(project.value.id)
+  const newProjectIndex = index + shift
+  if (newProjectIndex >= 0 && newProjectIndex < store.filteredProject.length) {
+    const newProjectId = store.filteredProject[newProjectIndex]
+    router.push({ path: '/search/' + store.searchWord, query: { filter: store.filter, project: newProjectId }})
+  }
+}
+
 const project = computed(() => {
   const project = store.getProject(store.project)
   return project
 })
 
  onMounted(() => {
-  window.addEventListener('keydown', e => {
-    console.log('key', e.key)
+  window.addEventListener('keyup', e => {
     if (e.key === "Escape" ) {
       leave()
+    } else if (e.key === "ArrowRight" ) {
+      changeProject(1)
+    } else if (e.key === "ArrowLeft" ) {
+      changeProject(-1)
     }
   })
 })
 
 onUnmounted(() => {
-  window.removeEventListener('keydown', e => {
-    console.log('key', e.key)
-    if ( e.key === "Escape" ) {
+  window.addEventListener('keyup', e => {
+    if (e.key === "Escape" ) {
       leave()
+    } else if (e.key === "ArrowRight" ) {
+      changeProject(1)
+    } else if (e.key === "ArrowLeft" ) {
+      changeProject(-1)
     }
   })
 })
@@ -47,6 +62,16 @@ onUnmounted(() => {
     class="h-full md:h-[900px] lg:h-[700px] xl:h-[600px] w-full md:w-[760px] lg:w-[1000px] xl:w-[1200px] relative z-30 bg-white md:outline outline-2 outline-black md:rounded-lg md:grid md:grid-cols-7 md:gap-10 px-6 md:px-14 py-12 overflow-hidden">
     <div @click="leave" class="visible md:hidden absolute top-2 right-2 h-10 w-10">
       <span class="material-symbols-outlined text-3xl">close</span>
+    </div>
+    <div class="h-full w-10 absolute left-2 flex items-center">
+      <div v-if="store.filteredProject.indexOf(project.id) > 0" v-on:click="changeProject(-1)" class="h-10 w-10 rounded bg-black/25 hover:bg-black/50 grid place-content-center cursor-pointer">
+        <span class="material-symbols-outlined">arrow_back_ios_new</span>
+      </div>
+    </div>
+    <div class="h-full w-fit absolute right-2 flex items-center">
+      <div v-if="store.filteredProject.indexOf(project.id) < store.filteredProject.length - 1" v-on:click="changeProject(1)" class="h-10 w-10 rounded bg-black/25 hover:bg-black/50 grid place-content-center cursor-pointer">
+        <span class="material-symbols-outlined">arrow_forward_ios</span>
+      </div>
     </div>
     <div class="h-50 sm:h-80 md:h-full w-full col-span-3 rounded-lg outline outline-2 outline-black">
       <ImageLazy :img="getImg(project)" />
