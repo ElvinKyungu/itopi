@@ -85,7 +85,8 @@ onUnmounted(() => {
             <p class="text-base md:text-xl">{{ project.fields.Lieux }}</p>
             <p class="text-base md:text-xl">{{ project.fields.Année }}</p>
           </div>
-          <div class="flex flex-wrap">
+          <div class="flex flex-wrap gap-2">
+            <CardTag v-for="(tag, index) in project.fields.Installation_type" :key="index" :tag="tag" />
             <CardTag v-for="(tag, index) in project.fields.Mots_clefs" :key="index" :tag="tag" />
           </div>
         </div>
