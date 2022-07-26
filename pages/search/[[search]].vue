@@ -44,7 +44,9 @@ const formatData = (data) => {
   const newData = []
   if (Array.isArray(data)) {
     for (let item of data) {
-      newData.push({ item: item })
+      if(Object.entries(item.fields).length !== 0) {
+        newData.push({ item: item })
+      }
     }
   }
   return newData
