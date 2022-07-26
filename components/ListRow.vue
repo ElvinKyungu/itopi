@@ -64,18 +64,18 @@ const showCard = computed(() => {
 
 <template>
 <div v-if="showCard" class="h-14 w-full grid grid-cols-11 odd:bg-zinc-100 even:bg-zinc-200 whitespace-nowrap">
-  <div v-on:click="projectPage" class="h-14 border border-black"><ImageLazy :img="img"/></div>
-  <ListTextCase v-on:click="projectPage" class="col-span-2" :text="title"/>
-  <ListTextCase v-on:click="projectPage" class="col-span-2" :text="artiste"/>
-  <ListTextCase v-on:click="projectPage" class="col-span-2" :text="place"/>
+  <div v-on:click="projectPage" class="h-14 border border-black cursor-pointer"><ImageLazy :img="img"/></div>
+  <ListTextCase v-on:click="projectPage" class="col-span-2 cursor-pointer" :text="title"/>
+  <ListTextCase v-on:click="projectPage" class="col-span-2 cursor-pointer" :text="artiste"/>
+  <ListTextCase v-on:click="projectPage" class="col-span-2 cursor-pointer" :text="place"/>
   <ListTextCase v-on:click="projectPage" :text="year"/>
-  <span v-on:click="projectPage" class="col-span-2 border border-black flex items-center overflow-hidden pl-5">
+  <span v-on:click="projectPage" class="col-span-2 border border-black flex items-center overflow-hidden pl-5 cursor-pointer">
     <CardTag v-for="(tag, index) in tags" :key="index" :tag="tag" mode="card"/>
   </span>
   <div class="border border-black grid place-content-center">
     <div v-on:click="addToFavorite" class="h-7 w-7 bg-white border border-black rounded-full grid place-content-center">
-      <span v-if="!favorite" class="material-symbols-outlined font-thin text-3xl">grade</span>
-      <span v-else class="material-symbols-outlined font-thin text-xl icone-fill">grade</span>
+      <span v-if="!favorite" class="material-symbols-outlined font-thin text-3xl cursor-pointer">grade</span>
+      <span v-else class="material-symbols-outlined font-thin text-xl icone-fill cursor-pointer">grade</span>
     </div>
   </div>
 </div>
