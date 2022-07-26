@@ -7,7 +7,8 @@ const options = [
   { name: 'Pertinence', field: null },
   { name: 'Date', field: 'Année'},
   { name: 'Titre', field: 'Name' },
-  { name: 'Artiste', field: 'Notes'}
+  { name: 'Artiste', field: 'Artiste'},
+  { name: 'Lieux', field: 'Lieux'}
 ]
 
 const updateSortOption = (newOption) => {

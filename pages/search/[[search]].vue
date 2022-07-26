@@ -64,7 +64,8 @@ const sortData = (data) => {
       } else {
         return fields[0].localeCompare(fields[1], undefined, {
           numeric: true,
-          sensitivity: 'base'
+          sensitivity: 'base',
+          ignorePunctuation: true
         })
       }
     })
