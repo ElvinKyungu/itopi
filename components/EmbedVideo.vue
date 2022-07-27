@@ -7,6 +7,7 @@ const props = defineProps({
 
 const videoType = ref(null)
 const videoId = ref(null)
+const origin = ref(window.location.origin)
 
 const youTubeGetID = (url) => {
   if (url != null) {
@@ -50,8 +51,8 @@ watchEffect(() => {
 <div id="embed-video" class="bg-black rounded-lg overflow-hidden mt-2">
   <iframe
     v-if="videoType === 'youtube' && videoId != null"
-    class="h-96 w-full object-cover relative z-20"
-    :src="`https://www.youtube.com/embed/${videoId}`"
+    class="h-96 w-full"
+    :src="`https://www.youtube.com/embed/${videoId}?origin=${origin}`"
     frameborder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
     allowfullscreen>
