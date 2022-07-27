@@ -6,8 +6,8 @@ const props = defineProps({
 })
 
 const formatTitle = () => {
-  if (props.title != null && props.title.length > 30) {
-    return (props.title.substring(0, 30) + '...')
+  if (props.title != null && props.title.length > 10) {
+    return (props.title.substring(0, 10) + '...')
   } else {
     return props.title
   }
@@ -15,7 +15,7 @@ const formatTitle = () => {
 </script>
 
 <template>
-<div class="text-xs md:text-sm mt-2">
+<div class="text-xs md:text-sm">
   {{ formatTitle() }}
 </div>
 </template>
