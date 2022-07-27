@@ -73,7 +73,7 @@ onUnmounted(() => {
         <span class="material-symbols-outlined">arrow_forward_ios</span>
       </div>
     </div>
-    <div class="h-50 sm:h-80 md:h-full w-full col-span-3 rounded-lg outline outline-2 outline-black">
+    <div class="h-50 sm:h-80 md:h-full w-full col-span-3 rounded-lg outline outline-2 outline-black overflow-hidden">
       <ImageLazy :img="getImg(project)" />
     </div>
     <div class="md:h-full w-full col-span-4 overflow-y-scroll">
@@ -90,6 +90,7 @@ onUnmounted(() => {
             <CardTag v-for="(tag, index) in project.fields.Mots_clefs" :key="index" :tag="tag" />
           </div>
         </div>
+        <EmbedVideo v-if="project.fields.video_url != null" :videoUrl="project.fields.video_url"/>
         <div v-if="project.fields.Description != null" class="min-h-1/2 flex flex-col justify-between pt-2">
           <h5 class="font-medium">Description</h5>
           <p class="min-h-[200px] h-fit md:h-5/6 w-full bg-zinc-100 rounded-lg outline outline-2 outline-black p-4 font-medium">
