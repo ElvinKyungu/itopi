@@ -91,6 +91,7 @@ onUnmounted(() => {
           </div>
         </div>
         <EmbedVideo v-if="project.fields.video_url != null" :videoUrl="project.fields.video_url"/>
+        <FileVideo v-if="project.fields.video != null"  :video="project.fields.video"/>
         <div v-if="project.fields.Description != null" class="min-h-1/2 flex flex-col justify-between pt-2">
           <h5 class="font-medium">Description</h5>
           <p class="min-h-[200px] h-fit md:h-5/6 w-full bg-zinc-100 rounded-lg outline outline-2 outline-black p-4 font-medium">
