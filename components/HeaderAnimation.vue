@@ -1,13 +1,11 @@
 <script setup>
 import * as THREE from 'three'
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import * as lil from 'lil-gui'
-
-const gui = new lil.GUI()
 
 onMounted(() => {
   // Scene
-  const scene = new THREE.Scene()
+  const scene = new THREE.Scene() 
+
 
   // Object
 
@@ -59,12 +57,12 @@ onMounted(() => {
       const randomZ = (Math.random() - 0.5)
 
       position[i3] = randomX * 20
-      position[i3 + 1] = randomY * 6 + 14
+      position[i3 + 1] = 0
       position[i3 + 2] = randomZ
 
       randomnes[i3    ] = randomX
-      randomnes[i3 + 1] = randomY * 6
-      randomnes[i3 + 2] = randomZ
+      randomnes[i3 + 1] = randomY
+      randomnes[i3 + 2] = randomZ + 0.6
 
       color[i3] = 0.9
       color[i3 + 1] = 0.9
@@ -99,10 +97,10 @@ onMounted(() => {
           vec4 modelPosition = modelMatrix * vec4(position, 1.0);
           float angle = atan(modelPosition.x, modelPosition.z);
           float distanceToCenter = length(modelPosition.xz);
-          modelPosition.y -= uTime * 0.4;
-          modelPosition.x += sin(uTime * aRandomness.y * aRandomness.x ) * 0.1;
+          modelPosition.y -= uTime * aRandomness.z;
+          modelPosition.x += sin(uTime * aRandomness.y * aRandomness.x ) * 0.4;
           modelPosition.xy += aRandomness.xy;
-          modelPosition.y = mod(modelPosition.y, 30.) -5.;
+          modelPosition.y = mod(modelPosition.y, 10.) - 5.;
           vec4 viewPosition = viewMatrix * modelPosition;
           vec4 projectedPosition = projectionMatrix * viewPosition;
           gl_Position = projectedPosition;
@@ -125,7 +123,7 @@ onMounted(() => {
   // Sizes
   const sizes = {
     width: window.innerWidth,
-    height: 700
+    height: 500
   }
 
   // Camera
@@ -135,9 +133,6 @@ onMounted(() => {
 
 
   const canvas = document.querySelector('canvas.webgl')
-  
-  const controls = new OrbitControls(camera, canvas)
-  controls.enableDamping = true
 
   // Renderer
   const renderer = new THREE.WebGLRenderer({
@@ -158,8 +153,6 @@ onMounted(() => {
     previousTime = elapsedTime
 
     material.uniforms.uTime.value = elapsedTime
-    // console.log(controls);
-    controls.update()
 
     if (elapsedTime < 2){
       for(let card of cards) {
