@@ -6,8 +6,9 @@ const props = defineProps({
 })
 
 const formatTitle = () => {
-  if (props.title != null && props.title.length > 10) {
-    return (props.title.substring(0, 10) + '...')
+  const titleSize = window.innerWidth > 768 ? 30 : 10
+  if (props.title != null && props.title.length > titleSize) {
+    return (props.title.substring(0, titleSize) + '...')
   } else {
     return props.title
   }
