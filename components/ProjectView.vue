@@ -79,13 +79,20 @@ onUnmounted(() => {
     <div class="md:h-full w-full col-span-4 overflow-y-scroll">
       <div class="h-fit min-h-full p-1">
         <div class="min-h-1/2 flex flex-col justify-between">
-          <h2 class="text-xl md:text-6xl font-medium">{{ project.fields.Name}}</h2>
-          <h3 class="text-lg md: text-4xl font-medium">{{ project.fields.Artiste }}</h3>
+          <h2 class="text-xl md:text-5xl font-medium">{{ project.fields.Name}}</h2>
+          <h3 class="text-lg md:text-4xl font-medium">{{ project.fields.Artiste }}</h3>
           <div>
             <p class="text-base md:text-xl">{{ project.fields.Lieux }}</p>
             <p class="text-base md:text-xl">{{ project.fields.Année }}</p>
+            <a
+              v-if="project.fields.URL"
+              class="text-sm md:text-sm flex items-center"
+              :href="project.fields.URL">
+              <span class="material-symbols-outlined pr-2">link</span>
+              {{ project.fields.URL }}
+            </a>
           </div>
-          <div class="flex flex-wrap gap-2">
+          <div class="flex flex-wrap gap-2 pt-2">
             <CardTag v-for="(tag, index) in project.fields.Installation_type" :key="index" :tag="tag" />
             <CardTag v-for="(tag, index) in project.fields.Mots_clefs" :key="index" :tag="tag" />
           </div>
