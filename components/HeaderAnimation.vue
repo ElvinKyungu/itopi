@@ -60,9 +60,9 @@ onMounted(() => {
       position[i3 + 1] = 0
       position[i3 + 2] = randomZ
 
-      randomnes[i3    ] = randomX
-      randomnes[i3 + 1] = randomY
-      randomnes[i3 + 2] = randomZ + 0.6
+      randomnes[i3    ] = Math.random() - 0.5
+      randomnes[i3 + 1] = Math.random() * 0.5
+      randomnes[i3 + 2] = Math.random() + 0.2
 
       color[i3] = 0.9
       color[i3 + 1] = 0.9
@@ -93,14 +93,18 @@ onMounted(() => {
 
         varying vec3 vColor; 
 
+        float easing(float t){
+            return t * t * (3.0 - 2.0 * t);
+        }
+
         void main () {
           vec4 modelPosition = modelMatrix * vec4(position, 1.0);
           float angle = atan(modelPosition.x, modelPosition.z);
           float distanceToCenter = length(modelPosition.xz);
           modelPosition.y -= uTime * aRandomness.z;
-          modelPosition.x += sin(uTime * aRandomness.y * aRandomness.x ) * 0.4;
           modelPosition.xy += aRandomness.xy;
-          modelPosition.y = mod(modelPosition.y, 10.) - 5.;
+          modelPosition.x += easing(sin(uTime * aRandomness.z - aRandomness.x) + 0.5) * 0.5 ;
+          modelPosition.y = mod(modelPosition.y, 6.) - 3.;
           vec4 viewPosition = viewMatrix * modelPosition;
           vec4 projectedPosition = projectionMatrix * viewPosition;
           gl_Position = projectedPosition;
@@ -120,7 +124,7 @@ onMounted(() => {
     scene.add(points)
   }
 
-  // Sizes
+  // Sizes 
   const sizes = {
     width: window.innerWidth,
     height: 500
