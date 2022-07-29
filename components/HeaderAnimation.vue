@@ -3,16 +3,25 @@ import * as THREE from 'three'
 import * as lil from 'lil-gui'
 
 onMounted(() => {
+
+  const loadingMangaer = new THREE.LoadingManager()
+  const textureLoader = new THREE.TextureLoader(loadingMangaer)
+  const colorTexture = textureLoader.load('../assets/textures/card-map.png')
+  const alphaTexture = textureLoader.load('../assets/textures/card-alpha-map.jpg')
+  console.log(alphaTexture)
   // Scene
   const scene = new THREE.Scene() 
-
 
   // Object
 
   //Cards 
-  const cardGeometry = new THREE.PlaneGeometry( 1.5, 2 )
-  const cardMaterial = new THREE.MeshBasicMaterial()
-  cardMaterial.color = new THREE.Color(0.9, 0.9, 0.9)
+  const cardGeometry = new THREE.PlaneGeometry( 2, 2 )
+  const cardMaterial = new THREE.MeshBasicMaterial({
+    map: colorTexture,
+    transparent: true,
+    alphaMap: alphaTexture
+  })
+  // cardMaterial.color = new THREE.Color(0.9, 0.9, 0.9)
 
   const numCard = 50
   const cards = [ ]
@@ -29,7 +38,7 @@ onMounted(() => {
 
   //Particules
   const parameters = {}
-  parameters.particulesCount = 1000
+  parameters.particulesCount = 500
 
   let geometry = null
   let material = null
@@ -104,7 +113,7 @@ onMounted(() => {
           modelPosition.y -= uTime * aRandomness.z;
           modelPosition.xy += aRandomness.xy;
           modelPosition.x += easing(sin(uTime * aRandomness.z - aRandomness.x) + 0.5) * 0.5 ;
-          modelPosition.y = mod(modelPosition.y, 6.) - 3.;
+          modelPosition.y = mod(modelPosition.y, 7.5) - 3.;
           vec4 viewPosition = viewMatrix * modelPosition;
           vec4 projectedPosition = projectionMatrix * viewPosition;
           gl_Position = projectedPosition;
