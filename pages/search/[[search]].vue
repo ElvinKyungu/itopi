@@ -93,7 +93,6 @@ const filteredData = computed(() => {
   return filteredData
 })
 
-
 onBeforeRouteUpdate((to, from) => {
   setParams(to)
 })

@@ -167,7 +167,7 @@ onMounted(() => {
 
     material.uniforms.uTime.value = elapsedTime
 
-    if (elapsedTime < 2){
+    if (elapsedTime < 4){
       for(let card of cards) {
         card.mesh.position.y += deltaTime * card.speed
         card.mesh.position.x += deltaTime * (-card.mesh.rotation.z * 7)

@@ -11,8 +11,9 @@
       <div class="h-1/2 w-full absolute bottom-10 z-20 bg-gradient-to-t from-slate-50 to-transparent"></div>
       <div class="h-10 w-full absolute bottom-0 z-20 bg-gradient-to-t from-white to-slate-50"></div>
     </div>
-    <div class="h-full w-full flex justify-center pt-32 absolute top-0">
-      <h1 class="font-semibold text-black text-center text-4xl md:text-6xl whitespace-pre-wrap"> {{ "1000 installations,\nAccédez à 100 gratuitement !" }}</h1>
-    </div>
+    <HeaderTitle />
+    <!-- <div class="h-full w-full flex justify-center pt-32 absolute top-0">
+      <h1 class="font-semibold text-black text-center text-4xl md:text-6xl whitespace-pre-wrap"> 1000 installations,\nAccédez à 100 gratuitement !</h1>
+    </div> -->
   </section>
 </template>
