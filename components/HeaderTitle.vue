@@ -1,61 +1,48 @@
 <script setup>
 
 const title = ref("1000 installations,\nAccédez à 100 gratuitement !")
+
+const animationDelay = (index) => {
+  const delay = (1.5 + index / 10) + Math.random() / 2
+  return delay + 's'
+}
 </script>
 
 <template>
   <div id="header-title" class="h-fit w-full flex justify-center pt-32 absolute top-0">
     <h1
-      class="lineUp typewriter font-semibold text-black text-center text-4xl md:text-6xl whitespace-pre-wrap overflow-hidden">
-      {{ title }}
+      class="h-fit w-full font-semibold text-black text-center text-4xl md:text-6xl whitespace-pre-wrap inline-block">
+      <span v-for="(char, index) in title" class="fade-in opacity-0" :style="{'animation-delay': animationDelay(index) }" >{{ char }}</span>
     </h1>
   </div>
 </template>
 
 <style scoped>
+@keyframes bottomFadeIn {
+  0% {
+    position: relative;
+    bottom: -50px;
+    opacity: 0;
+  }
+  
+  50% {
+    position: relative;
+    opacity: 50%;
+    bottom: 15px;
+  }
 
+  100% {
+    position: relative;
+    bottom: 0.0em;
+    opacity: 1;
+  }
+}
 
-.typewriter {
-  animation: type 2s steps(40, end);
+.fade-in {
+  animation-name: bottomFadeIn;
   animation-fill-mode: forwards;
+  animation-duration: 2s;
 }
-
-@keyframes type {
-  0% {
-    width: 0;
-  }
-  100% {
-    width: 100%;
-  }
-}
-
-/* .typewriter {
-  animation: 4sgrow ease-out;
-} */
-
-/* @keyframes anim-lineUp {
-  0% {
-    opacity: 0;
-    max-height: var(--lineHeight);
-    transform: translateY(80%);
-  }
-  10% {
-    opacity: 0;
-    transform: translateY(80%);
-  }
-  40% {
-    opacity: 0;
-  }
-  70% {
-    opacity: 1;
-    transform: translateY(0%);
-  }
-  100% {
-    opacity: 1;
-    max-height: calc(var(--lineHeight) * var(--lines));
-    transform: translateY(0%);
-  }
-} */
 
 
 </style>
