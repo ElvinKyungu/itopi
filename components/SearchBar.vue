@@ -3,7 +3,7 @@ import { useStore } from '../store/index.js'
 
 const store = useStore()
 const router = useRouter()
-const input = ref('')
+const input = ref(store.searchWord)
 
 const search = () => {
   router.push({ path: '/search/' + input.value, query: { filter: store.filter, favorite: store.favorite }})
