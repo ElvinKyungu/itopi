@@ -1,6 +1,7 @@
 <script setup>
 import { onBeforeRouteUpdate } from 'vue-router'
 import { useStore } from '../../store/index.js'
+import { getTags } from '../../tools/utils'
 import Fuse from 'fuse.js'
 
 const store = useStore()
@@ -50,17 +51,6 @@ const formatData = (data) => {
     }
   }
   return newData
-}
-
-const getTags = (project) => {
-  let tags = []
-  if (project.item.fields.hasOwnProperty('Installation_type')) {
-    tags = tags.concat(project.item.fields.Installation_type)
-  }
-  if (project.item.fields.hasOwnProperty('Mots_clefs')) {
-    tags = tags.concat(project.item.fields.Mots_clefs)
-  }
-  return tags
 }
 
 const filterData = (data) => {
