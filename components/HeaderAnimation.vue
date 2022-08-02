@@ -1,6 +1,7 @@
 <script setup>
 import * as THREE from 'three'
 import * as lil from 'lil-gui'
+import { gsap } from 'gsap'
 
 const textures = [
   '../assets/textures/texture.png',
@@ -53,17 +54,45 @@ onMounted(() => {
   }
   //Back cards
   const cardsSettings = [
-    { position: new THREE.Vector3( -4, -0.5, 1.4 ), rotation: new THREE.Vector3( 0, 0, 0.2 ), material: cardMaterials[5] },
-    { position: new THREE.Vector3( -2.6, -0.8, 1 ), rotation: new THREE.Vector3( 0, 0, 0.1 ), material: cardMaterials[1] },
-    { position: new THREE.Vector3( 0, -1, 1.8 ), rotation: new THREE.Vector3( 0, 0, 0 ), material: cardMaterials[2] },
-    { position: new THREE.Vector3( 2.5, -0.8, 1 ), rotation: new THREE.Vector3( 0, 0, -0.1 ), material: cardMaterials[3] },
-    { position: new THREE.Vector3( 3.8, -0.6, 1.5 ), rotation: new THREE.Vector3( 0, 0, -0.2 ), material: cardMaterials[4] }
+    { 
+      position: new THREE.Vector3( -4, 5, 1.4 ),
+      targetPosition: new THREE.Vector3( -4, -0.5, 1.4 ),
+      rotation: new THREE.Vector3( 0, 0, 0.2 ),
+      material: cardMaterials[5] 
+    },
+    {
+      position: new THREE.Vector3( -2.6, 5, 1 ),
+      targetPosition: new THREE.Vector3( -2.6, -0.8, 1 ), 
+      rotation: new THREE.Vector3( 0, 0, 0.1 ),
+      material: cardMaterials[1]
+    },
+    {
+      position: new THREE.Vector3( 0, 5, 1.8 ),
+      targetPosition: new THREE.Vector3( 0, -1, 1.8 ),
+      rotation: new THREE.Vector3( 0, 0, 0 ),
+      material: cardMaterials[2]
+    },
+    {
+      position: new THREE.Vector3( 2.5, 5, 1 ),
+      targetPosition: new THREE.Vector3( 2.5, -0.8, 1 ),
+      rotation: new THREE.Vector3( 0, 0, -0.1 ),
+      material: cardMaterials[8]
+    },
+    {
+      position: new THREE.Vector3( 3.8, 10, 1.5 ),
+      targetPosition: new THREE.Vector3( 3.8, -0.6, 1.5 ),
+      rotation: new THREE.Vector3( 0, 0, -0.2 ),
+      material: cardMaterials[4]
+    }
   ]
 
   for (const card of cardsSettings) {
     const mesh = new THREE.Mesh(cardGeometry, card.material)
     mesh.position.set(card.position.x, card.position.y, card.position.z)
     mesh.rotation.set(card.rotation.x, card.rotation.y, card.rotation.z)
+    const timeline = gsap.timeline()
+    timeline.delay(2)
+    timeline.to(mesh.position, { duration: 3, x: card.targetPosition.x, y: card.targetPosition.y, z: card.targetPosition.z } )
     scene.add(mesh)
   }
 
@@ -158,6 +187,7 @@ onMounted(() => {
     })
 
     points = new THREE.Points(geometry, material)
+    points.scale.y = 2
     scene.add(points)
   }
 
