@@ -2,13 +2,27 @@
 import * as THREE from 'three'
 import * as lil from 'lil-gui'
 
-onMounted(() => {
+const textures = [
+  '../assets/textures/texture.png',
+  '../assets/textures/texture-1.png',
+  '../assets/textures/texture-2.png',
+  '../assets/textures/texture-3.png',
+  '../assets/textures/texture-4.png',
+  '../assets/textures/texture-5.png',
+  '../assets/textures/texture-6.png',
+  '../assets/textures/texture-7.png',
+  '../assets/textures/texture-8.png'
+  ]
 
+onMounted(() => {
   const loadingMangaer = new THREE.LoadingManager()
   const textureLoader = new THREE.TextureLoader(loadingMangaer)
-  const colorTexture = textureLoader.load('../assets/textures/card-map.png')
+  const colorTextures = []
+  for (const texture of textures) {
+    colorTextures.push(textureLoader.load(texture))
+  }
   const alphaTexture = textureLoader.load('../assets/textures/card-alpha-map.jpg')
-  console.log(alphaTexture)
+
   // Scene
   const scene = new THREE.Scene() 
 
@@ -16,18 +30,20 @@ onMounted(() => {
 
   //Cards 
   const cardGeometry = new THREE.PlaneGeometry( 2, 2 )
-  const cardMaterial = new THREE.MeshBasicMaterial({
-    map: colorTexture,
-    transparent: true,
-    alphaMap: alphaTexture
-  })
-  // cardMaterial.color = new THREE.Color(0.9, 0.9, 0.9)
+  const cardMaterials = []
+  for (const colorTexture of colorTextures) {
+    cardMaterials.push(new THREE.MeshBasicMaterial({
+      map: colorTexture,
+      transparent: true,
+      alphaMap: alphaTexture
+    }))
+  }
 
   const numCard = 50
   const cards = [ ]
 
   for (let i = 0; i < numCard; i++) {
-    const mesh = new THREE.Mesh(cardGeometry, cardMaterial)
+    const mesh = new THREE.Mesh(cardGeometry, cardMaterials[i % cardMaterials.length])
     cards[i] = { mesh: mesh, speed: (Math.random() * 10) + 10 }
     const movement = Math.random() - 0.5
     cards[i].mesh.rotation.z = -movement * 0.25
@@ -54,9 +70,6 @@ onMounted(() => {
     const position = new Float32Array(parameters.particulesCount * 3)
     const randomnes = new Float32Array(parameters.particulesCount * 3)
     const color = new Float32Array(parameters.particulesCount * 3)
-
-    const colorInside = new THREE.Color(parameters.insideColor)
-    const colorOutside = new THREE.Color(parameters.outsideColor)
 
     for (let i = 0; i < parameters.particulesCount; i++) {
       const i3 = i * 3
