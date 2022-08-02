@@ -18,6 +18,7 @@
   "dependencies": {
     "@fortawesome/vue-fontawesome": "^3.0.1",
     "@pinia/nuxt": "^0.2.1",
+    "@ubclaunchpad/vue-fathom": "^2.0.0",
     "fuse.js": "^6.6.2",
     "node-fetch": "^2.6.1",
     "pinia": "^2.0.16"
