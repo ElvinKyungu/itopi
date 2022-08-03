@@ -63,7 +63,7 @@ onUnmounted(() => {
     <div @click="leave" class="visible md:hidden absolute top-2 right-2 h-10 w-10">
       <span class="material-symbols-outlined text-3xl">close</span>
     </div>
-    <div class="h-full w-10 absolute left-2 flex items-center">
+    <div class="h-full w-10 absolute left-3 flex items-center">
       <div v-if="store.filteredProject.indexOf(project.id) > 0" v-on:click="changeProject(-1)" class="h-10 w-10 rounded bg-black/25 hover:bg-black/50 grid place-content-center cursor-pointer">
         <span class="material-symbols-outlined">arrow_back_ios_new</span>
       </div>
