@@ -74,7 +74,9 @@ onUnmounted(() => {
       </div>
     </div>
     <div class="h-50 sm:h-80 md:h-full w-full col-span-3 rounded-lg outline outline-2 outline-black overflow-hidden">
-      <ImageLazy :img="getImg(project)" />
+      <a :href="project.fields.URL" target="_blank">
+        <ImageLazy :img="getImg(project)"/>
+      </a>
     </div>
     <div class="md:h-full w-full col-span-4 overflow-y-scroll">
       <div class="h-fit min-h-full p-1">
@@ -87,7 +89,8 @@ onUnmounted(() => {
             <a
               v-if="project.fields.URL"
               class="text-sm md:text-sm flex items-center"
-              :href="project.fields.URL">
+              :href="project.fields.URL"
+              target="_blank">
               <span class="material-symbols-outlined pr-2">link</span>
               {{ project.fields.URL }}
             </a>
