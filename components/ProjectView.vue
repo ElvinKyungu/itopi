@@ -31,7 +31,7 @@ const project = computed(() => {
 })
 
  onMounted(() => {
-  window.addEventListener('keyup', e => {
+  window.addEventListener('keydown', e => {
     if (e.key === "Escape" ) {
       leave()
     } else if (e.key === "ArrowRight" ) {
@@ -43,7 +43,7 @@ const project = computed(() => {
 })
 
 onUnmounted(() => {
-  window.addEventListener('keyup', e => {
+  window.addEventListener('keydown', e => {
     if (e.key === "Escape" ) {
       leave()
     } else if (e.key === "ArrowRight" ) {
