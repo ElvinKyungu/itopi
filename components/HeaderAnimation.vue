@@ -19,6 +19,7 @@ onMounted(() => {
   const loadingMangaer = new THREE.LoadingManager()
   const textureLoader = new THREE.TextureLoader(loadingMangaer)
   const colorTextures = []
+
   for (const texture of textures) {
     colorTextures.push(textureLoader.load(texture))
   }
@@ -52,13 +53,13 @@ onMounted(() => {
     cards[i].mesh.position.y = -10 + (Math.random() -0.5) * 10
     scene.add(cards[i].mesh)
   }
-  //Back cards
+  //Front cards
   const cardsSettings = [
     { 
       position: new THREE.Vector3( -4, 5, 1.4 ),
       targetPosition: new THREE.Vector3( -4, -0.5, 1.4 ),
       rotation: new THREE.Vector3( 0, 0, 0.2 ),
-      material: cardMaterials[5] 
+      material: cardMaterials[5]
     },
     {
       position: new THREE.Vector3( -2.6, 5, 1 ),
@@ -86,14 +87,16 @@ onMounted(() => {
     }
   ]
 
-  for (const card of cardsSettings) {
-    const mesh = new THREE.Mesh(cardGeometry, card.material)
-    mesh.position.set(card.position.x, card.position.y, card.position.z)
-    mesh.rotation.set(card.rotation.x, card.rotation.y, card.rotation.z)
+  const frontCard = []
+
+  for (let i = 0; i < cardsSettings.length; i++) {
+    frontCard[i] = new THREE.Mesh(cardGeometry, cardsSettings[i].material)
+    frontCard[i].position.set(cardsSettings[i].position.x, cardsSettings[i].position.y, cardsSettings[i].position.z)
+    frontCard[i].rotation.set(cardsSettings[i].rotation.x, cardsSettings[i].rotation.y, cardsSettings[i].rotation.z)
     const timeline = gsap.timeline()
     timeline.delay(2)
-    timeline.to(mesh.position, { duration: 3, x: card.targetPosition.x, y: card.targetPosition.y, z: card.targetPosition.z } )
-    scene.add(mesh)
+    timeline.to(frontCard[i].position, { duration: 3, x: cardsSettings[i].targetPosition.x, y: cardsSettings[i].targetPosition.y, z: cardsSettings[i].targetPosition.z } )
+    scene.add(frontCard[i])
   }
 
   //Particules
@@ -202,10 +205,18 @@ onMounted(() => {
   camera.position.z = 3
   scene.add(camera)
 
+  //Raycaster
+  const raycaster = new THREE.Raycaster()
 
-  const canvas = document.querySelector('canvas.webgl')
+  const mouse = new THREE.Vector2()
+  window.addEventListener('mousemove', (event) =>
+  {
+      mouse.x = event.clientX / sizes.width * 2 - 1
+      mouse.y = - (event.clientY / sizes.height) * 2 + 1
+  })
 
   // Renderer
+  const canvas = document.querySelector('canvas.webgl')
   const renderer = new THREE.WebGLRenderer({
       canvas: canvas
   })
@@ -217,6 +228,7 @@ onMounted(() => {
   const clock = new THREE.Clock()
 
   let previousTime = 0.0
+  let currentIntersect = []
   const tick = () =>
   {
     const elapsedTime = clock.getElapsedTime()
@@ -229,6 +241,29 @@ onMounted(() => {
       for(let card of cards) {
         card.mesh.position.y += deltaTime * card.speed
         card.mesh.position.x += deltaTime * (-card.mesh.rotation.z * 7)
+      }
+    }
+
+    raycaster.setFromCamera(mouse, camera)
+
+    const intersects = raycaster.intersectObjects(frontCard)
+    if(elapsedTime > 5 && intersects.length > currentIntersect.length)
+    {
+      for (let intersect of intersects) {
+        if (!currentIntersect.includes(intersect.object)) {
+          gsap.to(intersect.object.position, { duration: 0.5, y: intersect.object.position.y + 0.2} )
+          currentIntersect.push(intersect.object)
+        }
+      }
+    }
+    else
+    {
+      for (let i = 0; i < currentIntersect.length; i++) {
+        if (intersects.find(intersect => currentIntersect[i] === intersect.object) == null) {
+          const cardIndex = frontCard.findIndex(card => card.uuid === currentIntersect[i].uuid)
+          gsap.to(currentIntersect[i].position, { duration: 0.5, y: cardsSettings[cardIndex].targetPosition.y } )
+          currentIntersect.splice(i, 1)
+        }
       }
     }
 
