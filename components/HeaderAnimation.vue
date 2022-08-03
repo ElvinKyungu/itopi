@@ -4,15 +4,15 @@ import * as lil from 'lil-gui'
 import { gsap } from 'gsap'
 
 const textures = [
-  '../assets/textures/texture.png',
-  '../assets/textures/texture-1.png',
-  '../assets/textures/texture-2.png',
-  '../assets/textures/texture-3.png',
-  '../assets/textures/texture-4.png',
-  '../assets/textures/texture-5.png',
-  '../assets/textures/texture-6.png',
-  '../assets/textures/texture-7.png',
-  '../assets/textures/texture-8.png'
+  '/textures/texture.png',
+  '/textures/texture-1.png',
+  '/textures/texture-2.png',
+  '/textures/texture-3.png',
+  '/textures/texture-4.png',
+  '/textures/texture-5.png',
+  '/textures/texture-6.png',
+  '/textures/texture-7.png',
+  '/textures/texture-8.png'
 ]
 
 onMounted(() => {
@@ -23,7 +23,7 @@ onMounted(() => {
   for (const texture of textures) {
     colorTextures.push(textureLoader.load(texture))
   }
-  const alphaTexture = textureLoader.load('../assets/textures/card-alpha-map.jpg')
+  const alphaTexture = textureLoader.load('/textures/card-alpha-map.jpg')
 
   // Scene
   const scene = new THREE.Scene() 
