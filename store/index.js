@@ -14,6 +14,7 @@ export const useStore = defineStore({
   id: 'store',
   state: () => {
     return {
+      loading: true,
       data: null,
       searchWord: '',
       filteredProject: null,
@@ -54,6 +55,7 @@ export const useStore = defineStore({
         const response = await fetch('/.netlify/functions/useApi')
         const json = await response.json()
         const data = json.result
+        this.loading = false
         if (data[0] != null) {
           this.data = data
           this.setTags(data)

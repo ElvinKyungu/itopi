@@ -282,16 +282,5 @@ tick()
 </script>
 
 <template>
-<div class="animation-background">
-  <canvas id="header-animation" class="webgl">
-</canvas>
-</div>
+<canvas id="header-animation" class="webgl"></canvas>
 </template>
-
-<style scoped>
-.animation-background {
-  background: linear-gradient(217deg, #FF5F7E, rgba(255,0,0,0) 70.71%),
-    linear-gradient(127deg, #F9A36D, rgba(0,255,0,0) 70.71%),
-    linear-gradient(336deg, #9C67FD, rgba(0,0,255,0) 70.71%);
-}
-</style>
