@@ -144,13 +144,16 @@ onMounted(() => {
 
     material = new THREE.ShaderMaterial({
       vertexColors: true,
+      blending: THREE.AdditiveBlending,
       fragmentShader: `
         varying vec3 vColor;
+        varying vec2 vUv;
 
         void main()
         {
-          
-          gl_FragColor = vec4(vColor,  1.0);
+          float strength = step(0.2, max(gl_PointCoord.x - 0.5, abs(gl_PointCoord.y - 0.6)));
+          strength = 1.0 - strength;
+          gl_FragColor = vec4(vColor * strength, strength);
         }
       `,
       vertexShader: `
@@ -160,7 +163,8 @@ onMounted(() => {
         attribute vec3 aRandomness;
         attribute float aScale;
 
-        varying vec3 vColor; 
+        varying vec3 vColor;
+        varying vec2 vUv;
 
         float easing(float t){
             return t * t * (3.0 - 2.0 * t);
@@ -181,11 +185,12 @@ onMounted(() => {
           gl_PointSize = uSize;
           gl_PointSize *= (1.0 / - viewPosition.z);
           vColor = color;
+          vUv = uv;
         }
       `,
       uniforms: {
         uTime: { value: 0 },
-        uSize: { value: 15 * renderer.getPixelRatio() } 
+        uSize: { value: 25 * renderer.getPixelRatio() } 
       }
     })
 
