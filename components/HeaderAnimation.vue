@@ -1,32 +1,11 @@
 <script setup>
 import * as THREE from 'three'
-import {
-    CSS3DRenderer,
-    CSS3DObject
- } from 'three/examples/jsm/renderers/CSS3DRenderer.js';
-import * as lil from 'lil-gui'
+import { CSS3DRenderer, CSS3DObject } from 'three/examples/jsm/renderers/CSS3DRenderer.js'
 import { gsap } from 'gsap'
 import { useStore } from '../store/index'
+import { cardObject3D } from '../tools/object3DCards'
 
 const store = useStore()
-
-const getImg = (project) => {
-  if (project.fields.Attachments && project.fields.Attachments.length >= 1) {
-    return project.fields.Attachments[0].thumbnails.large.url
-  }
-  return null
-}
-
-const getTags = (project) => {
-  let tags = []
-  if (project.fields.hasOwnProperty('Installation_type')) {
-    tags = tags.concat(project.fields.Installation_type)
-  }
-  if (project.fields.hasOwnProperty('Mots_clefs')) {
-    tags = tags.concat(project.fields.Mots_clefs)
-  }
-  return tags
-}
 
 const getSoixanteProjects = () => {
   const projects = []
@@ -38,142 +17,16 @@ const getSoixanteProjects = () => {
   return projects
 }
 
-
-const createCssObject = (type, width, height) => {
-  const obj = new THREE.Object3D
-  const element = document.createElement( type )
-
-  const css3dObject = new CSS3DObject( element )
-  obj.css3dObject = css3dObject
-  obj.add(css3dObject)
-
-  const geometry = new THREE.PlaneGeometry( width, height )
-  const material = new THREE.MeshBasicMaterial( {
-    opacity: 0,
-    transparent: true,
-    color	: new THREE.Color( 0xffffff ),
-  } )
-  const mesh = new THREE.Mesh( geometry, material )
-  obj.add( mesh )
-  return obj
-}
-
-const imageobject = (width, height, url) => {
-  const div = document.createElement( 'div' )
-  const image = document.createElement('img')
-  div.appendChild(image)
-
-  div.style.width = width + 'px'
-  div.style.height = height + 'px'
-  div.style.overflow = 'hidden'
-  div.style.backgroundColor = 'rgb(241 245 249)'
-  div.style.borderTopLeftRadius = '0.75rem'
-  div.style.borderTopRightRadius = '0.75rem'
-
-  image.src = url
-  image.style.width = width + 'px'
-  image.style.height =  height + 'px'
-  image.style.objectFit =  'cover'
-
-  return div
-}
-
-const title = (text) => {
-  const title = document.createElement( 'div' )
-
-  title.style.fontSize = '0.875rem'
-  title.style.lineHeight = '1.25rem'
-  title.textContent = text
+const generateBackCards = (scene, numCard) => {
   
-  return title
-}
-
-const tag = (text) => {
-  const tag = document.createElement('div')
- 
-  tag.textContent = text
-  tag.style.width = 'fit-content'
-  tag.style.backgroundColor = 'rgb(254 226 226)'
-  tag.style.borderRadius = '0.375rem'
-  tag.style.borderWidth = '1px'
-  tag.style.borderColor = 'rgb(0 0 0)'
-  tag.style.paddingTop = '0.25rem'
-  tag.style.paddingBottom = '0.25rem'
-  tag.style.paddingLeft = '0.50rem'
-  tag.style.paddingRight = '0.50rem'
-  tag.style.fontSize = '0.60rem'
-  return tag
-}
-
-const tags = (width, tagsList) => {
-  const tags = document.createElement('div')
-
-  tags.style.width = width + 'px'
-  tags.style.marginTop = '0.25rem'
-  tags.style.display = 'flex'
-  tags.style.flexWrap = 'flex-wrap'
-  tags.style.gap = '0.375rem'
-  for (let newTag of tagsList) {
-    tags.appendChild(tag(newTag))
+  const projects = []
+  for(let i = 0; i < 10; i++) {
+    projects.push(store.data[Math.floor(Math.random() * store.data.length)])
   }
-  return tags
-}
 
-const textZone = (width, height, project) => {
-  const textZone = document.createElement( 'div' )
-
-  textZone.style.width = width + 'px'
-  textZone.style.height = height + 'px'
-  textZone.style.borderTopWidth = '2px'
-  textZone.style.borderColor = 'rgb(0 0 0)'
-  textZone.style.paddingTop = '0.5rem'
-  textZone.style.paddingLeft = '0.5rem'
-  textZone.style.paddingRight = '0.5rem'
-
-  const name = title(project.fields.Name)
-  name.style.fontWeight = '500'
-
-  const artiste = title(project.fields.Name)
-  artiste.style.fontWeight = '600'
-
-  textZone.appendChild(name)
-  textZone.appendChild(artiste)
-
-  textZone.appendChild(tags(width, getTags(project)))
-  return textZone
-}
-
-const cardObject3D = (type, width, height, project) => {
-  const card = createCssObject(type, width, height)
-
-  card.css3dObject.element.style.width = width +'px'
-  card.css3dObject.element.style.height = height+'px'
-  card.css3dObject.element.style.backgroundColor = 'rgb(244, 244, 245)'
-  card.css3dObject.element.style.borderRadius = '0.75rem'
-  card.css3dObject.element.style.borderWidth = '2px'
-  card.css3dObject.element.style.borderColor = 'rgb(0 0 0)'
-  card.css3dObject.element.style.overflow = 'hidden'
-
-  card.css3dObject.element.appendChild(imageobject(width, 240, getImg(project)))
-  card.css3dObject.element.appendChild(textZone(width, 144, project))
-  return card
-}
-
-
-onMounted(() => {
-  // Scene
-  const scene = new THREE.Scene() 
-
-  // Object
-
-  //Cards 
-  const cardGeometry = new THREE.PlaneGeometry( 2, 2 )
-
-  const numCard = 50
-  const cards = [ ]
-
+  const cards = []
   for (let i = 0; i < numCard; i++) {
-    const mesh = cardObject3D('div', 256, 384, store.data[Math.floor(Math.random() * store.data.length)])
+    const mesh = cardObject3D('div', 256, 384, projects[i % projects.length])
     cards[i] = { mesh: mesh, speed: (Math.random() * 10) + 10 }
     const movement = Math.random() - 0.5
     cards[i].mesh.scale.set(0.005, 0.005, 1)
@@ -182,10 +35,13 @@ onMounted(() => {
     cards[i].mesh.position.y = -10 + (Math.random() -0.5) * 10
     scene.add(cards[i].mesh)
   }
-  //Front cards
-  
-  const soixanteProjects = getSoixanteProjects()
-  const cardsSettings = [
+
+  return cards
+}
+
+const getCardsSettings = () => {
+const soixanteProjects = getSoixanteProjects()
+  return [
     { 
       position: new THREE.Vector3( -4, 5, 1.4 ),
       targetPosition: new THREE.Vector3( -4, -0.5, 1.4 ),
@@ -217,7 +73,10 @@ onMounted(() => {
       project: store.data[Math.floor(Math.random() * store.data.length)]
     }
   ]
+}
 
+const generateFrontCards = (scene, cardsSettings) => {
+  const soixanteProjects = getSoixanteProjects()
   const frontCard = []
 
   for (let i = 0; i < cardsSettings.length; i++) {
@@ -230,6 +89,24 @@ onMounted(() => {
     timeline.to(frontCard[i].position, { duration: 3, x: cardsSettings[i].targetPosition.x, y: cardsSettings[i].targetPosition.y, z: cardsSettings[i].targetPosition.z } )
     scene.add(frontCard[i])
   }
+
+  return frontCard
+}
+
+
+onMounted(() => {
+  // Scene
+  const scene = new THREE.Scene() 
+
+  // Object
+
+  //Cards 
+  const numCard = 50
+  const cards = generateBackCards(scene, numCard)
+
+  //Front cards
+  const cardsSettings = getCardsSettings()
+  const frontCard = generateFrontCards(scene, cardsSettings)
 
   //Particules
   const parameters = {}
@@ -390,7 +267,6 @@ onMounted(() => {
     raycaster.setFromCamera(mouse, camera)
 
     const intersects = raycaster.intersectObjects(frontCard)
-    // console.log('i: ', intersects, 'c: ', currentIntersect, 'f: ', frontCard)
     if(elapsedTime > 5 && intersects.length > currentIntersect.length)
     {
       for (let intersect of intersects) {
@@ -418,6 +294,14 @@ onMounted(() => {
   }
 
 tick()
+})
+
+onUnmounted(() => {
+  window.removeEventListener('mousemove', (event) =>
+  {
+      mouse.x = event.clientX / sizes.width * 2 - 1
+      mouse.y = - (event.clientY / sizes.height) * 2 + 1
+  })
 })
 </script>
 
