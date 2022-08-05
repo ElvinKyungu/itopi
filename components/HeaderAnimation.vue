@@ -10,7 +10,6 @@ import { useStore } from '../store/index'
 
 const store = useStore()
 
-
 const getImg = (project) => {
   if (project.fields.Attachments && project.fields.Attachments.length >= 1) {
     return project.fields.Attachments[0].thumbnails.large.url
@@ -27,6 +26,16 @@ const getTags = (project) => {
     tags = tags.concat(project.fields.Mots_clefs)
   }
   return tags
+}
+
+const getSoixanteProjects = () => {
+  const projects = []
+  for (let project of store.data) {
+    if (project.fields.soixante_circuits === true) {
+      projects.push(project)
+    }
+  }
+  return projects
 }
 
 
@@ -137,7 +146,6 @@ const textZone = (width, height, project) => {
 const cardObject3D = (type, width, height, project) => {
   const card = createCssObject(type, width, height)
 
-  console.log(project)
   card.css3dObject.element.style.width = width +'px'
   card.css3dObject.element.style.height = height+'px'
   card.css3dObject.element.style.backgroundColor = 'rgb(244, 244, 245)'
@@ -176,6 +184,7 @@ onMounted(() => {
   }
   //Front cards
   
+  const soixanteProjects = getSoixanteProjects()
   const cardsSettings = [
     { 
       position: new THREE.Vector3( -4, 5, 1.4 ),
@@ -193,7 +202,7 @@ onMounted(() => {
       position: new THREE.Vector3( 0, 5, 1.8 ),
       targetPosition: new THREE.Vector3( 0, -1, 1.8 ),
       rotation: new THREE.Vector3( 0, 0, 0 ),
-      project: store.data[Math.floor(Math.random() * store.data.length)]
+      project: soixanteProjects[Math.floor(Math.random() * soixanteProjects.length)]
     },
     {
       position: new THREE.Vector3( 2.5, 5, 1 ),
@@ -378,28 +387,29 @@ onMounted(() => {
       }
     }
 
-    // raycaster.setFromCamera(mouse, camera)
+    raycaster.setFromCamera(mouse, camera)
 
-    // const intersects = raycaster.intersectObjects(frontCard)
-    // if(elapsedTime > 5 && intersects.length > currentIntersect.length)
-    // {
-    //   for (let intersect of intersects) {
-    //     if (!currentIntersect.includes(intersect.object)) {
-    //       gsap.to(intersect.object.position, { duration: 0.5, y: intersect.object.position.y + 0.2} )
-    //       currentIntersect.push(intersect.object)
-    //     }
-    //   }
-    // }
-    // else
-    // {
-    //   for (let i = 0; i < currentIntersect.length; i++) {
-    //     if (intersects.find(intersect => currentIntersect[i] === intersect.object) == null) {
-    //       const cardIndex = frontCard.findIndex(card => card.uuid === currentIntersect[i].uuid)
-    //       gsap.to(currentIntersect[i].position, { duration: 0.5, y: cardsSettings[cardIndex].targetPosition.y } )
-    //       currentIntersect.splice(i, 1)
-    //     }
-    //   }
-    // }
+    const intersects = raycaster.intersectObjects(frontCard)
+    // console.log('i: ', intersects, 'c: ', currentIntersect, 'f: ', frontCard)
+    if(elapsedTime > 5 && intersects.length > currentIntersect.length)
+    {
+      for (let intersect of intersects) {
+        if (!currentIntersect.includes(intersect.object)) {
+          gsap.to(intersect.object.parent.position, { duration: 0.5, y: intersect.object.parent.position.y + 0.2} )
+          currentIntersect.push(intersect.object)
+        }
+      }
+    }
+    else
+    {
+      for (let i = 0; i < currentIntersect.length; i++) {
+        if (intersects.find(intersect => currentIntersect[i] === intersect.object) == null) {
+          const cardIndex = frontCard.findIndex(card => card.uuid === currentIntersect[i].parent.uuid )
+          gsap.to(currentIntersect[i].parent.position, { duration: 0.5, y: cardsSettings[cardIndex].targetPosition.y } )
+          currentIntersect.splice(i, 1)
+        }
+      }
+    }
 
     // Render
     renderer.render(scene, camera)
