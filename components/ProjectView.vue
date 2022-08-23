@@ -1,7 +1,6 @@
 <script setup>
 import { useStore } from '../store/index.js'
 
-const ECAPE_KEY = 27
 const store = useStore()
 const router = useRouter()
 
@@ -60,8 +59,8 @@ onUnmounted(() => {
   <div
     v-if="project != null"
     class="h-full md:h-[900px] lg:h-[700px] xl:h-[600px] w-full md:w-[760px] lg:w-[1000px] xl:w-[1200px] relative z-30 bg-white md:outline outline-2 outline-black md:rounded-lg md:grid md:grid-cols-7 md:gap-10 px-6 md:px-14 py-12 overflow-hidden">
-    <div @click="leave" class="visible md:hidden absolute top-2 right-2 h-10 w-10">
-      <span class="material-symbols-outlined text-3xl">close</span>
+    <div @click="leave" class="absolute top-2 right-0 h-10 w-10 z-10 text-3xl">
+      <span class="material-symbols-outlined cursor-pointer border bg-black/25 hover:bg-black/50">close</span>
     </div>
     <div class="h-full w-10 absolute left-2 flex items-center">
       <div v-if="store.filteredProject.indexOf(project.id) > 0" v-on:click="changeProject(-1)" class="h-10 w-10 rounded bg-black/25 hover:bg-black/50 grid place-content-center cursor-pointer">

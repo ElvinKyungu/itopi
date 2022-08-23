@@ -7,7 +7,7 @@ const props = defineProps({
   },
   mode: {
     Type: String
-    //card, add, delete
+    // card, add, delete
   }
 })
 

@@ -17,6 +17,11 @@ const updateSortOption = (newOption) => {
   showOption.value = false
 }
 
+// if user clicks outside the dropdown menu, it closes
+document.body.addEventListener('click', function(e){
+  if(e.composedPath()[0].id != "dropdown") showOption.value = false
+})
+
 </script>
 
 <template>
@@ -25,7 +30,7 @@ const updateSortOption = (newOption) => {
       <span v-on:click="store.sort.reverse = !store.sort.reverse" v-if="!store.sort.reverse" class="material-symbols-outlined cursor-pointer">arrow_upward</span>
       <span v-on:click="store.sort.reverse = !store.sort.reverse" v-else class="material-symbols-outlined cursor-pointer">arrow_downward</span>
       Trier Par : 
-      <span v-on:click="showOption = !showOption" class="w-24 cursor-pointer">{{ store.sort.name }}</span>
+      <span id="dropdown" v-on:click="showOption = !showOption" class="w-24 cursor-pointer" v-on:mouseleave="showOption === false">{{ store.sort.name }}</span>
     </div>
     <div v-if="showOption" class="w-56 rounded-b-lg absolute z-30 bg-zinc-100 border-l-2 border-b-2 border-r-2 border-black">
       <div v-for="(option, index) in options" :key="index">

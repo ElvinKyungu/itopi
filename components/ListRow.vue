@@ -48,13 +48,13 @@ const favorite = computed(() =>  store.favoriteArray.includes(props.id))
 </script>
 
 <template>
-<div class="h-14 w-full grid grid-cols-11 odd:bg-zinc-100 even:bg-zinc-200 whitespace-nowrap">
-  <div v-on:click="projectPage" class="h-14 border border-black cursor-pointer font-normal"><ImageLazy :img="img"/></div>
+<div class="h-20 w-full grid grid-cols-11 odd:bg-zinc-100 even:bg-zinc-200 whitespace-normal">
+  <div v-on:click="projectPage" class="h-20 border border-black cursor-pointer font-normal"><ImageLazy :img="img"/></div>
   <ListTextCase v-on:click="projectPage" class="col-span-2 cursor-pointer font-normal" :text="title"/>
-  <ListTextCase v-on:click="projectPage" class="col-span-2 cursor-pointer font-normal" :text="artiste"/>
-  <ListTextCase v-on:click="projectPage" class="col-span-2 cursor-pointer font-normal" :text="place"/>
+  <ListTextCase v-on:click="projectPage" class="col-span-2 cursor-pointer font-normal flex flex-wrap" :text="artiste"/>
+  <ListTextCase v-on:click="projectPage" class="col-span-2 cursor-pointer font-normal flex flex-wrap" :text="place"/>
   <ListTextCase v-on:click="projectPage" :text="year" class="cursor-pointer font-normal"/>
-  <span v-on:click="projectPage" class="col-span-2 border border-black flex items-center overflow-hidden pl-5 cursor-pointer gap-2">
+  <span v-on:click="projectPage" class="col-span-2 border border-black flex flex-wrap items-center overflow-hidden p-2 cursor-pointer gap-2">
     <CardTag v-for="(tag, index) in tags" :key="index" :tag="tag" mode="card"/>
   </span>
   <div class="border border-black grid place-content-center">
