@@ -156,10 +156,6 @@ onMounted(() => {
     })
   }
 
-  //  const noScroll = () => {
-  //   if(store.project) document.body.style.overflow = "hidden"
-  // }
-
 onUnmounted(() => {
   localStorage.setItem('top1000-favorite', store.favoriteArray)
 })

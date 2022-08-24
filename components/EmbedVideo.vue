@@ -51,7 +51,7 @@ watchEffect(() => {
 <div id="embed-video" class="bg-black rounded-lg overflow-hidden mt-2">
   <iframe
     v-if="videoType === 'youtube' && videoId != null"
-    class="h-96 w-full"
+    class="h-60 w-full"
     :src="`https://www.youtube.com/embed/${videoId}?origin=${origin}`"
     frameborder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -59,7 +59,7 @@ watchEffect(() => {
   </iframe>
   <iframe v-if="videoType === 'vimeo' && videoId != null"
     :src="`https://player.vimeo.com/video/${videoId}`" 
-    class="h-96 w-full"
+    class="h-60 w-full"
     frameborder="0"
     allow="fullscreen">
   </iframe>

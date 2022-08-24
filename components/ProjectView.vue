@@ -58,17 +58,17 @@ onUnmounted(() => {
 <div @click.self="leave" class="h-screen w-screen fixed top-0 inset-x-0 z-30 bg-white/50 grid md:place-content-center" id="project-view">
   <div
     v-if="project != null"
-    class="h-full md:h-[900px] lg:h-[700px] xl:h-[600px] w-full md:w-[760px] lg:w-[1000px] xl:w-[1200px] relative z-30 bg-white md:outline outline-2 outline-black md:rounded-lg md:grid md:grid-cols-7 md:gap-10 px-6 md:px-14 py-12 overflow-hidden">
+    class="h-full md:h-[900px] lg:h-[700px] xl:h-[600px] w-full md:w-[760px] lg:w-[1000px] xl:w-[1200px] relative z-30 bg-white md:outline outline-2 outline-black md:rounded-lg md:grid md:grid-cols-7 md:gap-10 px-6 md:px-14 py-12 overflow-scroll">
     <div @click="leave" class="absolute top-2 right-0 h-10 w-10 z-10 text-3xl">
       <span class="material-symbols-outlined cursor-pointer border bg-black/25 hover:bg-black/50">close</span>
     </div>
-    <div class="h-full w-10 absolute left-2 flex items-center">
-      <div v-if="store.filteredProject.indexOf(project.id) > 0" v-on:click="changeProject(-1)" class="h-10 w-10 rounded bg-black/25 hover:bg-black/50 grid place-content-center cursor-pointer">
+    <div class="flex absolute h-full w-7 bottom-20 items-start left-0 top-32 md:h-full md:w-10 md:left-2 md:bottom-0 md:items-center md:top-0">
+      <div v-if="store.filteredProject.indexOf(project.id) > 0" v-on:click="changeProject(-1)" class="h-20 w-full grid rounded place-content-center cursor-pointer bg-slate-200/50 hover:bg-slate-300 md:h-10 md:w-10 md:bg-black/25 md:hover:bg-black/50">
         <span class="material-symbols-outlined">arrow_back_ios_new</span>
       </div>
     </div>
-    <div class="h-full w-fit absolute right-2 flex items-center">
-      <div v-if="store.filteredProject.indexOf(project.id) < store.filteredProject.length - 1" v-on:click="changeProject(1)" class="h-10 w-10 rounded bg-black/25 hover:bg-black/50 grid place-content-center cursor-pointer">
+    <div class="absolute flex h-full w-7 right-0 items-start top-32 md:bottom-0 md:w-fit md:right-2 md:items-center md:top-0">
+      <div v-if="store.filteredProject.indexOf(project.id) < store.filteredProject.length - 1" v-on:click="changeProject(1)" class="h-20 w-full rounded grid place-content-center cursor-pointer bg-slate-200/50 hover:bg-slate-300 md:h-10 md:w-10 md:bg-black/25 md:hover:bg-black/50">
         <span class="material-symbols-outlined">arrow_forward_ios</span>
       </div>
     </div>
@@ -77,7 +77,7 @@ onUnmounted(() => {
         <ImageLazy :img="getImg(project)"/>
       </a>
     </div>
-    <div class="md:h-full w-full col-span-4 overflow-y-scroll">
+    <div class="md:h-full w-full col-span-4">
       <div class="h-fit min-h-full p-1">
         <div class="min-h-1/2 flex flex-col justify-between">
           <h2 class="text-xl md:text-5xl font-medium">{{ project.fields.Name}}</h2>
@@ -100,7 +100,7 @@ onUnmounted(() => {
           </div>
         </div>
         <EmbedVideo v-if="project.fields.video_url != null" :videoUrl="project.fields.video_url"/>
-        <FileVideo v-if="project.fields.video != null"  :video="project.fields.video"/>
+        <FileVideo v-if="project.fields.video != null" :video="project.fields.video"/>
         <div v-if="project.fields.Description != null" class="min-h-1/2 flex flex-col justify-between pt-2">
           <h5 class="font-medium">Description</h5>
           <p class="min-h-[200px] h-fit md:h-5/6 w-full bg-zinc-100 rounded-lg outline outline-2 outline-black p-4 font-medium">
