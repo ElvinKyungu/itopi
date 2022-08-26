@@ -126,7 +126,6 @@ watchEffect(() => {
   store.filteredProject = dataIds
 })
 
-
 onBeforeRouteUpdate((to, from) => {
   setParams(to)
 })
@@ -143,14 +142,16 @@ onMounted(() => {
 onUnmounted(() => {
   localStorage.setItem('top1000-favorite', store.favoriteArray)
 })
+
 </script>
 
 <template>
-<section id="search" class="px-5 md:px-10 pt-16 relative z-10">
-  <ProjectView v-if="store.project"/>
+<section id="search" class="px-5 md:px-10 pt-16 relative">
+  <ProjectView v-if="store.project" />
+  <BackToTop />
   <FilterBar />
   <GridView v-show="store.grid === true" :filteredData="filteredData" />
-  <ListView v-show="store.grid === false" :filteredData="filteredData"/>
+  <ListView v-show="store.grid === false" :filteredData="filteredData" />
   <div v-show="store.loading === false && (filteredData == null || filteredData.length === 0)" class="py-12 w-full flex justify-center items-center">
     <div class="h-fit text-black text-xl font-semibold">Pas de résultat pour cette recherche</div>
   </div>

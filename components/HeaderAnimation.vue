@@ -306,7 +306,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-<div id="heaser-animation">
+<div id="header-animation">
   <div class="css"></div>
   <canvas id="header-animation" class="webgl bg-transparent"></canvas>
 </div>

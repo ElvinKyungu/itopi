@@ -6,8 +6,8 @@ const getTags = (tags, newTags) => {
     if (newTags.includes(tag) === false) {
       newTags.push(tag)
     }
+    return newTags
   }
-  return newTags
 }
 
 export const useStore = defineStore({

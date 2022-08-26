@@ -12,7 +12,7 @@ const animationDelay = (index) => {
   <div id="header-title" class="h-fit w-full flex justify-center pt-16 absolute top-0">
     <h1
       class="h-fit w-full font-semibold text-black text-center text-4xl md:text-6xl whitespace-pre-wrap inline-block">
-      <span v-for="(char, index) in title" class="fade-in opacity-0" :style="{'animation-delay': animationDelay(index) }" >{{ char }}</span>
+      <span v-for="(char, index) in title" :key="char" class="fade-in opacity-0" :style="{'animation-delay': animationDelay(index) }" >{{ char }}</span>
     </h1>
   </div>
 </template>
