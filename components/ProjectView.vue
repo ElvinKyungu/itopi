@@ -43,20 +43,17 @@ watchEffect(() => {
  onMounted(() => {
   window.addEventListener('keydown', e => {
     if (e.key === "Escape" ) {
-      e.preventDefault()
       leave()
     } else if (e.key === "ArrowRight" ) {
-      e.preventDefault()
       changeProject(1)
     } else if (e.key === "ArrowLeft" ) {
-      e.preventDefault()
       changeProject(-1)
     }
   })
 })
 
 onUnmounted(() => {
-  window.addEventListener('keyup', e => {
+  window.addEventListener('keydown', e => {
     if (e.key === "Escape" ) {
       leave()
     } else if (e.key === "ArrowRight" ) {
