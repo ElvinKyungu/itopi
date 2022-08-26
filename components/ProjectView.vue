@@ -43,17 +43,20 @@ watchEffect(() => {
  onMounted(() => {
   window.addEventListener('keydown', e => {
     if (e.key === "Escape" ) {
+      e.preventDefault()
       leave()
     } else if (e.key === "ArrowRight" ) {
+      e.preventDefault()
       changeProject(1)
     } else if (e.key === "ArrowLeft" ) {
+      e.preventDefault()
       changeProject(-1)
     }
   })
 })
 
 onUnmounted(() => {
-  window.addEventListener('keydown', e => {
+  window.addEventListener('keyup', e => {
     if (e.key === "Escape" ) {
       leave()
     } else if (e.key === "ArrowRight" ) {
@@ -64,16 +67,20 @@ onUnmounted(() => {
   })
 })
 
+// disable main window scroll and hide "back to top" button when component loads
 onBeforeMount(() => {
   document.body.style.overflow = 'hidden'
   const topButton = document.querySelector('#btn-back-to-top')
   topButton.style.display = 'none'
 })
 
+// enable main window scroll and show "back to top" button when component loads
 onBeforeUnmount(() => {
   document.body.style.overflow = 'auto'
-  const topButton = document.querySelector('#btn-back-to-top')
-  topButton.style.display = 'block'
+  if(window.scrollY > 350){
+    const topButton = document.querySelector('#btn-back-to-top')
+    topButton.style.display = 'block'
+  }
 })
 </script>
 
