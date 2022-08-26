@@ -3,6 +3,7 @@ import { useStore } from '../store/index.js'
 
 const store = useStore()
 const router = useRouter()
+const currentProject = ref([])
 
 const getImg = (project) => {
   if (project.fields.Attachments && project.fields.Attachments.length >= 1) {
@@ -12,6 +13,7 @@ const getImg = (project) => {
 }
 
 const leave = () => {
+  currentProject.value = []
   router.push({ path: '/search/' + store.searchWord, query: { filter: store.filter, favorite: store.favorite }})
 }
 
@@ -27,6 +29,15 @@ const changeProject = (shift) => {
 const project = computed(() => {
   const project = store.getProject(store.project)
   return project
+})
+
+watchEffect(() => {
+  if(!currentProject) {
+    currentProject.value = project
+    console.log(currentProject.value);
+  } else {
+    console.log('no match');
+  }
 })
 
  onMounted(() => {
@@ -51,6 +62,18 @@ onUnmounted(() => {
       changeProject(-1)
     }
   })
+})
+
+onBeforeMount(() => {
+  document.body.style.overflow = 'hidden'
+  const topButton = document.querySelector('#btn-back-to-top')
+  topButton.style.display = 'none'
+})
+
+onBeforeUnmount(() => {
+  document.body.style.overflow = 'auto'
+  const topButton = document.querySelector('#btn-back-to-top')
+  topButton.style.display = 'block'
 })
 </script>
 

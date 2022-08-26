@@ -5,7 +5,7 @@ const store = useStore()
 </script>
 
 <template>
-  <section id="header-area" class="h-[500px] bg-bottom header-background overflow-x-hidden">
+  <section id="header-area" class="h-[500px] bg-bottom header-background overflow-hidden">
     <div class="absolute z-10 top-7 inset-x-10 flex items-center">
       <div class="h-10 w-10">
         <img src="~/assets/img/itopi-logo.png" class="h-full w-full object-cover object-bottom"/>
