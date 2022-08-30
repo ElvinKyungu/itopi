@@ -14,10 +14,6 @@ defineProps({
 const store = useStore()
 const router = useRouter()
 
-const currentId = ref("")
-// const favorite = computed(() => store.favoriteArray.includes(currentId.value))
-const currentIds = ref([])
-
 const updateSortOption = (newOption) => {
   store.sort.name = newOption.name
   store.sort.field = newOption.field
