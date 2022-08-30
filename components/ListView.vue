@@ -15,7 +15,8 @@ const store = useStore()
 const router = useRouter()
 
 const currentId = ref("")
-const favorite = computed(() => store.favoriteArray.includes(currentId.value))
+// const favorite = computed(() => store.favoriteArray.includes(currentId.value))
+const currentIds = ref([])
 
 const updateSortOption = (newOption) => {
   store.sort.name = newOption.name
@@ -27,12 +28,6 @@ const projectPage = (id) => {
     path: "/search/" + store.searchWord,
     query: { filter: store.filter, project: id, favorite: store.favorite },
   });
-}
-
-// toggle favorite projects - check if selected project is already in favorites: add if it isn't and remove if it is
-const addToFavorite = (id) => {
-  currentId.value = id;
-  !store.favoriteArray.includes(currentId.value) ? store.favoriteArray.push(currentId.value) : store.favoriteArray.splice(currentId.value, 1)
 }
 
 </script>
@@ -59,12 +54,7 @@ const addToFavorite = (id) => {
         <h1>{{ project.item.fields.Name }}</h1>
         <span class="flex self-end">{{project.item.fields.Année}}</span>
         <!-- favourite icon -->
-        <div class="h-6 w-6 bg-white border border-black rounded-full absolute top-2 right-1 z-20 grid place-content-center" @click="addToFavorite(project.item.id)">
-          <span v-if="favorite && currentId === project.item.id"
-            class="material-symbols-outlined font-thin text-xl icone-fill cursor-pointer">grade</span>
-          <span v-else
-            class="material-symbols-outlined font-thin text-3xl cursor-pointer">grade</span>
-        </div>
+        <AddToFavorite :id="project.item.id"/>
       </div>
     </div>
     <div class="hidden lg:h-14 lg:max-w-full lg:bg-neutral-800 lg:text-white lg:rounded-t-lg lg:grid lg:grid-cols-11 lg:border lg:border-black">

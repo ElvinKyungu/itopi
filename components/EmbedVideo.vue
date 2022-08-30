@@ -53,7 +53,6 @@ watchEffect(() => {
     v-if="videoType === 'youtube' && videoId != null"
     class="h-60 w-full"
     :src="`https://www.youtube.com/embed/${videoId}?origin=${origin}`"
-    frameborder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
     allowfullscreen>
   </iframe>
