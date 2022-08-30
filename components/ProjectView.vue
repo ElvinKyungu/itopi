@@ -40,29 +40,24 @@ watchEffect(() => {
   }
 })
 
- onMounted(() => {
-  window.addEventListener('keydown', e => {
-    if (e.key === "Escape" ) {
-      leave()
-    } else if (e.key === "ArrowRight" ) {
-      changeProject(1)
-    } else if (e.key === "ArrowLeft" ) {
-      changeProject(-1)
-    }
-  })
+const handleKeyPress = (e) => {
+  if (e.key === "Escape" ) {
+    leave()
+  } else if (e.key === "ArrowRight" ) {
+    changeProject(1)
+  } else if (e.key === "ArrowLeft" ) {
+    changeProject(-1)
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('keydown',handleKeyPress)
 })
 
 onUnmounted(() => {
-  window.addEventListener('keydown', e => {
-    if (e.key === "Escape" ) {
-      leave()
-    } else if (e.key === "ArrowRight" ) {
-      changeProject(1)
-    } else if (e.key === "ArrowLeft" ) {
-      changeProject(-1)
-    }
-  })
+  window.removeEventListener('keydown', handleKeyPress)
 })
+
 
 // disable main window scroll and hide "back to top" button when component loads
 onBeforeMount(() => {
