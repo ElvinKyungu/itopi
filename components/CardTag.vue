@@ -51,8 +51,8 @@ const inFilter = computed(() => {
 <div 
   v-if="!(mode === 'add' && inFilter)" 
   v-on:click="cardAction" 
-  class="w-fit bg-red-100 rounded-md border border-black py-1 px-2 text-[0.60rem] text-black font-inter"
+  class="w-fit bg-red-100 rounded-md border border-black py-1 px-2 text-[.8rem] text-black font-inter"
   v-bind:class="{'cursor-pointer': mode === 'delete' || mode === 'add' }">
-  <span v-if="mode === 'delete'" class="text-[0.60rem]">x </span>{{ tag }}
+  <span v-if="mode === 'delete'" class="font-bold -ml-1 text-[.9rem]">X </span>{{ tag }}
 </div>
 </template>
