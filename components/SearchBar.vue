@@ -30,5 +30,3 @@ const search = () => {
   </div>
 </div>
 </template>
-
-<input class=" bg-zinc-200"/>
