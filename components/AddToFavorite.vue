@@ -10,6 +10,7 @@ defineProps({
 // toggle favorite projects - check if selected project is already in favorites: add if it isn't and remove if it is
 const addToFavorite = (id) => {
 !store.favoriteArray.includes(id) ? store.favoriteArray.push(id) : store.favoriteArray.splice(store.favoriteArray.indexOf(id), 1)
+localStorage.setItem('top1000-favorite', store.favoriteArray)
 }
 </script>
 

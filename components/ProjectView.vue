@@ -85,8 +85,8 @@ onBeforeUnmount(() => {
   <div
     v-if="project != null"
     class="h-full md:h-[900px] lg:h-[700px] xl:h-[600px] w-full md:w-[760px] lg:w-[1000px] xl:w-[1200px] relative z-30 bg-white md:outline outline-2 outline-black md:rounded-lg md:grid md:grid-cols-7 md:gap-10 px-6 md:px-14 py-12 overflow-scroll">
-    <div @click="leave" class="absolute top-2 right-0 h-10 w-10 z-10 text-3xl">
-      <span class="material-symbols-outlined cursor-pointer border bg-black/25 hover:bg-black/50">close</span>
+    <div @click="leave" class="absolute top-2 right-2 h-10 w-10 z-10 flex justify-center items-center cursor-pointer hover:bg-slate-100 hover:rounded md:top-5 md:right-5">
+      <span class="material-symbols-outlined">close</span>
     </div>
     <div class="flex absolute h-full w-7 bottom-20 items-start left-0 top-32 md:h-full md:w-10 md:left-2 md:bottom-0 md:items-center md:top-0">
       <div v-if="store.filteredProject.indexOf(project.id) > 0" v-on:click="changeProject(-1)" class="h-20 w-full grid rounded place-content-center cursor-pointer bg-slate-200/50 hover:bg-slate-300 md:h-10 md:w-10 md:bg-black/25 md:hover:bg-black/50">
