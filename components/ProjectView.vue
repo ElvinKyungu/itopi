@@ -22,7 +22,7 @@ const changeProject = (shift) => {
   const newProjectIndex = index + shift
   if (newProjectIndex >= 0 && newProjectIndex < store.filteredProject.length) {
     const newProjectId = store.filteredProject[newProjectIndex]
-    router.push({ path: '/search/' + store.searchWord, query: { filter: store.filter, project: newProjectId, favorite: store.favorite, favorite: store.favorite }})
+    router.push({ path: '/search/' + store.searchWord, query: { filter: store.filter, project: newProjectId, favorite: store.favorite }})
   }
 }
 
