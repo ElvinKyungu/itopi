@@ -41,12 +41,16 @@ watchEffect(() => {
 })
 
 const handleKeyPress = (e) => {
-  if (e.key === "Escape" ) {
-    leave()
-  } else if (e.key === "ArrowRight" ) {
-    changeProject(1)
-  } else if (e.key === "ArrowLeft" ) {
-    changeProject(-1)
+  switch (e.key) {
+    case "Escape":
+      leave()
+      break
+    case "ArrowRight":
+      changeProject(1)
+      break
+    case "ArrowLeft":
+      changeProject(-1)
+      break
   }
 }
 

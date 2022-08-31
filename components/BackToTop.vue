@@ -1,11 +1,12 @@
 <script setup>
-  onMounted(() => {
-  // Get the button
-  let mybutton = document.getElementById('btn-back-to-top')
 
+// get reference to button element on component mount
+const topButton = ref(null)
+
+  onMounted(() => {
   // When the user scrolls down 350px from the top of the page, show the button
   window.onscroll = function () {
-    return (window.scrollY > 350 ? mybutton.style.display = 'block' : mybutton.style.display = 'none')
+    return (window.scrollY > 350 ? topButton.value.style.display = 'block' : topButton.value.style.display = 'none')
   }
 })
 
@@ -25,6 +26,7 @@
     type="button"
     class="inline-block z-30 p-3 bg-red-500 opacity-75 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out bottom-5 right-5 fixed hidden"
     id="btn-back-to-top"
+    ref="topButton"
     @click="backToTop">
     <svg
     aria-hidden="true"
