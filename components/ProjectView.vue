@@ -1,16 +1,11 @@
 <script setup>
 import { useStore } from '../store/index.js'
+import { getImg } from '../tools/utils.js'
 
 const store = useStore()
 const router = useRouter()
 const currentProject = ref([])
 
-const getImg = (project) => {
-  if (project.fields.Attachments && project.fields.Attachments.length >= 1) {
-    return project.fields.Attachments[0].thumbnails.full.url
-  }
-  return null
-}
 
 const leave = () => {
   currentProject.value = []
@@ -100,7 +95,7 @@ onBeforeUnmount(() => {
     </div>
     <div class="h-50 sm:h-80 md:h-full w-full col-span-3 rounded-lg outline outline-2 outline-black overflow-hidden">
       <a :href="project.fields.URL" target="_blank">
-        <ImageLazy :img="getImg(project)"/>
+        <ImageLazy :img="getImg({item: project}, 'full') || '../assets/img/no-photo.jpg'"/>
       </a>
     </div>
     <div class="md:h-full w-full col-span-4">

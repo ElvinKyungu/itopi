@@ -87,7 +87,7 @@ const projectPage = (id) => {
         :artiste="project.item.fields.Artiste"
         :place="project.item.fields.Lieux"
         :year="project.item.fields.Année"
-        :img="getImg(project)"
+        :img="getImg(project) || '../assets/img/no-photo.jpg'"
         :tags="getTags(project)"
       />
     </div>
