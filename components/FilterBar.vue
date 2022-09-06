@@ -39,7 +39,7 @@ const favoriteFilter = () => {
         </div>
       </div>
     </div>
-    <div v-show="showFilter" class="h-fit w-full rounded-br border-black flex p-5 gap-2 md:border-r-2 md:justify-between">
+    <div v-show="showFilter" class="h-fit w-full rounded-br border-black flex flex-col p-5 gap-2 md:border-r-2 md:flex-row md:justify-between">
       <div class="flex flex-wrap gap-1">
         <div class="font-medium">Tags :</div>
         <CardTag v-for="tag in store.tags" :key="tag" :tag="tag" mode="add"/>

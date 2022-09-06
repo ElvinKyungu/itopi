@@ -3,24 +3,7 @@ import {
     CSS3DRenderer,
     CSS3DObject
  } from 'three/examples/jsm/renderers/CSS3DRenderer.js'
- 
-const getImg = (project) => {
-  if (project.fields.Attachments && project.fields.Attachments.length >= 1) {
-    return project.fields.Attachments[0].thumbnails.large.url
-  }
-  return null
-}
-
-const getTags = (project) => {
-  let tags = []
-  if (project.fields.hasOwnProperty('Installation_type')) {
-    tags = tags.concat(project.fields.Installation_type)
-  }
-  if (project.fields.hasOwnProperty('Mots_clefs')) {
-    tags = tags.concat(project.fields.Mots_clefs)
-  }
-  return tags
-}
+ import { getImg, getTags } from './utils'
 
 const createCssObject = (type, width, height) => {
   const obj = new THREE.Object3D
