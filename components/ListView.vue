@@ -46,9 +46,12 @@ const projectPage = (id) => {
         @click="projectPage(project.item.id)"
       />
       <div class="bg-neutral-300 h-20 w-full flex items-center place-content-between gap-2">
-        <img :src="getImg(project)" class="w-20 h-20" />
-        <h1>{{ project.item.fields.Name }}</h1>
-        <span class="flex self-end">{{project.item.fields.Année}}</span>
+        <img :src="getImg(project) || '../assets/img/no-photo.jpg'" class="w-20 h-20" />
+        <div class="flex flex-col">
+          <h1 class="text-[1rem]">{{ project.item.fields.Name }}</h1>
+          <p class="text-[.8rem] text-ellipsis	overflow-hidden whitespace-nowrap w-32">{{ project.item.fields.Lieux }}</p>
+        </div>
+        <span class="flex self-end mr-1">{{project.item.fields.Année}}</span>
         <!-- favourite icon -->
         <AddToFavorite :id="project.item.id"/>
       </div>
@@ -78,7 +81,7 @@ const projectPage = (id) => {
       <ListTextCase text="Tags" class="col-span-2" />
       <div class="hidden lg:border lg:border-black lg:rounded-tr-lg"></div>
     </div>
-    <div class="hidden lg:block">
+    <div class="hidden md:block">
       <ListRow
         v-for="project in filteredData"
         :key="project.item.id"
