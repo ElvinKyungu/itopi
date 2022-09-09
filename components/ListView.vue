@@ -49,7 +49,7 @@ const projectPage = (id) => {
         <img :src="getImg(project) || '../assets/img/no-photo.jpg'" class="w-20 h-20" />
         <div class="flex flex-col">
           <h1 class="text-[1rem]">{{ project.item.fields.Name }}</h1>
-          <p class="text-[.8rem] text-ellipsis	overflow-hidden whitespace-nowrap w-32">{{ project.item.fields.Lieux }}</p>
+          <p class="text-[.8rem] text-ellipsis overflow-hidden whitespace-nowrap w-32">{{ project.item.fields.Lieux }}</p>
         </div>
         <span class="flex self-end mr-1">{{project.item.fields.Année}}</span>
         <!-- favourite icon -->

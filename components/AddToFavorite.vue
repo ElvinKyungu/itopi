@@ -16,7 +16,9 @@ localStorage.setItem('top1000-favorite', store.favoriteArray)
 
 <template>
   <div class="h-6 w-6 bg-white border border-black rounded-full absolute top-2 right-1 z-20 grid place-content-center" @click="addToFavorite(id)">
-    <span v-if="store.favoriteArray.includes(id)" class="material-symbols-outlined font-thin text-xl icone-fill cursor-pointer">grade</span>
+    <span v-if="store.favoriteArray.includes(id)">
+      <img src="../assets/img/star.png">
+    </span>
     <span v-else class="material-symbols-outlined font-thin text-3xl cursor-pointer">grade</span>
   </div>
 </template>
