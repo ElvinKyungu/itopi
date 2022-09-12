@@ -38,7 +38,7 @@ const projectPage = () => {
 </script>
 
 <template>
-<div id="project_card" class="group w-80 h-96 md:w-64 bg-zinc-100 outline outline-2 hover:outline-[3px] outline-black rounded-xl overflow-hidden cursor-pointer">
+<div id="project_card" class="group w-60 h-96 md:w-64 bg-zinc-100 outline outline-2 hover:outline-[3px] outline-black rounded-xl overflow-hidden cursor-pointer xs:w-80">
   <div class="h-3/5 md:h-56 w-full relative rounded-t-xl">
     <AddToFavorite :id="id" class="absolute"/>
     <ImageLazy v-on:click="projectPage" :img="img || '../assets/img/no-photo.jpg'" :hover="true"/>

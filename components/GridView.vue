@@ -12,7 +12,7 @@ defineProps({
 </script>
 
 <template>
-  <div id="grid-view" v-if="filteredData != null && filteredData.length !== 0" class="grid grid-cols-1 justify-center justify-items-center md:flex md:flex-row gap-6 md:flex-wrap md:justify-between">
+  <div id="grid-view" v-if="filteredData != null && filteredData.length !== 0" class="grid grid-cols-1 xs:justify-center xs:justify-items-center md:flex md:flex-row gap-6 md:flex-wrap md:justify-between">
     <ProjectCard 
       v-for="project in filteredData"
       :key="project.item.id"
