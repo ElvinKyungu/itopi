@@ -48,11 +48,11 @@ const projectPage = (id) => {
       <div class="bg-neutral-300 h-20 w-full flex items-center place-content-between gap-2">
         <img :src="getImg(project) || '../assets/img/no-photo.jpg'" class="w-20 h-20" />
         <div class="flex flex-wrap">
-          <h1 class="text-[1rem] text-ellipsis overflow-hidden whitespace-nowrap w-52">{{ project.item.fields.Name }}</h1>
-          <p class="text-[.8rem] text-ellipsis overflow-hidden whitespace-nowrap w-52">{{ project.item.fields.Lieux }}</p>
+          <span class="text-[1rem] text-ellipsis overflow-hidden whitespace-nowrap w-52 font-semibold">{{ project.item.fields.Name }}</span>
+          <span class="text-ellipsis overflow-hidden whitespace-nowrap w-52">{{ project.item.fields.Lieux }}</span>
+          <span class="text-ellipsis overflow-hidden whitespace-nowrap w-52 font-normal">{{project.item.fields.Année}}</span>
         </div>
         <AddToFavorite :id="project.item.id" class="absolute" />
-        <span class="flex self-end mr-1">{{project.item.fields.Année}}</span>
       </div>
     </div>
     <div class="hidden lg:h-14 lg:max-w-full lg:bg-neutral-800 lg:text-white lg:rounded-t-lg lg:grid lg:grid-cols-11 lg:border lg:border-black">
