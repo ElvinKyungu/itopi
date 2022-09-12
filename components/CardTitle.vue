@@ -16,7 +16,7 @@ const formatTitle = () => {
 </script>
 
 <template>
-<div class="text-xs md:text-sm">
+<div class="text-xs md:text-sm md:text-ellipsis md:whitespace-nowrap md:overflow-hidden">
   {{ formatTitle() }}
 </div>
 </template>

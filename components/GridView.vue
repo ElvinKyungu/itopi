@@ -19,6 +19,8 @@ defineProps({
       :id="project.item.id"
       :title="project.item.fields.Name"
       :artiste="project.item.fields.Artiste"
+      :lieux="project.item.fields.Lieux"
+      :year="project.item.fields.Année"
       :img="getImg(project)"
       :tags="getTags(project)"
     />
