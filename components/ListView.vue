@@ -51,9 +51,8 @@ const projectPage = (id) => {
           <h1 class="text-[1rem]">{{ project.item.fields.Name }}</h1>
           <p class="text-[.8rem] text-ellipsis overflow-hidden whitespace-nowrap w-32">{{ project.item.fields.Lieux }}</p>
         </div>
+        <AddToFavorite :id="project.item.id" class="absolute" />
         <span class="flex self-end mr-1">{{project.item.fields.Année}}</span>
-        <!-- favourite icon -->
-        <AddToFavorite :id="project.item.id"/>
       </div>
     </div>
     <div class="hidden lg:h-14 lg:max-w-full lg:bg-neutral-800 lg:text-white lg:rounded-t-lg lg:grid lg:grid-cols-11 lg:border lg:border-black">
