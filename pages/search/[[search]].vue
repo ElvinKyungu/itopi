@@ -76,20 +76,17 @@ const filterData = (data) => {
 const sortData = (data) => {
   if (store.sort.field != null) {
     return data.sort((a, b) => {
-      const fields = [a.item.fields[store.sort.field], b.item.fields[store.sort.field]]
-      let result = true
-      if (fields[0] == null) {
-        return false
-      } else if (fields[0] == null) {
-        return true
-      } else {
-        return fields[0].localeCompare(fields[1], undefined, {
-          numeric: true,
-          sensitivity: 'base',
-          ignorePunctuation: true
-        })
+      if(a.item.fields[store.sort.field] === undefined){
+        a.item.fields[store.sort.field] = ''
+      } else if(b.item.fields[store.sort.field] === undefined) {
+        b.item.fields[store.sort.field] = ''
       }
-    })
+        const fields = [a.item.fields[store.sort.field].toString().toUpperCase(), b.item.fields[store.sort.field].toString().toUpperCase()]
+        if(fields[0] > fields[1]) return 1
+        if(fields[0] < fields[1]) return -1
+        return 0
+      }
+    )
   }
   return data
 }
@@ -112,7 +109,7 @@ const filteredData = computed(() => {
       filteredData.reverse()
     }
   }
-  
+
   return filteredData
 })
 
