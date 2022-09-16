@@ -48,37 +48,41 @@ const projectPage = (id) => {
       <div class="bg-neutral-300 h-20 w-full flex items-center place-content-between gap-2">
         <img :src="getImg(project) || '../assets/img/no-photo.jpg'" class="w-20 h-20" />
         <div class="flex flex-wrap">
-          <span class="text-[1rem] text-ellipsis overflow-hidden whitespace-nowrap w-28 xs:w-52 font-semibold">{{ project.item.fields.Name }}</span>
-          <span class="text-ellipsis overflow-hidden whitespace-nowrap w-28 xs:w-52">{{ project.item.fields.Lieux }}</span>
-          <span class="text-ellipsis overflow-hidden whitespace-nowrap w-52 font-normal">{{project.item.fields.Année}}</span>
+          <span class="text-[.8rem] xs:text-[1rem] text-ellipsis overflow-hidden whitespace-nowrap w-28 xs:w-52 font-semibold">{{ project.item.fields.Name }}</span>
+          <span class="text-ellipsis overflow-hidden whitespace-nowrap w-28 xs:w-52 text-[.8rem] xs:text-[1rem]">{{ project.item.fields.Lieux }}</span>
+          <span class="text-ellipsis overflow-hidden whitespace-nowrap w-52 font-normal text-[.8rem] xs:text-[1rem]">{{project.item.fields.Année}}</span>
         </div>
         <AddToFavorite :id="project.item.id" class="absolute" />
       </div>
     </div>
-    <div class="hidden lg:h-14 lg:max-w-full lg:bg-neutral-800 lg:text-white lg:rounded-t-lg lg:grid lg:grid-cols-11 lg:border lg:border-black">
-      <div class="hidden lg:block lg:border lg:border-black lg:rounded-tl-lg"></div>
+    <div class="sticky top-0 z-20 md:h-14 md:max-w-full md:bg-neutral-800 md:text-white md:rounded-t-lg md:grid md:grid-cols-11 md:border md:border-black">
+      <div class="hidden md:block md:border md:border-black md:rounded-tl-lg"></div>
       <ListTextCase
         v-on:click="updateSortOption({ name: 'Titre', field: 'Name' })"
         text="Titre"
-        class="col-span-2 cursor-pointer"
+        class="col-span-2 cursor-pointer hidden sm:block"
       />
       <ListTextCase
         v-on:click="updateSortOption({ name: 'Artiste', field: 'Artiste' })"
         text="Artiste"
-        class="col-span-2 cursor-pointer"
+        class="col-span-2 cursor-pointer hidden sm:block"
       />
       <ListTextCase
         v-on:click="updateSortOption({ name: 'Lieux', field: 'Lieux' })"
         text="Lieux"
-        class="col-span-2 cursor-pointer"
+        class="col-span-2 cursor-pointer hidden sm:block"
       />
       <ListTextCase
         v-on:click="updateSortOption({ name: 'Date', field: 'Année' })"
         text="Année"
-        class="cursor-pointer"
+        class="cursor-pointer hidden sm:block"
       />
-      <ListTextCase text="Tags" class="col-span-2" />
-      <div class="hidden lg:border lg:border-black lg:rounded-tr-lg"></div>
+      <ListTextCase text="Tags" class="col-span-2 hidden sm:block" />
+      <ListTextCase
+        text="Favoris"
+        class="hidden sm:block"
+      />
+      <div class="hidden md:border md:border-black md:rounded-tr-lg"></div>
     </div>
     <div class="hidden md:block">
       <ListRow

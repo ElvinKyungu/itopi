@@ -15,11 +15,13 @@ localStorage.setItem('top1000-favorite', store.favoriteArray)
 </script>
 
 <template>
-  <div class="h-6 w-6 bg-white border border-black rounded-full top-2 right-1 z-20 grid place-content-center cursor-pointer" @click="addToFavorite(id)">
-    <span v-if="store.favoriteArray.includes(id)">
-      <img src="../assets/img/star.png">
+  <div class="h-8 w-8 bg-white border border-black rounded-full top-2 right-1 z-10 grid place-content-center cursor-pointer transition ease-in-out hover:scale-110 duration-100" @click="addToFavorite(id)">
+    <span v-if="store.favoriteArray.includes(id)" class="h-5 w-5">
+      <img src="../assets/img/golden-star.svg" alt="gold star">
     </span>
-    <span v-else class="material-symbols-outlined font-thin text-3xl cursor-pointer">grade</span>
+    <span v-else class="h-5 w-5">
+      <img src="../assets/img/star.svg" alt="normal star">
+    </span>
   </div>
 </template>
 

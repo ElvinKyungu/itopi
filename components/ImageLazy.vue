@@ -1,4 +1,5 @@
 <script setup>
+
 const props = defineProps({
   img: {
     Type: String
@@ -31,7 +32,7 @@ watchEffect(() => {
       :src="img"
       loading="lazy"
       class="h-full w-full object-cover"
-      v-bind:class="{ 'animate-fade-in visible': loaded && img, 'invisible': !loaded || !img, 'group-hover:scale-105': hover }"
+      v-bind:class="{ 'animate-fade-in visible': loaded && img, 'invisible': !loaded || !img, 'group-hover:scale-105': hover, 'group-hover:duration-700': hover }"
       @load="loaded = true"
     />
   </div>

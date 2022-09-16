@@ -26,6 +26,7 @@ module.exports = {
       animation: {
         'fade-in': 'fade-in 2s',
         'fade-out-background': 'fade-out-background 2s forwards',
+        'pulse-once': 'pulse-once .5s'
       },
       keyframes: {
         'fade-in': {
@@ -35,7 +36,11 @@ module.exports = {
         'fade-out-background': {
           '0%': { 'background-color': 'rgb(241 245 249)' },
           '100%': { 'background-color': 'transparent' },
-        }
+        },
+        'pulse-once': {
+          '0%': { opacity: 0 },
+          '100%': {opacity: 1 },
+        },
       }
     },
   },
