@@ -26,6 +26,10 @@ const projectPage = (id) => {
   });
 }
 
+const favoriteFilter = () => {
+  store.favorite === true ? router.push({ path: '/search/' + store.searchWord, query: { filter: store.filter, favorite: false }}) : router.push({ path: '/search/' + store.searchWord, query: { filter: store.filter, favorite: true }})
+}
+
 </script>
 
 <template>
@@ -80,7 +84,8 @@ const projectPage = (id) => {
       <ListTextCase text="Tags" class="col-span-2 hidden sm:block" />
       <ListTextCase
         text="Favoris"
-        class="hidden sm:block"
+        class="hidden cursor-pointer sm:block"
+        @click="favoriteFilter"
       />
       <div class="hidden md:border md:border-black md:rounded-tr-lg"></div>
     </div>

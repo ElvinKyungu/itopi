@@ -6,6 +6,7 @@ import Fuse from 'fuse.js'
 
 const store = useStore()
 const route = useRoute()
+const router = useRouter()
 
 const options = {
   ignoreLocation: true,
@@ -113,6 +114,10 @@ const filteredData = computed(() => {
   return filteredData
 })
 
+const goHome = () => {
+  router.push({ path: '/search/' + store.searchWord, query: { filter: store.filter, favorite: false }})
+}
+
 watchEffect(() => {
   let dataIds = []
   if (filteredData.value != null) {
@@ -150,7 +155,13 @@ onUnmounted(() => {
   <GridView v-show="store.grid === true" :filteredData="filteredData" />
   <ListView v-show="store.grid === false" :filteredData="filteredData" />
   <div v-show="store.loading === false && (filteredData == null || filteredData.length === 0)" class="py-12 w-full flex justify-center items-center">
-    <div class="h-fit text-black text-xl font-semibold">Pas de résultat pour cette recherche</div>
+    <div class="h-fit text-black text-xl font-semibold">Pas de résultat pour cette recherche
+      <div class="flex space-x-2 justify-center mt-2">
+        <div>
+          <button type="button" class="inline-block px-6 py-3 bg-slate-300 text-gray-700 font-medium text-sm leading-tight uppercase rounded shadow-md hover:bg-slate-200 hover:shadow-lg focus:bg-gray-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-400 active:shadow-lg transition duration-150 ease-in-out" @click="goHome">page d'accueil</button>
+        </div>
+    </div>
+  </div>
   </div>
 </section>
 </template>
