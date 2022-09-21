@@ -5,11 +5,40 @@ import { getImg } from '../tools/utils.js'
 const store = useStore()
 const router = useRouter()
 const currentProject = ref([])
-
+const tag = ref('')
+const mode = ref('')
 
 const leave = () => {
   currentProject.value = []
   router.push({ path: '/search/' + store.searchWord, query: { filter: store.filter, favorite: store.favorite }})
+}
+
+const cardAction = () => {
+  if (mode.value === 'add') {
+    addFilter(tag.value)
+  } else if (mode.value === 'delete') {
+    deleteFilter(tag.value)
+  }
+}
+
+const addFilter = (tag) => {
+  const filter = [...store.filter]
+  if (filter.includes(tag)){
+    const index = filter.indexOf(tag)
+    filter.splice(index)
+  } else {
+    filter.push(tag)
+  }
+  router.push({ path: '/search/' + store.searchWord, query: { filter: filter, favorite: store.favorite }})
+}
+
+const deleteFilter = (tag) => {
+  const filter = [...store.filter]
+  if (filter.includes(tag)){
+    const index = filter.indexOf(tag)
+    filter.splice(index, 1)
+  }
+  router.push({ path: '/search/' + store.searchWord, query: { filter: filter, favorite: store.favorite }})
 }
 
 const changeProject = (shift) => {
@@ -51,12 +80,25 @@ const handleKeyPress = (e) => {
 
 onMounted(() => {
   window.addEventListener('keydown',handleKeyPress)
+  document.querySelector('#project-view').classList.add('animate-pulse-once')
 })
 
 onUnmounted(() => {
   window.removeEventListener('keydown', handleKeyPress)
 })
 
+onUpdated(() => {
+  const info = document.querySelector('#project-info')
+  if(info.classList.contains('animate-fade-in')){
+    info.classList.remove('animate-fade-in')
+  } else {
+    info.classList.add('animate-fade-in')
+    setTimeout(
+      function() {
+        info.classList.remove('animate-fade-in')
+      }, 300
+    )}
+})
 
 // disable main window scroll and hide "back to top" button when component loads
 onBeforeMount(() => {
@@ -76,40 +118,43 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-<div @click.self="leave" class="h-screen w-screen fixed top-0 inset-x-0 z-30 bg-white/50 grid md:place-content-center animate-pulse-once" id="project-view">
-  <div
+  <div @click.self="leave" class="h-screen w-screen fixed top-0 inset-x-0 z-30 bg-white/50 grid md:place-content-center" id="project-view">
+    <div
     v-if="project != null"
-    class="h-full w-full sm:w-[95rem] sm:h-[50rem] relative z-30 bg-white md:outline outline-2 outline-black md:rounded-lg md:grid md:grid-cols-7 md:gap-10 px-6 md:px-14 py-12 overflow-scroll sm:overflow-hidden">
+    class="h-full w-full sm:w-[100rem] sm:h-[50rem] relative z-30 bg-white md:outline outline-2 outline-black md:rounded-lg md:grid md:grid-cols-7 md:gap-10 px-6 md:px-14 py-12 overflow-scroll sm:overflow-hidden">
     <div class="md:h-[40rem] xs:self-center h-[15rem] w-full col-span-3 rounded-lg outline outline-2 outline-black overflow-hidden mb-2">
       <a :href="project.fields.URL" target="_blank">
         <ImageLazy :img="getImg({item: project}, 'full') || '../assets/img/no-photo.jpg'"/>
       </a>
     </div>
     <div class="col-span-4 xs:h-[41.1rem] xs:self-start h-fit w-full mt-5 overflow-hidden pb-1">
-      <div @click="leave" class="absolute top-[3rem] right-[1.5rem] h-10 w-10 z-10 flex justify-center items-center cursor-pointer bg-slate-500 opacity-75 sm:bg-white sm:opacity-100 rounded hover:bg-slate-200 hover:rounded hover:duration-200 hover:ease-in md:top-[4.8rem] md:right-[3rem] text-white sm:text-black">
+      <div @click="leave" class="absolute top-[3rem] right-[1.5rem] h-10 w-10 z-10 flex justify-center items-center cursor-pointer bg-slate-500 opacity-75 sm:bg-white sm:opacity-100 rounded hover:bg-slate-200 hover:rounded hover:duration-200 hover:ease-in md:top-[4.5rem] md:right-[.5rem] text-white sm:text-black">
         <span class="text-4xl">X</span>
       </div>
       <div class="flex absolute h-full w-7 bottom-20 items-start left-0 top-32 md:h-full md:w-10 md:left-2 md:bottom-0 md:items-center md:top-0">
-        <div v-if="store.filteredProject.indexOf(project.id) > 0" v-on:click="changeProject(-1)" class="h-20 w-full grid rounded place-content-center cursor-pointer bg-slate-200/50 hover:duration-200 hover:ease-in hover:bg-slate-300 md:h-10 md:w-10 md:bg-black/25 md:hover:bg-black/50">
+        <div v-if="store.filteredProject.indexOf(project.id) > 0" v-on:click="changeProject(-1)" class="h-20 w-full grid rounded place-content-center cursor-pointer bg-slate-200/50 hover:duration-200 hover:ease-in hover:bg-slate-300 md:h-10 md:w-10 md:bg-black/25 md:hover:bg-black/50 select-none">
           <span class="material-symbols-outlined">arrow_back_ios_new</span>
         </div>
       </div>
       <div class="absolute flex h-full w-7 right-0 items-start top-32 md:bottom-0 md:w-fit md:right-2 md:items-center md:top-0">
-        <div v-if="store.filteredProject.indexOf(project.id) < store.filteredProject.length - 1" v-on:click="changeProject(1)" class="h-20 w-full rounded grid place-content-center cursor-pointer bg-slate-200/50 hover:duration-200 hover:ease-in hover:bg-slate-300 md:h-10 md:w-10 md:bg-black/25 md:hover:bg-black/50">
+        <div v-if="store.filteredProject.indexOf(project.id) < store.filteredProject.length - 1" v-on:click="changeProject(1)" class="h-20 w-full rounded grid place-content-center cursor-pointer bg-slate-200/50 hover:duration-200 hover:ease-in hover:bg-slate-300 md:h-10 md:w-10 md:bg-black/25 md:hover:bg-black/50 select-none">
           <span class="material-symbols-outlined">arrow_forward_ios</span>
         </div>
       </div>
-      <div class="md:h-full w-full col-span-4">
-        <div class="h-fit min-h-full px-1">
-          <div class="min-h-1/2 flex flex-col justify-between">
-            <h2 class="text-xl md:text-5xl font-medium">{{ project.fields.Name}}</h2>
-            <h3 class="text-lg md:text-4xl font-medium">{{ project.fields.Artiste }}</h3>
-            <div>
+      <div class="md:h-full w-full col-span-4 pt-1 md:flex">
+        <div class="h-fit min-h-full px-1 w-full" id="project-info">
+          <div class="min-h-1/2 flex flex-col justify-between gap-3">
+            <h2 class="text-xl md:text-5xl font-medium md:mb-3">{{ project.fields.Name}}</h2>
+            <h3 class="text-lg md:text-3xl font-medium md:mb-3">{{ project.fields.Artiste }}</h3>
+            <div class="flex flex-col justify-between gap-1">
               <p class="text-base md:text-xl">{{ project.fields.Lieux }}</p>
-              <p class="text-base md:text-xl">{{ project.fields.Année }}</p>
+              <p class="text-base md:text-xl md:mb-3">{{ project.fields.Année }}</p>
+            </div>
+            <div class="flex flex-row flex-1 gap-2">
+              <AddToFavorite class="-mt-1" :id="project.id" />
               <a
               v-if="project.fields.URL"
-              class="text-sm md:text-sm flex items-center"
+              class="text-sm md:text-sm flex items-center mb-2 break-all"
               :href="project.fields.URL"
               target="_blank">
               <span class="material-symbols-outlined pr-2">link</span>
@@ -117,18 +162,36 @@ onBeforeUnmount(() => {
             </a>
             </div>
             <div class="flex flex-wrap gap-2 pt-2">
-              <CardTag v-for="(tag, index) in project.fields.Installation_type" :key="index" :tag="tag" />
-              <CardTag v-for="(tag, index) in project.fields.Mots_clefs" :key="index" :tag="tag" />
+              <CardTag
+              v-for="(tag, index) in project.fields.Installation_type"
+              :key="index"
+              :tag="tag"
+              mode="add"
+              class="cursor-pointer hover:scale-105"
+              @filter-by-tag="cardAction"/>
+              <CardTag
+              v-for="(tag, index) in project.fields.Mots_clefs"
+              :key="index"
+              :tag="tag"
+              mode="add"
+              class="cursor-pointer hover:scale-105"
+              @filter-by-tag="cardAction"/>
             </div>
-            <EmbedVideo v-if="project.fields.video_url != null" :videoUrl="project.fields.video_url"/>
-            <FileVideo v-if="project.fields.video != null" :video="project.fields.video"/>
           </div>
-          <div v-if="project.fields.Description != null" class="h-[12.3rem] flex flex-col pt-2">
-            <h5 class="font-medium mb-2">Description</h5>
-            <p class="w-full h-[12.3rem] bg-zinc-100 rounded-lg outline outline-2 outline-black px-4 py-2 font-medium overflow-x-hidden">
-              {{ project.fields.Description }}
-            </p>
+          <div class="grid grid-cols-2 md:mt-2 h-max gap-3">
+            <div class="md:my-2 empty:hidden">
+              <EmbedVideo v-if="project.fields.video_url != null" :videoUrl="project.fields.video_url"/>
+              <FileVideo v-if="project.fields.video != null" :video="project.fields.video"/>
+            </div>
+            <div v-if="project.fields.Description != null" class="h-max md:my-2 empty:hidden">
+              <h5 class="font-medium mb-1">Description</h5>
+              <p class="w-full bg-zinc-100 rounded-lg outline outline-2 outline-black px-4 py-1 font-medium overflow-hidden line-clamp-6">{{ project.fields.Description }}</p>
+              <button class="my-4 p-2 underline text-blue-500 text-lg font-semibold hover:bg-[#CFE8FF] hover:text-white hover:rounded">
+                <a :href="project.fields.URL" target="_blank">More ...</a>
+              </button>
+            </div>
           </div>
+          <ProjectModal @click.self="leave" :projectName="project.fields.Name" />
         </div>
       </div>
     </div>

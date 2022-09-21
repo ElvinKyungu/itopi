@@ -1,8 +1,8 @@
 const getImg = (project, size = 'large') => {
   if (project?.item?.fields.Attachments && project?.item?.fields.Attachments.length >= 1) {
     return project?.item?.fields.Attachments[0].thumbnails?.[size].url
-  } else if(project.fields.Attachments && project.fields.Attachments.length >= 1){
-      return project.fields.Attachments[0].thumbnails?.[size].url
+  } else if(project.fields?.Attachments && project.fields.Attachments.length >= 1){
+      return project.fields?.Attachments[0].thumbnails?.[size].url
   }
   return null
 }

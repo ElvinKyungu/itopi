@@ -27,7 +27,7 @@ watchEffect(() => {
 
 
 <template>
-  <div class="h-full w-full bg-slate-100 overflow-hidden" v-bind:class="{ 'animate-pulse': !loaded, 'animate-fade-out-background': loaded }">
+  <div class="group h-full w-full bg-slate-100 overflow-hidden" v-bind:class="{ 'animate-pulse': !loaded, 'animate-fade-out-background': loaded }">
     <img v-show="img != null"
       :src="img"
       loading="lazy"

@@ -19,6 +19,7 @@
   "dependencies": {
     "@fortawesome/vue-fontawesome": "^3.0.1",
     "@pinia/nuxt": "^0.4.1",
+    "@tailwindcss/line-clamp": "^0.4.2",
     "@ubclaunchpad/vue-fathom": "^2.0.0",
     "fuse.js": "^6.6.2",
     "gsap": "^3.10.4",
