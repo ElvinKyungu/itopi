@@ -6,6 +6,7 @@ import Fuse from 'fuse.js'
 
 const store = useStore()
 const route = useRoute()
+const router = useRouter()
 
 const options = {
   ignoreLocation: true,
@@ -76,20 +77,17 @@ const filterData = (data) => {
 const sortData = (data) => {
   if (store.sort.field != null) {
     return data.sort((a, b) => {
-      const fields = [a.item.fields[store.sort.field], b.item.fields[store.sort.field]]
-      let result = true
-      if (fields[0] == null) {
-        return false
-      } else if (fields[0] == null) {
-        return true
-      } else {
-        return fields[0].localeCompare(fields[1], undefined, {
-          numeric: true,
-          sensitivity: 'base',
-          ignorePunctuation: true
-        })
+      if(a.item.fields[store.sort.field] === undefined){
+        a.item.fields[store.sort.field] = ''
+      } else if(b.item.fields[store.sort.field] === undefined) {
+        b.item.fields[store.sort.field] = ''
       }
-    })
+        const fields = [a.item.fields[store.sort.field].toString().toUpperCase(), b.item.fields[store.sort.field].toString().toUpperCase()]
+        if(fields[0] > fields[1]) return 1
+        if(fields[0] < fields[1]) return -1
+        return 0
+      }
+    )
   }
   return data
 }
@@ -112,9 +110,13 @@ const filteredData = computed(() => {
       filteredData.reverse()
     }
   }
-  
+
   return filteredData
 })
+
+const goHome = () => {
+  router.push({ path: '/search/' + store.searchWord, query: { filter: store.filter, favorite: false }})
+}
 
 watchEffect(() => {
   let dataIds = []
@@ -153,7 +155,13 @@ onUnmounted(() => {
   <GridView v-show="store.grid === true" :filteredData="filteredData" />
   <ListView v-show="store.grid === false" :filteredData="filteredData" />
   <div v-show="store.loading === false && (filteredData == null || filteredData.length === 0)" class="py-12 w-full flex justify-center items-center">
-    <div class="h-fit text-black text-xl font-semibold">Pas de résultat pour cette recherche</div>
+    <div class="h-fit text-black text-xl font-semibold">Pas de résultat pour cette recherche
+      <div class="flex space-x-2 justify-center mt-2">
+        <div>
+          <button type="button" class="inline-block px-6 py-3 bg-slate-300 text-gray-700 font-medium text-sm leading-tight uppercase rounded shadow-md hover:bg-slate-200 hover:shadow-lg focus:bg-gray-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-400 active:shadow-lg transition duration-150 ease-in-out" @click="goHome">page d'accueil</button>
+        </div>
+    </div>
+  </div>
   </div>
 </section>
 </template>

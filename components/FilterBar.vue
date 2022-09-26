@@ -42,7 +42,27 @@ const favoriteFilter = () => {
     <div v-show="showFilter" class="h-fit w-full rounded-br border-black flex flex-col p-5 gap-2 md:border-r-2 md:flex-row md:justify-between">
       <div class="flex flex-wrap gap-1">
         <div class="font-medium">Tags :</div>
-        <CardTag v-for="tag in store.tags" :key="tag" :tag="tag" mode="add"/>
+        <template v-for="tag in store.tags" :key="tag">
+        <CardTag v-if="tag === 'art'" class="bg-art" :tag="tag" mode="add" />
+        <CardTag v-else-if="tag === 'Interactive space'" class="bg-interactive-space" :tag="tag" mode="add" />
+        <CardTag v-else-if="tag === 'experiment'" class="bg-experiment" :tag="tag" mode="add" />
+        <CardTag v-else-if="tag === 'Augmented reality'" class="bg-augmented-reality" :tag="tag" mode="add" />
+        <CardTag v-else-if="tag === 'commercial'" class="bg-commercial" :tag="tag" mode="add" />
+        <CardTag v-else-if="tag === 'Video mapping'" class="bg-video-mapping" :tag="tag" mode="add" />
+        <CardTag v-else-if="tag === 'ledscreen'" class="bg-led-screen" :tag="tag" mode="add" />
+        <CardTag v-else-if="tag === 'Application'" class="bg-application" :tag="tag" mode="add" />
+        <CardTag v-else-if="tag === 'city'" class="bg-city" :tag="tag" mode="add" />
+        <CardTag v-else-if="tag === 'robot'" class="bg-robot" :tag="tag" mode="add" />
+        <CardTag v-else-if="tag === 'sound'" class="bg-sound" :tag="tag" mode="add" />
+        <CardTag v-else-if="tag === 'mars'" class="bg-mars" :tag="tag" mode="add" />
+        <CardTag v-else-if="tag === 'meditation'" class="bg-meditation" :tag="tag" mode="add" />
+        <CardTag v-else-if="tag === 'festival'" class="bg-festival" :tag="tag" mode="add" />
+        <CardTag v-else-if="tag === 'interactive maps' || tag === 'interactive map'" class="bg-interactive-map" :tag="tag" mode="add" />
+        <CardTag v-else-if="tag === 'picture'" class="bg-picture" :tag="tag" mode="add" />
+        <CardTag v-else-if="tag === 'maps'" class="bg-maps" :tag="tag" mode="add" />
+        <CardTag v-else-if="tag === 'museum'" class="bg-museum" :tag="tag" mode="add" />
+        <CardTag v-else :tag="tag" mode="add"/>
+      </template>
       </div>
         <div class="flex items-center cursor-pointer" v-on:click="favoriteFilter">
           <span class="font-medium pr-2">Favoris :</span>

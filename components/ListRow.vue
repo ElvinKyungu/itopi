@@ -48,20 +48,17 @@ const favorite = computed(() =>  store.favoriteArray.includes(props.id))
 </script>
 
 <template>
-<div class="h-20 w-full grid grid-cols-11 odd:bg-zinc-100 even:bg-zinc-200 whitespace-normal">
-  <div v-on:click="projectPage" class="h-20 border border-black cursor-pointer font-normal"><ImageLazy :img="img"/></div>
-  <ListTextCase v-on:click="projectPage" class="col-span-2 cursor-pointer font-normal" :text="title"/>
-  <ListTextCase v-on:click="projectPage" class="col-span-2 cursor-pointer font-normal flex flex-wrap" :text="artiste"/>
-  <ListTextCase v-on:click="projectPage" class="col-span-2 cursor-pointer font-normal flex flex-wrap" :text="place"/>
-  <ListTextCase v-on:click="projectPage" :text="year" class="cursor-pointer font-normal"/>
-  <span v-on:click="projectPage" class="col-span-2 border border-black flex flex-wrap items-center overflow-hidden p-2 cursor-pointer gap-2">
-    <CardTag v-for="(tag, index) in tags" :key="index" :tag="tag" mode="card"/>
-  </span>
-  <div class="border border-black grid place-content-center">
-    <div v-on:click="addToFavorite" class="h-7 w-7 bg-white border border-black rounded-full grid place-content-center">
-      <span v-if="!favorite" class="material-symbols-outlined font-thin text-3xl cursor-pointer">grade</span>
-      <span v-else class="material-symbols-outlined font-thin text-xl icone-fill cursor-pointer">grade</span>
-    </div>
+  <div class="h-20 w-full grid grid-cols-11 odd:bg-zinc-100 even:bg-zinc-200 whitespace-normal">
+    <div v-on:click="projectPage" class="h-20 border border-black cursor-pointer font-normal"><ImageLazy :img="img"/></div>
+    <ListTextCase v-on:click="projectPage" class="col-span-2 cursor-pointer font-normal" :text="title"/>
+    <ListTextCase v-on:click="projectPage" class="col-span-2 cursor-pointer font-normal flex-wrap" :text="artiste"/>
+    <ListTextCase v-on:click="projectPage" class="col-span-2 cursor-pointer font-normal flex-wrap" :text="place"/>
+    <ListTextCase v-on:click="projectPage" :text="year" class="cursor-pointer font-normal"/>
+    <span v-on:click="projectPage" class="col-span-2 border border-black flex flex-wrap items-center overflow-hidden p-2 cursor-pointer gap-2">
+      <CardTag v-for="(tag, index) in tags.splice(0, 4)" :key="index" :tag="tag" mode="card"/>
+    </span>
+    <div class="border border-black grid place-content-center">
+      <AddToFavorite :id="id" />
   </div>
 </div>
 </template>

@@ -7,5 +7,5 @@ defineProps({
 </script>
 
 <template>
-  <span class="border border-black flex items-center overflow-hidden pl-5">{{ text }}</span>
+  <span class="border border-black py-5 overflow-hidden pl-2 text-ellipsis whitespace-nowrap">{{ text }}</span>
 </template>

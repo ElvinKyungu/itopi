@@ -13,6 +13,7 @@ const props = defineProps({
 
 const store = useStore()
 const router = useRouter()
+const emit = defineEmits(['filter-by-tag'])
 
 const addFilter = (tag) => {
   const filter = [...store.filter]
@@ -50,7 +51,7 @@ const inFilter = computed(() => {
 <template>
 <div 
   v-if="!(mode === 'add' && inFilter)" 
-  v-on:click="cardAction" 
+  v-on:click="cardAction(); $emit('filter-by-tag', tag, mode)" 
   class="w-fit bg-red-100 rounded-md border border-black py-1 px-2 text-[.8rem] text-black font-inter"
   v-bind:class="{'cursor-pointer': mode === 'delete' || mode === 'add' }">
   <span v-if="mode === 'delete'" class="font-bold -ml-1 text-[.9rem]">X </span>{{ tag }}
