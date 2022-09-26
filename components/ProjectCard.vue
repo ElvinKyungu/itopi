@@ -97,4 +97,5 @@ onMounted(() => {
     opacity: 1;
     filter: blur(0);
   }
+
 </style>

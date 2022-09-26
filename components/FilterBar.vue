@@ -57,7 +57,7 @@ const favoriteFilter = () => {
         <CardTag v-else-if="tag === 'mars'" class="bg-mars" :tag="tag" mode="add" />
         <CardTag v-else-if="tag === 'meditation'" class="bg-meditation" :tag="tag" mode="add" />
         <CardTag v-else-if="tag === 'festival'" class="bg-festival" :tag="tag" mode="add" />
-        <CardTag v-else-if="tag === 'interactive map'" class="bg-interactive-map" :tag="tag" mode="add" />
+        <CardTag v-else-if="tag === 'interactive maps' || tag === 'interactive map'" class="bg-interactive-map" :tag="tag" mode="add" />
         <CardTag v-else-if="tag === 'picture'" class="bg-picture" :tag="tag" mode="add" />
         <CardTag v-else-if="tag === 'maps'" class="bg-maps" :tag="tag" mode="add" />
         <CardTag v-else-if="tag === 'museum'" class="bg-museum" :tag="tag" mode="add" />

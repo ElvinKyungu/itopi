@@ -24,7 +24,8 @@ export const useStore = defineStore({
       filter: [],
       tags: [],
       favorite: false,
-      favoriteArray: []
+      favoriteArray: [],
+      modalOpen: false
     }
   },
   getters: {

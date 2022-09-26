@@ -1,20 +1,21 @@
 <script setup>
-
+  import { useStore } from '../store/index.js'
   const firstName = ref('')
   const lastName = ref('')
   const companyName = ref('')
   const email = ref('')
+  const store = useStore()
 
 const openModal = () => {
   document.querySelector('#modal').showModal()
+  store.modalOpen = true
 }
 
 const close = () => {
   document.querySelector('#modal').close()
-  firstName.value = ''
-  lastName.value = ''
-  companyName.value = ''
-  email.value = ''
+  const form = document.getElementById("my-form")
+  form.reset()
+  store.modalOpen = false
 }
 
 const props = defineProps({
@@ -25,38 +26,41 @@ const autoMessage = computed(() => {
   const autoMessage = `Hello,
 I really like the "${props.projectName}" project.
 How much will it cost to remake it for me?`
-  return autoMessage
-})
+    return autoMessage
+  })
 
-const handleSubmit = async(event) => {
-  const form = document.getElementById("my-form")
-  event.preventDefault();
-  const data = new FormData(event.target);
-  fetch(event.target.action, {
-    method: form.method,
-    body: data,
-    headers: {
-      'Accept': 'application/json'
-    }
-  }).then(response => {
-    if (response.ok) {
-      alert("Thanks for your submission!")
-      form.reset()
-    } else {
-      response.json().then(data => {
-        if (Object.hasOwn(data, 'errors')) {
-          alert(data["errors"].map(error => error["message"]).join(", "))
-        } else {
-          alert("Oops! There was a problem submitting your form")
-        }
-      })
-    }
-  }).catch(error => {
-    alert("Oops! There was a problem submitting your form")
-  });
-  form.addEventListener("submit", handleSubmit)
-}
-
+  const handleSubmit = async(event) => {
+    const form = document.getElementById("my-form")
+    const data = new FormData(event.target);
+    fetch(event.target.action, {
+      method: form.method,
+      body: data,
+      headers: {
+        'Accept': 'application/json'
+      }
+    }).then(response => {
+      if (response.ok) {
+        form.reset()
+        close()
+        document.querySelector('#successAlert').classList.remove('hidden')
+        setTimeout(
+          function() {
+            document.querySelector('#successAlert').classList.add('hidden')
+          }, 3000
+        )
+      } else {
+        response.json().then(data => {
+          if (Object.hasOwn(data, 'errors')) {
+            alert(data["errors"].map(error => error["message"]).join(", "))
+          } else {
+            alert("Oops! There was a problem submitting your form")
+          }
+        })
+      }
+    }).catch(error => {
+      alert("Oops! There was a problem submitting your form")
+    });
+  }
 </script>
 
 <template>
@@ -76,7 +80,7 @@ const handleSubmit = async(event) => {
             <h4 class="text-xl md:text-4xl font-semibold mt-1 mb-5 pb-1">Interested in this project?</h4>
             <p class="mb-3 md:text-2xl">Send us a message with your details, and we'll get back to you with an offer</p>
             </div>
-          <form id="my-form" action="https://formspree.io/f/xyyveada" method="POST">
+          <form id="my-form" action="https://formspree.io/f/xyyveada" method="POST" @submit.prevent="handleSubmit">
             <div class="mb-4">
             <input
             type="text"
@@ -129,12 +133,10 @@ const handleSubmit = async(event) => {
               placeholder="Your message here"
               v-model="autoMessage"></textarea>
             </div>
-            <div class="text-center pt-1 mb-12 pb-1">
+            <div class="text-center pt-1 pb-1">
               <button
-              class="inline-block px-6 py-2.5 text-black font-medium text-xs leading-tight bg-white uppercase rounded shadow-md hover:bg-gray-700 hover:shadow-lg hover:text-white focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full mb-3"
-              type="sumbit"
-              >
-              I want this !
+              class="inline-block px-6 py-2.5 text-black font-medium text-sm md:text-base leading-tight bg-white uppercase rounded shadow-md hover:bg-purple-300 hover:shadow-lg hover:text-white focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full mb-3">
+                <input type="submit" value="I want this project !" class="cursor-pointer tracking-wide"> 
               </button>
             </div>
           </form>
