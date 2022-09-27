@@ -6,7 +6,7 @@ const version = ref(pkg.version)
 
 <template>
 <section id="footer-area" class="h-20 w-full p-5 mb-0 text-black text-xs flex justify-between">
-  <p class='h-full'>Proposé par <span class="font-semibold text-sm">Itopi</span>, conçu par <a href="https://www.soixantecircuits.fr/" class="text-sm font-semibold underline">Soixante circuits</a></p>
+  <p class='h-full'>{{$t('idea')}} <span class="font-semibold text-sm">Itopi</span>, {{$t('design')}} <a href="https://www.soixantecircuits.fr/" class="text-sm font-semibold underline">Soixante circuits</a></p>
   <p class='h-full'>v{{ version }}</p>
 </section>
 </template>

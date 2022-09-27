@@ -7,16 +7,21 @@
   const store = useStore()
 
 const openModal = () => {
-  document.querySelector('#modal').showModal()
+  const modal = document.querySelector('#modal')
+  modal.showModal()
   store.modalOpen = true
 }
 
 const close = () => {
-  document.querySelector('#modal').close()
-  const form = document.getElementById("my-form")
-  form.reset()
+  const modal = document.querySelector('#modal')
+  modal.close()
+  firstName.value = ''
+  lastName.value = ''
+  companyName.value = ''
+  email.value = ''
   store.modalOpen = false
 }
+
 
 const props = defineProps({
   projectName: ''
@@ -65,9 +70,9 @@ How much will it cost to remake it for me?`
 
 <template>
   <!-- Open modal button -->
- <button type="button" class="open-button w-[10rem] md:w-fit py-2 md:px-2 bg-[#F3F3F3] text-gray-700 font-medium text-xs xs:text-sm leading-tight tracking-wider uppercase rounded shadow-md hover:bg-gradient-to-r from-[#FECFFF] via-[#FFECCF] to-[#CFE8FF] hover:bg-gradient-45 hover:shadow-lg focus:bg-gray-300 focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-900 ease-in-out my-2" @click="openModal()">how much is the project ?</button>
+ <button type="button" class="open-button w-[10rem] md:w-fit py-2 md:px-2 bg-[#F3F3F3] text-gray-700 font-medium text-xs xs:text-sm leading-tight tracking-wider uppercase rounded shadow-md hover:bg-gradient-to-r from-[#FECFFF] via-[#FFECCF] to-[#CFE8FF] hover:bg-gradient-45 hover:shadow-lg focus:bg-gray-300 focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-900 ease-in-out my-2" @click="openModal()">{{$t('openModal')}}</button>
   <!-- Modal form -->
-  <dialog id="modal" class="h-full gradient-form bg-gradient-45 bg-gradient-to-r from-[#FECFFF] via-[#FFECCF] to-[#CFE8FF] md:h-[40rem] md:w-[50rem] rounded outline outline-2 animate-pulse-once md:-top-2" @click.self="close">
+  <dialog @keydown.esc="close" id="modal" class="h-full gradient-form bg-gradient-45 bg-gradient-to-r from-[#FECFFF] via-[#FFECCF] to-[#CFE8FF] md:h-[40rem] md:w-[50rem] rounded outline outline-2 animate-pulse-once md:-top-2" @click.self="close">
     <div @click="close" class="absolute top-[3rem] right-[1.5rem] h-10 w-10 z-10 flex justify-center items-center cursor-pointer rounded hover:bg-white/75 hover:rounded hover:duration-200 hover:ease-in md:top-[.5rem] md:right-[.5rem] text-white sm:text-black">
       <span class="text-4xl">X</span>
     </div>
@@ -77,7 +82,7 @@ How much will it cost to remake it for me?`
         <div class="h-[30rem] md:h-full block">
           <div>
             <div class="text-center">
-            <h4 class="text-xl md:text-4xl font-semibold mt-1 mb-5 pb-1">Interested in this project?</h4>
+            <h4 class="text-xl md:text-4xl font-semibold mt-1 mb-5 pb-1">{{$t('modalHeading')}}</h4>
             <p class="mb-3 md:text-2xl">Send us a message with your details, and we'll get back to you with an offer</p>
             </div>
           <form id="my-form" action="https://formspree.io/f/xyyveada" method="POST" @submit.prevent="handleSubmit">

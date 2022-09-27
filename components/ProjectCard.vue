@@ -53,7 +53,7 @@ onMounted(() => {
   <div class="h-3/5 md:h-56 w-full relative rounded-t-xl">
     <AddToFavorite :id="id" class="absolute"/>
     <ImageLazy @click="projectPage" :img="img || '../assets/img/no-photo.jpg'" :hover="true" />
-    <div class="absolute hidden z-20 h-5 w-20 rounded-lg border-2 border-black bg-zinc-100 bottom-2 left-2 text-[10px] font-bold font-inter group-hover:flex group-hover:animate-pulse-once place-content-center select-none hover:bg-gradient-45 hover:bg-gradient-to-r from-[#FECFFF] via-[#FFECCF] to-[#CFE8FF] hover:duration-200 hover:ease-in-out hover:scale-110" @click="projectPage">Voir plus...</div>
+    <div class="absolute hidden z-20 h-5 w-20 rounded-lg border-2 border-black bg-zinc-100 bottom-2 left-2 text-[10px] font-bold font-inter group-hover:flex group-hover:animate-pulse-once place-content-center select-none hover:bg-gradient-45 hover:bg-gradient-to-r from-[#FECFFF] via-[#FFECCF] to-[#CFE8FF] hover:duration-200 hover:ease-in-out hover:scale-110" @click="projectPage">{{$t('more')}}</div>
   </div>
   <div @click="projectPage" class="h-20 md:h-36 border-t-2 border-black px-2 relative pt-3 md:pt-2">
     <CardTitle class="font-semibold" :title="artiste"/>

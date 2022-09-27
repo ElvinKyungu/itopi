@@ -12,7 +12,15 @@ const search = () => {
 </script>
 
 <template>
-<div id="search-bar" class="flex justify-end">
+<div id="search-bar" class="flex justify-end gap-1">
+  <div class="flex flex-col justify-center w-fit">
+      <div class="mb-3 xs:w-[10rem]">
+        <select class="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="locale-select" v-model="$i18n.locale">
+          <option value="en">en</option>
+          <option value="fr">fr</option>
+        </select>
+      </div>
+    </div>
   <div class="xl:w-96">
     <div class="input-group relative flex flex-wrap items-stretch w-full mb-4 rounded">
       <input

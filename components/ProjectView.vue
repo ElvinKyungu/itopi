@@ -216,10 +216,7 @@ onBeforeUnmount(() => {
             <div v-if="project.fields.Description != null" class="max-h-fit w-full my-2 md:my-0 empty:hidden">
               <p class="w-full h-fit bg-zinc-100 rounded-lg outline-black md:px-2 px-4 xs:py-1 font-medium overflow-auto">{{ project.fields.Description }}</p>
             </div>
-            <ProjectModal @click.self="leave" :projectName="project.fields.Name"/>
-            <!-- <div class="grid grid-rows-2"> -->
-              <!-- <a :href="project.fields.URL" class="text-transparent text-sm xs:text-lg xs:tracking-wide xs:font-medium bg-clip-text bg-gradient-to-r from-[#FF007A] via-[#C492D6] via-[#66D1FF] to-[#FF007A] self-center uppercase px-2">Read more ... </a> -->
-            <!-- </div> -->
+            <ProjectModal :projectName="project.fields.Name"/>
           </div>
         </div>
       </div>

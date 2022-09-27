@@ -115,7 +115,7 @@ const filteredData = computed(() => {
 })
 
 const goHome = () => {
-  router.push({ path: '/search/' + store.searchWord, query: { filter: store.filter, favorite: false }})
+  router.push({ path: '/search/' + '', query: { filter: store.filter, favorite: false }})
 }
 
 watchEffect(() => {
