@@ -35,21 +35,10 @@ const projectPage = () => {
   router.push({ path: '/search/' + store.searchWord, query: { filter: store.filter, project: props.id, favorite: store.favorite }})
 }
 
-onMounted(() => {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      entry.isIntersecting ? entry.target.classList.add('show') : entry.target.classList.remove('show')
-    })
-  })
-  
-  const hiddenCard = document.querySelectorAll('.hide')
-  hiddenCard.forEach((el) => observer.observe(el))
-})
-
 </script>
 
 <template>
-<div id="project_card" class="group w-60 h-96 md:w-64 bg-zinc-100 outline outline-2 hover:outline-[3px] hover:transition-[delay-1000] outline-black rounded-xl overflow-hidden cursor-pointer xs:w-80 hide">
+<div id="project_card" class="group w-60 h-96 md:w-64 bg-zinc-100 outline outline-2 hover:outline-[3px] hover:transition-[delay-1000] outline-black rounded-xl overflow-hidden cursor-pointer xs:w-80">
   <div class="h-3/5 md:h-56 w-full relative rounded-t-xl">
     <AddToFavorite :id="id" class="absolute"/>
     <ImageLazy @click="projectPage" :img="img || '../assets/img/no-photo.jpg'" :hover="true" />
@@ -86,16 +75,3 @@ onMounted(() => {
   </div>
 </div>
 </template>
-
-<style>
-  .hide {
-    opacity: 0;
-    filter: blur(1px);
-    transition: all 1s;
-  }
-  .show {
-    opacity: 1;
-    filter: blur(0);
-  }
-
-</style>

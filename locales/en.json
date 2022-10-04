@@ -13,5 +13,7 @@
   "location": "Location",
   "more": "See more...",
   "openModal": "how much is the project ?",
-  "modalHeading": "Interested in this project?"
+  "modalHeading": "Interested in this project?",
+  "home": "Home page",
+  "about": "About us"
 }

@@ -3,20 +3,21 @@
     id=
       "successAlert"
     class="
-      flex
-      bg-green-100
-      rounded-lg
-      py-5
-      px-6
-      mb-3
-      text-base text-green-700
-      items-center
-      w-full
-      xs:w-fit
-      justify-self-center
-      hidden
-      xs:-mt-[5rem]
-      animate-fade-in
+    flex
+    bg-green-100
+    rounded-lg
+    py-5
+    px-6
+    mb-3
+    text-base
+    text-green-700
+    items-center
+    w-full
+    xs:w-fit
+    justify-self-center
+    hidden
+    xs:-mt-[5rem]
+    animate-fade-in
     "
     role="alert"
   >

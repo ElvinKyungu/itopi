@@ -127,8 +127,8 @@ onBeforeUnmount(() => {
         <ImageLazy :img="getImg({item: project}, 'full') || '../assets/img/no-photo.jpg'"/>
       </a>
     </div>
-    <div class="col-span-4 xs:h-[46rem] xs:self-start h-fit w-full md:-mt-5 overflow-hidden pb-1">
-      <div @click="leave" class="absolute top-[3rem] right-[1.5rem] h-10 w-10 z-10 flex justify-center items-center cursor-pointer bg-slate-500 opacity-75 sm:bg-white sm:opacity-100 rounded hover:bg-slate-200 hover:rounded hover:duration-200 hover:ease-in md:top-7 md:right-[.5rem] text-white sm:text-black">
+    <div class="col-span-4 xs:h-[46rem] xs:self-start h-fit w-full xs:-mt-4 overflow-hidden pb-1">
+      <div @click="leave" class="absolute top-[3rem] right-[1.5rem] h-10 w-10 z-10 flex justify-center items-center cursor-pointer bg-slate-500 opacity-75 sm:bg-white sm:opacity-100 rounded hover:bg-slate-200 hover:rounded hover:duration-200 hover:ease-in md:top-8 md:right-[.5rem] text-white sm:text-black">
         <span class="text-4xl">X</span>
       </div>
       <div class="flex absolute h-full w-7 bottom-20 items-start left-0 top-32 md:h-full md:w-10 md:left-2 md:bottom-0 md:items-center md:top-0">
@@ -214,7 +214,9 @@ onBeforeUnmount(() => {
               <FileVideo v-if="project.fields.video != null" :video="project.fields.video"/>
             </div>
             <div v-if="project.fields.Description != null" class="max-h-fit w-full my-2 md:my-0 empty:hidden">
-              <p class="w-full h-fit bg-zinc-100 rounded-lg outline-black md:px-2 px-4 xs:py-1 font-medium overflow-auto">{{ project.fields.Description }}</p>
+              <a :href="project.fields.URL" target="_blank">
+                <p class="w-full h-fit bg-zinc-100 rounded-lg outline-black md:px-2 px-4 xs:py-1 font-medium xs:line-clamp-none line-clamp-10">{{ project.fields.Description }}</p>
+              </a>
             </div>
             <ProjectModal :projectName="project.fields.Name"/>
           </div>
