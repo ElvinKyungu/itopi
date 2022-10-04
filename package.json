@@ -14,7 +14,8 @@
     "nuxt": "^3.0.0-rc.9",
     "postcss": "^8.4.14",
     "tailwindcss": "^3.1.6",
-    "vue": "^3.2.33"
+    "vue": "^3.2.33",
+    "vue-i18n": "^9.2.2"
   },
   "dependencies": {
     "@fortawesome/vue-fontawesome": "^3.0.1",
@@ -22,7 +23,7 @@
     "@tailwindcss/line-clamp": "^0.4.2",
     "@ubclaunchpad/vue-fathom": "^2.0.0",
     "fuse.js": "^6.6.2",
-    "gsap": "^3.10.4",
+    "gsap": "^3.11.2",
     "lil-gui": "^0.17.0",
     "node-fetch": "^2.6.7",
     "pinia": "^2.0.21",

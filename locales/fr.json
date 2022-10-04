@@ -1,0 +1,49 @@
+{
+  "languageSelect": "Choisir la langue",
+  "language": "Français",
+  "title": "1000 installations,\nAccédez à 100 gratuitement !",
+  "search": "Rechercher",
+  "filters": "Filtres",
+  "myFilters": "Mes filtres",
+  "sortBy": "Trier Par",
+  "display": "Affichage",
+  "design": "conçu par",
+  "idea": "Proposé par",
+  "favorites": "Favoris",
+  "location": "Lieux",
+  "more": "Voir plus...",
+  "modal": {
+    "openModal": "c'est combien le projet ?",
+    "modalHeading": "Intéressé par ce projet ?",
+    "modalSubHeading": "Envoyez-nous un message avec vos coordonnées, et nous vous répondrons avec un quota",
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "companyName": "Compagnie",
+    "email": "Adresse e-mail",
+    "message": "Votre message",
+    "send": "Je veux ce projet !"
+  },
+  "alert": "Nous vous remercions de votre demande",
+  "home": "Accueil",
+  "about": "Qui sommes-nous ?",
+  "tags": {
+    "interactiveSpace": "Espace interactif",
+    "augmentedReality": "Réalité augmentée",
+    "videoMapping": "Cartographie vidéo",
+    "ledScreen": "Écran à DEL",
+    "city": "Ville",
+    "sound": "Son",
+    "meditation": "Méditation",
+    "interactiveMap": "Plan interactif",
+    "picture": "Photo",
+    "maps": "Plans",
+    "museum": "Musée"
+  },
+  "listView": {
+    "title": "Titre",
+    "artist": "Artiste",
+    "place": "Lieux",
+    "year": "Année"
+  },
+  "noResults": "Pas de résultat pour cette recherche"
+}

@@ -77,10 +77,15 @@ module.exports = {
         'interactive-picture': '#eee',
         'teamlab': '#fee2d5'
       },
+      lineClamp: {
+        10: '10'
+      }
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      lineClamp: ['responsive']
+    },
   },
   plugins: [
     plugin(function({ matchUtilities, theme }) {

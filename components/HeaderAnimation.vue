@@ -10,7 +10,7 @@ const store = useStore()
 const getSoixanteProjects = () => {
   const projects = []
   for (let project of store.data) {
-    if (project.fields.soixante_circuits === true) {
+    if (project.fields.SoixanteCircuits === true) {
       projects.push(project)
     }
   }

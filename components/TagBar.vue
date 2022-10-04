@@ -6,7 +6,7 @@ const store = useStore()
 
 <template>
   <div class="h-20 flex items-center font-medium gap-2">
-    <div class="">Mes filtres :</div>
+    <div class="">{{$t('myFilters')}} :</div>
     <div v-if="store.filter.length === 0" class="h-6 w-32 rounded-md border border-black border-dashed"></div>
     <template v-for="tag in store.filter" :key="tag">
         <CardTag v-if="tag === 'art'" class="bg-art" :tag="tag" mode="delete" />

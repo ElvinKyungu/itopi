@@ -1,0 +1,49 @@
+{
+  "languageSelect": "Select language",
+  "language": "English",
+  "title": "1000 installations,\nAccess 100 of them for free !",
+  "search": "Search",
+  "filters": "Filters",
+  "myFilters": "My filters",
+  "sortBy": "Sort By",
+  "display": "Display",
+  "design": "developed by",
+  "idea": "Idea by",
+  "favorites": "Favorites",
+  "location": "Location",
+  "more": "See more...",
+  "modal": {
+    "openModal": "how much is the project ?",
+    "modalHeading": "Interested in the project ?",
+    "modalSubHeading": "Send us a message with your details, and we'll get back to you with an offer",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "companyName": "Company Name",
+    "email": "E-mail Address",
+    "message": "Your message",
+    "send": "I want this project !"
+  },
+  "alert": "Thank you for your inquiry",
+  "home": "Home page",
+  "about": "About us",
+  "tags": {
+    "interactiveSpace": "Interactive space",
+    "augmentedReality": "Augmented reality",
+    "videoMapping": "Video mapping",
+    "ledScreen": "LED screen",
+    "city": "City",
+    "sound": "Sound",
+    "meditation": "Meditation",
+    "interactiveMap": "Interactive map",
+    "picture": "Picture",
+    "maps": "Maps",
+    "museum": "Museum"
+  },
+  "listView": {
+    "title": "Title",
+    "artist": "Artist",
+    "place": "Place",
+    "year": "Year"
+  },
+  "noResults": "No results for this search"
+}

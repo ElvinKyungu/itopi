@@ -19,13 +19,16 @@ export const useStore = defineStore({
       searchWord: '',
       filteredProject: null,
       project: null,
-      sort: { name: 'Pertinence', field: null, reverse: false },
+      sort: { name: 'Relevance', field: null, reverse: false },
       grid: true,
       filter: [],
       tags: [],
       favorite: false,
       favoriteArray: [],
-      modalOpen: false
+      modalOpen: false,
+      alert: false,
+      blur: false,
+      locale: { en: false, fr: false}
     }
   },
   getters: {
@@ -42,11 +45,11 @@ export const useStore = defineStore({
     setTags(data) {
       let newTags = []
       for (let project of data) {
-        if (project.fields.hasOwnProperty('Mots_clefs')) {
-          newTags = getTags(project.fields.Mots_clefs, newTags)
+        if (project.fields.hasOwnProperty('tages')) {
+          newTags = getTags(project.fields.tags, newTags)
         }
-        if (project.fields.hasOwnProperty('Installation_type')) {
-          newTags = getTags(project.fields.Installation_type, newTags)
+        if (project.fields.hasOwnProperty('installationType')) {
+          newTags = getTags(project.fields.installationType, newTags)
         }
       }
       this.tags = newTags

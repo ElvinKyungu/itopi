@@ -97,10 +97,10 @@ const textZone = (width, height, project) => {
   textZone.style.paddingLeft = '0.5rem'
   textZone.style.paddingRight = '0.5rem'
 
-  const name = title(project.fields.Name)
+  const name = title(project.fields.name)
   name.style.fontWeight = '500'
 
-  const artiste = title(project.fields.Name)
+  const artiste = title(project.fields.arist)
   artiste.style.fontWeight = '600'
 
   textZone.appendChild(name)
