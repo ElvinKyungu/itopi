@@ -52,23 +52,23 @@ const projectPage = () => {
     <div class="mt-[.1rem] flex flex-wrap gap-2 md:gap-1.5">
       <template v-for="tag in tags.slice(0, 4)" :key="tag">
         <CardTag v-if="tag === 'art'" class="bg-art" :tag="tag" mode="card" />
-        <CardTag v-else-if="tag === 'Interactive space'" class="bg-interactive-space" :tag="tag" mode="card" />
+        <CardTag v-else-if="tag === 'Interactive space'" class="bg-interactive-space" :tag="$t('tags.interactiveSpace')" mode="card" />
         <CardTag v-else-if="tag === 'experiment'" class="bg-experiment" :tag="tag" mode="card" />
-        <CardTag v-else-if="tag === 'Augmented reality'" class="bg-augmented-reality" :tag="tag" mode="card" />
+        <CardTag v-else-if="tag === 'Augmented reality'" class="bg-augmented-reality" :tag="$t('tags.augmentedReality')" mode="card" />
         <CardTag v-else-if="tag === 'commercial'" class="bg-commercial" :tag="tag" mode="card" />
-        <CardTag v-else-if="tag === 'Video mapping'" class="bg-video-mapping" :tag="tag" mode="card" />
-        <CardTag v-else-if="tag === 'ledscreen'" class="bg-led-screen" :tag="tag" mode="card" />
+        <CardTag v-else-if="tag === 'Video mapping'" class="bg-video-mapping" :tag="$t('tags.videoMapping')" mode="card" />
+        <CardTag v-else-if="tag === 'ledscreen'" class="bg-led-screen" :tag="$t('tags.ledScreen')" mode="card" />
         <CardTag v-else-if="tag === 'Application'" class="bg-application" :tag="tag" mode="card" />
-        <CardTag v-else-if="tag === 'city'" class="bg-city" :tag="tag" mode="card" />
+        <CardTag v-else-if="tag === 'city'" class="bg-city" :tag="$t('tags.city')" mode="card" />
         <CardTag v-else-if="tag === 'robot'" class="bg-robot" :tag="tag" mode="card" />
-        <CardTag v-else-if="tag === 'sound'" class="bg-sound" :tag="tag" mode="card" />
+        <CardTag v-else-if="tag === 'sound'" class="bg-sound" :tag="$t('tags.sound')" mode="card" />
         <CardTag v-else-if="tag === 'mars'" class="bg-mars" :tag="tag" mode="card" />
-        <CardTag v-else-if="tag === 'meditation'" class="bg-meditation" :tag="tag" mode="card" />
+        <CardTag v-else-if="tag === 'meditation'" class="bg-meditation" :tag="$t('tags.meditation')" mode="card" />
         <CardTag v-else-if="tag === 'festival'" class="bg-festival" :tag="tag" mode="card" />
-        <CardTag v-else-if="tag === 'interactive map'" class="bg-interactive-map" :tag="tag" mode="card" />
-        <CardTag v-else-if="tag === 'picture'" class="bg-picture" :tag="tag" mode="card" />
-        <CardTag v-else-if="tag === 'maps'" class="bg-maps" :tag="tag" mode="card" />
-        <CardTag v-else-if="tag === 'museum'" class="bg-museum" :tag="tag" mode="card" />
+        <CardTag v-else-if="tag === 'interactive map'" class="bg-interactive-map" :tag="$t('tags.interactiveMap')" mode="card" />
+        <CardTag v-else-if="tag === 'picture'" class="bg-picture" :tag="$t('tags.picture')" mode="card" />
+        <CardTag v-else-if="tag === 'maps'" class="bg-maps" :tag="$t('tags.maps')" mode="card" />
+        <CardTag v-else-if="tag === 'museum'" class="bg-museum" :tag="$t('tags.museum')" mode="card" />
         <CardTag v-else :tag="tag" mode="card" />
       </template>
     </div>

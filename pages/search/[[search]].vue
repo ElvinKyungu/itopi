@@ -16,7 +16,6 @@ const options = {
   shouldSort: true,
   includeMatches: true,
   threshold: 0.3,
-  keys:['fields.Name', 'fields.Artiste', 'fields.Mots_clefs']
 }
 
 const setParams = (url) => {
@@ -138,6 +137,9 @@ onMounted(() => {
   const favorite = localStorage.getItem('top1000-favorite')
   if (favorite !== 'null') {
     store.favoriteArray = favorite.split(',')
+
+    store.locale.en = true
+    store.locale.fr = false
   }
 })
 
@@ -151,14 +153,14 @@ onUnmounted(() => {
 <section id="search" class="px-5 md:px-10 pt-16 relative">
   <ProjectView v-if="store.project" />
   <BackToTop />
-  <FilterBar />
-  <GridView v-show="store.grid === true" :filteredData="filteredData" />
-  <ListView v-show="store.grid === false" :filteredData="filteredData" />
+  <FilterBar :class="{'blur-md': store.blur}"/>
+  <GridView v-show="store.grid === true" :filteredData="filteredData" :class="{'blur-md': store.blur}"/>
+  <ListView v-show="store.grid === false" :filteredData="filteredData" :class="{'blur-md': store.blur}"/>
   <div v-show="store.loading === false && (filteredData == null || filteredData.length === 0)" class="py-12 w-full flex justify-center items-center">
-    <div class="h-fit text-black text-xl font-semibold">Pas de résultat pour cette recherche
+    <div class="h-fit text-black text-xl font-semibold">{{$t('noResults')}}
       <div class="flex space-x-2 justify-center mt-2">
         <div>
-          <button type="button" class="inline-block px-6 py-3 bg-slate-300 text-gray-700 font-medium text-sm leading-tight uppercase rounded shadow-md hover:bg-slate-200 hover:shadow-lg focus:bg-gray-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-400 active:shadow-lg transition duration-150 ease-in-out" @click="goHome">page d'accueil</button>
+          <button type="button" class="inline-block px-6 py-3 bg-slate-300 text-gray-700 font-medium text-sm leading-tight uppercase rounded shadow-md hover:bg-slate-200 hover:shadow-lg focus:bg-gray-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-400 active:shadow-lg transition duration-150 ease-in-out" @click="goHome">{{$t('home')}}</button>
         </div>
     </div>
   </div>

@@ -1,5 +1,8 @@
 <script setup>
 import { getImg, getTags } from '../tools/utils'
+import { useStore } from '../store/index.js'
+
+const store = useStore()
 
 defineProps({
   filteredData: {
@@ -11,14 +14,14 @@ defineProps({
 })
 
 // get reference to the project card component
-const projectCard = ref({})
+const projectCard = ref(null)
 
 /**
  * when the DOM is updated with the project card component, use the intersection observer API to track all cards in screen 
  * view. Cards have a hidden style, and when they appear in screen view, they change visibility
  */
 onUpdated(() => {
-  const projectCard = document.querySelectorAll('.hide')
+  projectCard.value = document.querySelectorAll('.hide')
   const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if(entry.isIntersecting){
@@ -28,7 +31,7 @@ onUpdated(() => {
         }
       })
     })
-    projectCard.forEach((el) => observer.observe(el))
+    projectCard.value.forEach((el) => observer.observe(el))
 })
 
 </script>
@@ -39,10 +42,10 @@ onUpdated(() => {
       v-for="project in filteredData"
       :key="project.item.id"
       :id="project.item.id"
-      :title="project.item.fields.Name"
-      :artiste="project.item.fields.Artiste"
-      :lieux="project.item.fields.Lieux"
-      :year="project.item.fields.Année"
+      :title="project.item.fields.name"
+      :artiste="project.item.fields.artist"
+      :lieux="project.item.fields.place"
+      :year="project.item.fields.year"
       :img="getImg(project)"
       :tags="getTags(project)"
       class="hide"

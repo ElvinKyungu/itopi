@@ -52,9 +52,9 @@ const favoriteFilter = () => {
       <div class="bg-neutral-300 h-20 w-full flex items-center place-content-between gap-2">
         <img :src="getImg(project) || '../assets/img/no-photo.jpg'" class="w-20 h-20" />
         <div class="flex flex-wrap">
-          <span class="text-[.8rem] xs:text-[1rem] text-ellipsis overflow-hidden whitespace-nowrap w-28 xs:w-52 font-semibold">{{ project.item.fields.Name }}</span>
-          <span class="text-ellipsis overflow-hidden whitespace-nowrap w-28 xs:w-52 text-[.8rem] xs:text-[1rem]">{{ project.item.fields.Lieux }}</span>
-          <span class="text-ellipsis overflow-hidden whitespace-nowrap w-52 font-normal text-[.8rem] xs:text-[1rem]">{{project.item.fields.Année}}</span>
+          <span class="text-[.8rem] xs:text-[1rem] text-ellipsis overflow-hidden whitespace-nowrap w-28 xs:w-52 font-semibold">{{ project.item.fields.name }}</span>
+          <span class="text-ellipsis overflow-hidden whitespace-nowrap w-28 xs:w-52 text-[.8rem] xs:text-[1rem]">{{ project.item.fields.place }}</span>
+          <span class="text-ellipsis overflow-hidden whitespace-nowrap w-52 font-normal text-[.8rem] xs:text-[1rem]">{{project.item.fields.year}}</span>
         </div>
         <AddToFavorite :id="project.item.id" class="absolute" />
       </div>
@@ -62,28 +62,28 @@ const favoriteFilter = () => {
     <div class="sticky top-0 z-20 md:h-14 md:max-w-full md:bg-neutral-800 md:text-white md:rounded-t-lg md:grid md:grid-cols-11 md:border md:border-black">
       <div class="hidden md:block md:border md:border-black md:rounded-tl-lg"></div>
       <ListTextCase
-        v-on:click="updateSortOption({ name: 'Titre', field: 'Name' })"
-        text="Titre"
+        v-on:click="updateSortOption({ name: 'Titre', field: 'name' })"
+        :text="$t('listView.title')"
         class="col-span-2 cursor-pointer hidden sm:block"
       />
       <ListTextCase
-        v-on:click="updateSortOption({ name: 'Artiste', field: 'Artiste' })"
-        text="Artiste"
+        v-on:click="updateSortOption({ name: 'Artiste', field: 'artist' })"
+        :text="$t('listView.artist')"
         class="col-span-2 cursor-pointer hidden sm:block"
       />
       <ListTextCase
-        v-on:click="updateSortOption({ name: 'Lieux', field: 'Lieux' })"
-        text="Lieux"
+        v-on:click="updateSortOption({ name: 'Lieux', field: 'place' })"
+        :text="$t('listView.place')"
         class="col-span-2 cursor-pointer hidden sm:block"
       />
       <ListTextCase
-        v-on:click="updateSortOption({ name: 'Date', field: 'Année' })"
-        text="Année"
+        v-on:click="updateSortOption({ name: 'Date', field: 'year' })"
+        :text="$t('listView.year')"
         class="cursor-pointer hidden sm:block"
       />
       <ListTextCase text="Tags" class="col-span-2 hidden sm:block" />
       <ListTextCase
-        text="Favoris"
+        :text="$t('favorites')"
         class="hidden cursor-pointer sm:block"
         @click="favoriteFilter"
       />
@@ -94,10 +94,10 @@ const favoriteFilter = () => {
         v-for="project in filteredData"
         :key="project.item.id"
         :id="project.item.id"
-        :title="project.item.fields.Name"
-        :artiste="project.item.fields.Artiste"
-        :place="project.item.fields.Lieux"
-        :year="project.item.fields.Année"
+        :title="project.item.fields.name"
+        :artiste="project.item.fields.artist"
+        :place="project.item.fields.place"
+        :year="project.item.fields.year"
         :img="getImg(project) || '../assets/img/no-photo.jpg'"
         :tags="getTags(project)"
       />

@@ -9,13 +9,24 @@ const search = () => {
   router.push({ path: '/search/' + input.value, query: { filter: store.filter, favorite: store.favorite }})
 }
 
+const select = (event) => {
+  // console.log(event.target.value);
+  if(event.target.value === 'en'){
+    store.locale.en = true
+    store.locale.fr = false
+  } else if(event.target.value === 'fr'){
+    store.locale.fr = true
+    store.locale.en = false
+  }
+}
+
 </script>
 
 <template>
 <div id="search-bar" class="flex justify-end gap-1">
   <div class="flex flex-col justify-center w-fit">
       <div class="mb-3 xs:w-[10rem]">
-        <select class="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="locale-select" v-model="$i18n.locale">
+        <select class="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="locale-select" v-model="$i18n.locale" @change="select($event)">
           <option value="en">en</option>
           <option value="fr">fr</option>
         </select>
@@ -26,7 +37,7 @@ const search = () => {
       <input
         type="search"
         class="form-control relative flex-auto min-w-0 block w-full px-10 py-1.5 h-10 w-64 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-zinc-100 border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-zinc-400 focus:outline-none"
-        placeholder="Rechercher"
+        :placeholder="$t('search')"
         @keydown.enter="search"
         v-model="input">
       <span class="input-group-text flex absolute items-center px-2 py-3 text-base font-normal text-gray-700 text-center whitespace-nowrap rounded cursor-pointer" @click="search">

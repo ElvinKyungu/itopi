@@ -10,7 +10,7 @@ const goHome = () => {
 </script>
 
 <template>
-  <section id="header-area" class="h-[500px] bg-bottom header-background overflow-hidden">
+  <section id="header-area" class="h-[500px] bg-bottom header-background overflow-hidden" :class="{'blur-md': store.blur}">
     <div class="absolute z-10 top-5 inset-x-10 flex items-center justify-between">
       <div class="h-10 w-10 flex gap-1">
         <img src="~/assets/img/itopi-logo.png" class="h-full w-full object-cover object-bottom"/>

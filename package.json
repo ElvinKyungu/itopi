@@ -23,7 +23,7 @@
     "@tailwindcss/line-clamp": "^0.4.2",
     "@ubclaunchpad/vue-fathom": "^2.0.0",
     "fuse.js": "^6.6.2",
-    "gsap": "^3.10.4",
+    "gsap": "^3.11.2",
     "lil-gui": "^0.17.0",
     "node-fetch": "^2.6.7",
     "pinia": "^2.0.21",
