@@ -64,8 +64,7 @@ export const useStore = defineStore({
           this.data = data
           this.setTags(data)
         }
-      }
-      catch (error) {
+      } catch (error) {
         console.log('init data', error)
       }
 

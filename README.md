@@ -23,7 +23,13 @@ And netlify CLI
 npm install netlify-cli -g
 ```
 
+### Configure
 Configure the environment variables by following the .env.example file
+
+`cp .env.example .env`
+
+
+
 
 ## Development Server
 
