@@ -8,5 +8,6 @@
   "deno.path": "/home/justine/.config/netlify/deno-cli/deno",
   "i18n-ally.localesPaths": [
     "locales"
-  ]
+  ],
+  "nuxt.isNuxtApp": false
 }

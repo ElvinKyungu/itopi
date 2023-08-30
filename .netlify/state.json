@@ -2,16 +2,19 @@
 	"promptVSCodeSettings": true,
 	"geolocation": {
 		"data": {
-			"city": "Paris",
+			"city": "Lubumbashi",
 			"country": {
-				"code": "FR",
-				"name": "France"
+				"code": "CD",
+				"name": "DR Congo"
 			},
 			"subdivision": {
-				"code": "IDF",
-				"name": "Ãle-de-France"
-			}
+				"code": "HK",
+				"name": "Haut-Katanga"
+			},
+			"timezone": "Africa/Lubumbashi",
+			"latitude": -11.6663,
+			"longitude": 27.475
 		},
-		"timestamp": 1658481660935
+		"timestamp": 1693415013080
 	}
 }
